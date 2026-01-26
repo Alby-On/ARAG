@@ -75,12 +75,12 @@ header.hero {
 .hero-content p { font-size: 1.2rem; margin-bottom: 35px; max-width: 800px; margin: 0 auto 35px; }
 
 /* =========================================
-   SECCIÓN NOSOTROS (CENTRADA Y DINÁMICA)
+   SECCIÓN NOSOTROS & EQUIPO
    ========================================= */
 #nosotros {
     background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
     overflow: hidden;
-    display: flex; /* Asegura centrado de hijos */
+    display: flex;
     flex-direction: column;
     align-items: center;
 }
@@ -90,14 +90,14 @@ header.hero {
     flex-direction: column;
     gap: 60px;
     width: 100%;
-    max-width: 1200px; /* Ancho máximo para que no se desparrame */
-    align-items: center; /* Centra el contenido interior */
+    max-width: 1200px;
+    align-items: center;
 }
 
 .nosotros-main {
     max-width: 850px;
     margin: 0 auto;
-    text-align: center; /* Centra el texto */
+    text-align: center;
 }
 
 .experience-badge {
@@ -124,7 +124,7 @@ header.hero {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
     width: 100%;
-    justify-content: center; /* Centra las tarjetas si hay pocas */
+    justify-content: center;
 }
 
 .nosotros-card {
@@ -137,7 +137,7 @@ header.hero {
     border: 1px solid #eee;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra el contenido dentro de la tarjeta */
+    align-items: center;
 }
 
 .nosotros-card:hover {
@@ -164,9 +164,74 @@ header.hero {
     color: white;
 }
 
-.solar-highlight {
-    border: 2px solid #fbc531;
-    background: linear-gradient(to bottom, #ffffff, #fffdf5);
+/* --- ESTILOS DE EQUIPO --- */
+.team-title {
+    margin-top: 80px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.team-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    text-align: center;
+    transition: var(--transition);
+    border-bottom: 4px solid #ddd;
+}
+
+.team-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.solar-border {
+    border-bottom-color: #fbc531;
+}
+
+.team-img {
+    width: 100%;
+    height: 320px;
+    background: #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.team-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.team-info {
+    padding: 25px;
+}
+
+.team-info h4 {
+    font-family: 'Montserrat';
+    margin-bottom: 5px;
+    color: var(--secondary);
+}
+
+.team-info span {
+    display: block;
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
 }
 
 /* BOTONES */
@@ -184,6 +249,7 @@ header.hero {
     font-size: 1.1rem;
     box-shadow: 0 4px 15px rgba(29, 132, 207, 0.3);
 }
+
 .btn:hover { 
     transform: translateY(-3px); 
     box-shadow: 0 8px 25px rgba(29, 132, 207, 0.5);
@@ -235,6 +301,7 @@ section {
     text-align: center;
     border-bottom: 3px solid transparent;
 }
+
 .card:hover { 
     transform: translateY(-10px); 
     border-bottom-color: var(--primary);
@@ -255,7 +322,7 @@ section {
 }
 
 .contact-info h3 { font-family: 'Montserrat'; color: var(--secondary); margin-bottom: 25px; }
-.contact-info p { margin-bottom: 20px; display: flex; align-items: center; justify-content: center; }
+.contact-info p { margin-bottom: 20px; display: flex; align-items: center; justify-content: flex-start; }
 .contact-info i { color: var(--primary); margin-right: 15px; font-size: 1.2rem; }
 
 form { display: flex; flex-direction: column; gap: 20px; }
@@ -266,10 +333,6 @@ input, textarea {
     font-family: inherit;
     font-size: 1rem;
     transition: var(--transition);
-}
-input:focus, textarea:focus {
-    border-color: var(--primary);
-    outline: none;
 }
 
 /* FOOTER */
@@ -288,7 +351,5 @@ footer {
     .nav-links { gap: 15px; }
     header.hero { margin-top: 120px; }
     .hero-content h1 { font-size: 2.2rem; }
-    .nosotros-container { gap: 30px; }
-    .nosotros-grid { grid-template-columns: 1fr; }
-    .contact-container { padding: 30px; }
+    .team-grid { grid-template-columns: 1fr; }
 }
