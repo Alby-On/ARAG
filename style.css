@@ -1,10 +1,10 @@
 /* VARIABLES DE COLOR BASADAS EN EL LOGO */
 :root {
-    --primary: #1D84CF;   /* Azul extraído del logo */
-    --secondary: #1A1A1A; /* Gris oscuro extraído del logo */
-    --accent: #1D84CF;    
+    --primary: #1D84CF;
+    --secondary: #1A1A1A;
+    --accent: #1D84CF;
     --light: #f4f7f6;
-    --dark: #1A1A1A;      
+    --dark: #1A1A1A;
     --transition: all 0.3s ease;
 }
 
@@ -17,7 +17,9 @@ body {
     line-height: 1.6;
 }
 
-/* NAVEGACIÓN */
+/* =======================
+   NAVEGACIÓN
+   ======================= */
 .navbar {
     background: rgba(255, 255, 255, 0.98);
     padding: 0 5%;
@@ -25,7 +27,7 @@ body {
     justify-content: space-between;
     align-items: center;
     position: fixed;
-    width: 100%; 
+    width: 100%;
     left: 0;
     top: 0;
     z-index: 1000;
@@ -46,20 +48,44 @@ body {
     width: auto;
 }
 
-.nav-links { list-style: none; display: flex; gap: 25px; margin: 0; }
-.nav-links a { 
-    text-decoration: none; 
+/* FIX: reset completo del ul + centrado vertical */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;              /* FIX */
+    align-items: center;     /* FIX */
+    height: 100%;            /* FIX */
+}
+
+.nav-links li {
+    display: flex;           /* FIX */
+    align-items: center;     /* FIX */
+    height: 100%;
+}
+
+.nav-links a {
+    display: flex;           /* FIX */
+    align-items: center;     /* FIX */
+    height: 100%;
+    text-decoration: none;
     color: var(--secondary);
-    font-weight: 600; 
+    font-weight: 600;
     transition: var(--transition);
 }
-.nav-links a:hover { color: var(--primary); }
 
-/* HERO SECTION */
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+/* =======================
+   HERO
+   ======================= */
 header.hero {
     height: 90vh;
-    background: linear-gradient(rgba(29, 132, 207, 0.8), rgba(26, 26, 26, 0.7)), 
-                url('https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background: linear-gradient(rgba(29, 132, 207, 0.8), rgba(26, 26, 26, 0.7)),
+        url('https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -71,170 +97,37 @@ header.hero {
     margin-top: 70px;
 }
 
-.hero-content h1 { font-family: 'Montserrat'; font-size: 3.5rem; margin-bottom: 20px; }
-.hero-content p { font-size: 1.2rem; margin-bottom: 35px; max-width: 800px; margin: 0 auto 35px; }
-
-/* =========================================
-   SECCIÓN NOSOTROS & EQUIPO
-   ========================================= */
-#nosotros {
-    background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.nosotros-container {
-    display: flex;
-    flex-direction: column;
-    gap: 60px;
-    width: 100%;
-    max-width: 1200px;
-    align-items: center;
-}
-
-.nosotros-main {
-    max-width: 850px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.experience-badge {
-    background: var(--primary);
-    color: white;
-    padding: 5px 15px;
-    border-radius: 20px;
-    display: inline-block;
-    font-weight: bold;
-    font-size: 0.9rem;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.highlight {
-    color: var(--primary);
-    font-weight: bold;
-    border-bottom: 2px solid var(--primary);
-}
-
-.nosotros-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    width: 100%;
-    justify-content: center;
-}
-
-.nosotros-card {
-    background: white;
-    padding: 40px 30px;
-    border-radius: 15px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 1px solid #eee;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.nosotros-card:hover {
-    transform: translateY(-15px);
-    box-shadow: 0 20px 40px rgba(29, 132, 207, 0.15);
-    border-color: var(--primary);
-}
-
-.card-icon {
-    width: 70px;
-    height: 70px;
-    background: #f0f7ff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    color: var(--primary);
-    font-size: 1.8rem;
-}
-
-.nosotros-card:hover .card-icon {
-    background: var(--primary);
-    color: white;
-}
-
-/* --- ESTILOS DE EQUIPO --- */
-.team-title {
-    margin-top: 80px;
-    margin-bottom: 40px;
-    text-align: center;
-}
-
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.team-card {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-    text-align: center;
-    transition: var(--transition);
-    border-bottom: 4px solid #ddd;
-}
-
-.team-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-}
-
-.solar-border {
-    border-bottom-color: #fbc531;
-}
-
-.team-img {
-    width: 100%;
-    height: 320px;
-    background: #e9ecef;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.team-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.team-info {
-    padding: 25px;
-}
-
-.team-info h4 {
+.hero-content h1 {
     font-family: 'Montserrat';
-    margin-bottom: 5px;
-    color: var(--secondary);
+    font-size: 3.5rem;
+    margin-bottom: 20px;
 }
 
-.team-info span {
-    display: block;
-    color: var(--primary);
-    font-weight: 600;
-    font-size: 0.85rem;
-    margin-bottom: 15px;
-    text-transform: uppercase;
+.hero-content p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto 35px;
 }
 
-/* BOTONES */
+/* =======================
+   SECCIONES GENERALES
+   ======================= */
+section {
+    padding: 100px 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+    width: 100%;
+}
+
+/* =======================
+   BOTONES
+   ======================= */
 .btn {
     background: var(--primary);
     padding: 16px 40px;
@@ -245,111 +138,44 @@ header.hero {
     border: none;
     cursor: pointer;
     transition: var(--transition);
-    display: inline-block;
+    display: inline-flex;       /* FIX */
+    align-items: center;        /* FIX */
+    justify-content: center;    /* FIX */
     font-size: 1.1rem;
     box-shadow: 0 4px 15px rgba(29, 132, 207, 0.3);
 }
 
-.btn:hover { 
-    transform: translateY(-3px); 
+.btn:hover {
+    transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(29, 132, 207, 0.5);
     background: #156cb0;
 }
 
-/* SECCIONES GENERALES */
-section { 
-    padding: 100px 10%; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-}
-
-.section-title { 
-    text-align: center; 
-    margin-bottom: 60px; 
-    width: 100%;
-}
-
-.section-title h2 { color: var(--secondary); font-size: 2.5rem; font-family: 'Montserrat'; position: relative; padding-bottom: 15px; }
-.section-title h2::after {
-    content: '';
-    width: 80px;
-    height: 4px;
-    background: var(--primary);
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-/* SERVICIOS */
-.servicios-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    width: 100%;
-    max-width: 1200px;
-    justify-content: center;
-}
-
-.card {
-    background: white;
-    padding: 40px 30px;
-    border-radius: 8px;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.08);
-    transition: var(--transition);
-    text-align: center;
-    border-bottom: 3px solid transparent;
-}
-
-.card:hover { 
-    transform: translateY(-10px); 
-    border-bottom-color: var(--primary);
-}
-.card i { font-size: 3rem; color: var(--primary); margin-bottom: 20px; }
-
-/* CONTACTO */
-.contact-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 50px;
-    background: white;
-    padding: 50px;
-    border-radius: 15px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-    width: 100%;
-    max-width: 1100px;
-}
-
-.contact-info h3 { font-family: 'Montserrat'; color: var(--secondary); margin-bottom: 25px; }
-.contact-info p { margin-bottom: 20px; display: flex; align-items: center; justify-content: flex-start; }
-.contact-info i { color: var(--primary); margin-right: 15px; font-size: 1.2rem; }
-
-form { display: flex; flex-direction: column; gap: 20px; }
-input, textarea {
-    padding: 15px;
-    border: 2px solid #eee;
-    border-radius: 4px;
-    font-family: inherit;
-    font-size: 1rem;
-    transition: var(--transition);
-}
-
-/* FOOTER */
-footer {
-    background: var(--secondary);
-    color: white;
-    text-align: center;
-    padding: 40px 20px;
-    width: 100%;
-}
-
-/* RESPONSIVO */
+/* =======================
+   RESPONSIVO
+   ======================= */
 @media (max-width: 768px) {
-    .navbar { flex-direction: column; height: auto; padding: 15px 5%; }
-    .logo { height: auto; margin-bottom: 10px; }
-    .nav-links { gap: 15px; }
-    header.hero { margin-top: 120px; }
-    .hero-content h1 { font-size: 2.2rem; }
-    .team-grid { grid-template-columns: 1fr; }
+    .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 15px 5%;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .nav-links {
+        justify-content: center;
+        width: 100%;
+        gap: 15px;
+    }
+
+    header.hero {
+        margin-top: 120px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
 }
