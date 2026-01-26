@@ -1,9 +1,10 @@
+/* VARIABLES DE COLOR BASADAS EN EL LOGO */
 :root {
-    --primary: #0a3d62;
-    --secondary: #1e90ff;
-    --accent: #fbc531;
+    --primary: #1D84CF;   /* Azul extraído del logo */
+    --secondary: #1A1A1A; /* Gris oscuro extraído del logo */
+    --accent: #1D84CF;    /* Usamos el azul para botones para mantener la identidad */
     --light: #f4f7f6;
-    --dark: #2f3640;
+    --dark: #1A1A1A;      /* Texto general */
     --transition: all 0.3s ease;
 }
 
@@ -19,7 +20,7 @@ body {
 /* NAVEGACIÓN */
 .navbar {
     background: rgba(255, 255, 255, 0.98);
-    padding: 1rem 5%;
+    padding: 0.5rem 5%; /* Reduje un poco el padding vertical */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,25 +29,38 @@ body {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    height: 70px; /* Altura fija para la barra */
 }
 
-.logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); text-decoration: none; }
-.logo i { color: var(--secondary); margin-right: 10px; }
+/* Estilos para el contenedor del logo */
+.logo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    text-decoration: none;
+}
+
+/* Estilos para la imagen del logo */
+.logo img {
+    height: 50px; /* Ajusta la altura del logo */
+    width: auto;  /* Mantiene la proporción */
+}
 
 .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; }
 .nav-links a { 
     text-decoration: none; 
-    color: var(--dark); 
+    color: var(--secondary); /* Color del texto del menú */
     font-weight: 600; 
     transition: var(--transition);
 }
-.nav-links a:hover { color: var(--secondary); }
+.nav-links a:hover { color: var(--primary); }
 
 /* HERO SECTION */
 header.hero {
     height: 90vh;
-    background: linear-gradient(rgba(10, 61, 98, 0.8), rgba(10, 61, 98, 0.6)), 
-                url('https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    /* Overlay con el azul corporativo y una imagen de fondo */
+    background: linear-gradient(rgba(29, 132, 207, 0.8), rgba(26, 26, 26, 0.7)), 
+                url('https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -55,41 +69,42 @@ header.hero {
     text-align: center;
     color: white;
     padding: 0 20px;
+    margin-top: 70px; /* Compensar la altura de la barra fija */
 }
 
 .hero-content h1 { font-family: 'Montserrat'; font-size: 3.5rem; margin-bottom: 20px; }
 .hero-content p { font-size: 1.2rem; margin-bottom: 35px; max-width: 800px; margin: 0 auto 35px; }
 
-/* BOTONES */
+/* BOTONES (Ahora usan el azul corporativo) */
 .btn {
-    background: var(--accent);
+    background: var(--primary);
     padding: 16px 40px;
-    color: var(--dark);
+    color: white; /* Texto blanco para contraste con el azul */
     text-decoration: none;
     font-weight: bold;
-    border-radius: 50px;
+    border-radius: 4px; /* Bordes menos redondeados para un look más ingenieril */
     border: none;
     cursor: pointer;
     transition: var(--transition);
     display: inline-block;
     font-size: 1.1rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 15px rgba(29, 132, 207, 0.3);
 }
 .btn:hover { 
     transform: translateY(-3px); 
-    box-shadow: 0 8px 20px rgba(251, 197, 49, 0.4);
-    background: #f1b91d;
+    box-shadow: 0 8px 25px rgba(29, 132, 207, 0.5);
+    background: #156cb0; /* Un tono más oscuro al pasar el mouse */
 }
 
 /* SECCIONES */
 section { padding: 100px 10%; }
 .section-title { text-align: center; margin-bottom: 60px; }
-.section-title h2 { color: var(--primary); font-size: 2.5rem; font-family: 'Montserrat'; position: relative; padding-bottom: 15px; }
+.section-title h2 { color: var(--secondary); font-size: 2.5rem; font-family: 'Montserrat'; position: relative; padding-bottom: 15px; }
 .section-title h2::after {
     content: '';
-    width: 60px;
+    width: 80px;
     height: 4px;
-    background: var(--accent);
+    background: var(--primary); /* Línea azul debajo de los títulos */
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -106,47 +121,61 @@ section { padding: 100px 10%; }
 .card {
     background: white;
     padding: 40px 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.08);
     transition: var(--transition);
     text-align: center;
+    border-bottom: 3px solid transparent;
 }
-.card:hover { transform: translateY(-10px); }
-.card i { font-size: 3rem; color: var(--secondary); margin-bottom: 20px; }
+.card:hover { 
+    transform: translateY(-10px); 
+    border-bottom-color: var(--primary); /* Borde azul al pasar el mouse */
+}
+.card i { font-size: 3rem; color: var(--primary); margin-bottom: 20px; }
+.card h3 { color: var(--secondary); font-family: 'Montserrat'; }
 
 /* CONTACTO */
 .contact-container {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
     gap: 50px;
-    background: var(--light);
+    background: white;
     padding: 50px;
-    border-radius: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
 }
 
-.contact-info h3 { font-family: 'Montserrat'; color: var(--primary); margin-bottom: 20px; }
-.contact-info p { margin-bottom: 15px; }
-.contact-info i { color: var(--secondary); margin-right: 12px; width: 20px; }
+.contact-info h3 { font-family: 'Montserrat'; color: var(--secondary); margin-bottom: 25px; }
+.contact-info p { margin-bottom: 20px; display: flex; align-items: center; }
+.contact-info i { color: var(--primary); margin-right: 15px; font-size: 1.2rem; }
 
 form { display: flex; flex-direction: column; gap: 20px; }
 input, textarea {
     padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
+    border: 2px solid #eee;
+    border-radius: 4px;
     font-family: inherit;
     font-size: 1rem;
+    transition: var(--transition);
+}
+input:focus, textarea:focus {
+    border-color: var(--primary);
+    outline: none;
 }
 
 /* FOOTER */
 footer {
-    background: var(--primary);
+    background: var(--secondary); /* Fondo oscuro para el footer */
     color: white;
     text-align: center;
-    padding: 50px 20px;
+    padding: 40px 20px;
 }
 
 @media (max-width: 768px) {
-    .navbar { flex-direction: column; width: 100%; padding: 15px 0; }
+    .navbar { flex-direction: column; height: auto; padding: 15px 5%; }
+    .logo { height: auto; margin-bottom: 10px; }
+    .nav-links { gap: 15px; }
+    header.hero { margin-top: 120px; } /* Ajuste para el menú móvil */
     .hero-content h1 { font-size: 2.2rem; }
     .contact-container { grid-template-columns: 1fr; padding: 30px; }
 }
