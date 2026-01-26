@@ -2,9 +2,9 @@
 :root {
     --primary: #1D84CF;   /* Azul extraído del logo */
     --secondary: #1A1A1A; /* Gris oscuro extraído del logo */
-    --accent: #1D84CF;    /* Usamos el azul para botones */
+    --accent: #1D84CF;    
     --light: #f4f7f6;
-    --dark: #1A1A1A;      /* Texto general */
+    --dark: #1A1A1A;      
     --transition: all 0.3s ease;
 }
 
@@ -25,7 +25,7 @@ body {
     justify-content: space-between;
     align-items: center;
     position: fixed;
-    width: 100%; /* Ajustado de 90% a 100% para evitar saltos visuales */
+    width: 100%; /* Corregido a 100% */
     left: 0;
     top: 0;
     z-index: 1000;
@@ -74,54 +74,88 @@ header.hero {
 .hero-content h1 { font-family: 'Montserrat'; font-size: 3.5rem; margin-bottom: 20px; }
 .hero-content p { font-size: 1.2rem; margin-bottom: 35px; max-width: 800px; margin: 0 auto 35px; }
 
-/* SECCIÓN NOSOTROS (Agregado) */
-.nosotros-content {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 50px;
-    align-items: center;
+/* =========================================
+   SECCIÓN NOSOTROS (DINÁMICA)
+   ========================================= */
+#nosotros {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
+    overflow: hidden;
 }
 
-.nosotros-text h3 {
-    color: var(--primary);
-    font-family: 'Montserrat';
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-}
-
-.nosotros-text p {
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-    text-align: justify;
-    color: var(--secondary);
-}
-
-.nosotros-stats {
+.nosotros-container {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 60px;
 }
 
-.stat-item {
-    background: var(--light);
-    padding: 25px;
-    border-radius: 8px;
+.nosotros-main {
+    max-width: 800px;
+    margin: 0 auto;
     text-align: center;
-    border-top: 4px solid var(--primary);
-    transition: var(--transition);
 }
 
-.stat-item:hover {
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    transform: translateY(-5px);
-}
-
-.stat-number {
-    display: block;
-    font-size: 2.2rem;
+.experience-badge {
+    background: var(--primary);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    display: inline-block;
     font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.highlight {
     color: var(--primary);
-    font-family: 'Montserrat';
+    font-weight: bold;
+    border-bottom: 2px solid var(--primary);
+}
+
+.nosotros-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.nosotros-card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid #eee;
+}
+
+.nosotros-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(29, 132, 207, 0.15);
+    border-color: var(--primary);
+}
+
+.card-icon {
+    width: 70px;
+    height: 70px;
+    background: #f0f7ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    color: var(--primary);
+    font-size: 1.8rem;
+}
+
+.nosotros-card:hover .card-icon {
+    background: var(--primary);
+    color: white;
+}
+
+.solar-highlight {
+    border: 2px solid #fbc531;
+    background: linear-gradient(to bottom, #ffffff, #fffdf5);
 }
 
 /* BOTONES */
@@ -139,7 +173,6 @@ header.hero {
     font-size: 1.1rem;
     box-shadow: 0 4px 15px rgba(29, 132, 207, 0.3);
 }
-
 .btn:hover { 
     transform: translateY(-3px); 
     box-shadow: 0 8px 25px rgba(29, 132, 207, 0.5);
@@ -177,12 +210,10 @@ section { padding: 100px 10%; }
     text-align: center;
     border-bottom: 3px solid transparent;
 }
-
 .card:hover { 
     transform: translateY(-10px); 
     border-bottom-color: var(--primary);
 }
-
 .card i { font-size: 3rem; color: var(--primary); margin-bottom: 20px; }
 
 /* CONTACTO */
@@ -209,7 +240,6 @@ input, textarea {
     font-size: 1rem;
     transition: var(--transition);
 }
-
 input:focus, textarea:focus {
     border-color: var(--primary);
     outline: none;
@@ -230,6 +260,7 @@ footer {
     .nav-links { gap: 15px; }
     header.hero { margin-top: 120px; }
     .hero-content h1 { font-size: 2.2rem; }
-    .nosotros-content { grid-template-columns: 1fr; gap: 30px; }
+    .nosotros-container { gap: 30px; }
+    .nosotros-grid { grid-template-columns: 1fr; }
     .contact-container { grid-template-columns: 1fr; padding: 30px; }
 }
