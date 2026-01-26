@@ -1,0 +1,152 @@
+:root {
+    --primary: #0a3d62;
+    --secondary: #1e90ff;
+    --accent: #fbc531;
+    --light: #f4f7f6;
+    --dark: #2f3640;
+    --transition: all 0.3s ease;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    color: var(--dark);
+    line-height: 1.6;
+}
+
+/* NAVEGACIÓN */
+.navbar {
+    background: rgba(255, 255, 255, 0.98);
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 90%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); text-decoration: none; }
+.logo i { color: var(--secondary); margin-right: 10px; }
+
+.nav-links { list-style: none; display: flex; gap: 25px; margin: 0; }
+.nav-links a { 
+    text-decoration: none; 
+    color: var(--dark); 
+    font-weight: 600; 
+    transition: var(--transition);
+}
+.nav-links a:hover { color: var(--secondary); }
+
+/* HERO SECTION */
+header.hero {
+    height: 90vh;
+    background: linear-gradient(rgba(10, 61, 98, 0.8), rgba(10, 61, 98, 0.6)), 
+                url('https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 0 20px;
+}
+
+.hero-content h1 { font-family: 'Montserrat'; font-size: 3.5rem; margin-bottom: 20px; }
+.hero-content p { font-size: 1.2rem; margin-bottom: 35px; max-width: 800px; margin: 0 auto 35px; }
+
+/* BOTONES */
+.btn {
+    background: var(--accent);
+    padding: 16px 40px;
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-block;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.btn:hover { 
+    transform: translateY(-3px); 
+    box-shadow: 0 8px 20px rgba(251, 197, 49, 0.4);
+    background: #f1b91d;
+}
+
+/* SECCIONES */
+section { padding: 100px 10%; }
+.section-title { text-align: center; margin-bottom: 60px; }
+.section-title h2 { color: var(--primary); font-size: 2.5rem; font-family: 'Montserrat'; position: relative; padding-bottom: 15px; }
+.section-title h2::after {
+    content: '';
+    width: 60px;
+    height: 4px;
+    background: var(--accent);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* SERVICIOS */
+.servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: var(--transition);
+    text-align: center;
+}
+.card:hover { transform: translateY(-10px); }
+.card i { font-size: 3rem; color: var(--secondary); margin-bottom: 20px; }
+
+/* CONTACTO */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 50px;
+    background: var(--light);
+    padding: 50px;
+    border-radius: 20px;
+}
+
+.contact-info h3 { font-family: 'Montserrat'; color: var(--primary); margin-bottom: 20px; }
+.contact-info p { margin-bottom: 15px; }
+.contact-info i { color: var(--secondary); margin-right: 12px; width: 20px; }
+
+form { display: flex; flex-direction: column; gap: 20px; }
+input, textarea {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+/* FOOTER */
+footer {
+    background: var(--primary);
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+}
+
+@media (max-width: 768px) {
+    .navbar { flex-direction: column; width: 100%; padding: 15px 0; }
+    .hero-content h1 { font-size: 2.2rem; }
+    .contact-container { grid-template-columns: 1fr; padding: 30px; }
+}
