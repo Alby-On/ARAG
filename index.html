@@ -73,7 +73,7 @@
         .hero-content h1 span { color: var(--accent); }
         .hero-content p { font-size: 1.2rem; max-width: 800px; margin: 0 auto 40px; opacity: 0.9; }
 
-        /* --- CARRUSEL DE MARCAS (COLOR CORREGIDO) --- */
+        /* --- CARRUSEL DE MARCAS --- */
         .logos-section {
             background: white;
             padding: 40px 0;
@@ -107,8 +107,8 @@
             height: auto;
             max-height: 65px;
             object-fit: contain;
-            filter: none; /* Quitamos el blanco y negro */
-            opacity: 1; /* Opacidad total */
+            filter: none;
+            opacity: 1;
             transition: var(--transition);
         }
         .slide img:hover { transform: scale(1.1); filter: brightness(1.1); }
@@ -118,36 +118,42 @@
             100% { transform: translateX(calc(-250px * 6)); } 
         }
 
-        /* --- BOTONES --- */
-        .btn { padding: 18px 40px; background: var(--grad); color: white; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-block; transition: var(--transition); border: none; cursor: pointer; }
-        .btn-outline { background: transparent; border: 2px solid white; margin-left: 10px; }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(29, 132, 207, 0.4); }
-
         /* --- SECCIONES Y GRID --- */
         section { padding: 100px 8%; }
         .section-title { text-align: center; margin-bottom: 60px; }
         .section-title h2 { font-family: 'Montserrat'; font-size: 2.5rem; position: relative; }
+        
+        .nosotros-main { text-align: center; max-width: 900px; margin: 0 auto 50px; }
+        .experience-badge { background: var(--accent); color: var(--secondary); display: inline-block; padding: 5px 20px; border-radius: 50px; font-weight: 800; margin-bottom: 15px; }
+
         .nosotros-grid, .servicios-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .nosotros-card, .card { background: white; padding: 40px; border-radius: 20px; box-shadow: var(--shadow); transition: var(--transition); text-align: center; }
         .solar-highlight { background: var(--grad-solar); color: white; }
         .card-icon { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
         
-        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
-        .team-card { background: white; border-radius: 25px; overflow: hidden; box-shadow: var(--shadow); }
+        /* --- ESTILO EQUIPO (RESTABLECIDO) --- */
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 60px; }
+        .team-card { background: white; border-radius: 25px; overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); }
+        .team-card:hover { transform: translateY(-10px); }
         .team-img { height: 320px; overflow: hidden; }
-        .team-img img { width: 100%; height: 100%; object-fit: cover; }
+        .team-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .team-card:hover .team-img img { transform: scale(1.1); }
         .team-info { padding: 25px; text-align: center; }
+        .team-info h4 { font-family: 'Montserrat'; margin: 0; font-size: 1.2rem; }
+        .team-info p { color: var(--primary); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; margin-top: 5px; }
 
-        /* --- CONTACTO --- */
+        /* --- BOTONES Y CONTACTO --- */
+        .btn { padding: 18px 40px; background: var(--grad); color: white; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-block; transition: var(--transition); border: none; cursor: pointer; }
+        .btn-outline { background: transparent; border: 2px solid white; margin-left: 10px; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(29, 132, 207, 0.4); }
+
         .contact-container { display: grid; grid-template-columns: 1fr 1.5fr; background: white; border-radius: 30px; overflow: hidden; box-shadow: var(--shadow); }
         .contact-info { background: var(--secondary); color: white; padding: 60px; }
         #formContacto { padding: 60px; display: flex; flex-direction: column; gap: 20px; }
         input, textarea { width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 10px; }
 
-        /* --- FOOTER --- */
         footer { background: var(--secondary); color: white; text-align: center; padding: 60px 20px; border-top: 4px solid var(--primary); }
 
-        /* --- ANIMACIÓN REVEAL --- */
         .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s all ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -211,7 +217,7 @@
         <div class="nosotros-main reveal">
             <div class="experience-badge">Desde 2004</div>
             <h3>Liderando la Infraestructura Eléctrica</h3>
-            <p><strong>INGENIERÍA ARAG SPA</strong> impulsa el desarrollo regional con más de 20 años de experiencia. Somos el socio estratégico para sectores críticos.</p>
+            <p><strong>INGENIERÍA ARAG SPA</strong> impulsa el desarrollo regional con más de 20 años de experiencia.</p>
         </div>
 
         <div class="nosotros-grid">
@@ -229,6 +235,36 @@
                 <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
                 <h4>Seguridad</h4>
                 <p>Cumplimiento estricto de normativas SEC.</p>
+            </div>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-card reveal">
+                <div class="team-img">
+                    <img src="URL_DE_LA_FOTO_1" alt="Integrante 1">
+                </div>
+                <div class="team-info">
+                    <h4>Nombre Integrante 1</h4>
+                    <p>Cargo / Especialidad</p>
+                </div>
+            </div>
+            <div class="team-card reveal">
+                <div class="team-img">
+                    <img src="URL_DE_LA_FOTO_2" alt="Integrante 2">
+                </div>
+                <div class="team-info">
+                    <h4>Nombre Integrante 2</h4>
+                    <p>Cargo / Especialidad</p>
+                </div>
+            </div>
+            <div class="team-card reveal">
+                <div class="team-img">
+                    <img src="URL_DE_LA_FOTO_3" alt="Integrante 3">
+                </div>
+                <div class="team-info">
+                    <h4>Nombre Integrante 3</h4>
+                    <p>Cargo / Especialidad</p>
+                </div>
             </div>
         </div>
     </div>
