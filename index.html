@@ -7,8 +7,213 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/eb459f2346.js" crossorigin="anonymous"></script>
-    
-    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* --- VARIABLES Y RESET --- */
+        :root {
+            --primary: #1D84CF;   
+            --secondary: #1A1A1A; 
+            --accent: #FFB800;    
+            --light: #f8fafc;
+            --white: #ffffff;
+            --grad: linear-gradient(135deg, #1D84CF 0%, #0a4d7a 100%);
+            --grad-solar: linear-gradient(135deg, #FFB800 0%, #f1a100 100%);
+            --shadow: 0 15px 35px rgba(0,0,0,0.08);
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            font-family: 'Open Sans', sans-serif;
+            color: var(--secondary);
+            background-color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* --- NAVEGACIÓN PREMIUM --- */
+        .navbar {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 0 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            height: 85px;
+            z-index: 2000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .logo img { height: 50px; transition: var(--transition); }
+        .logo:hover img { transform: scale(1.05); }
+
+        .nav-links { display: flex; gap: 30px; list-style: none; align-items: center; }
+        .nav-links a { 
+            text-decoration: none; 
+            color: var(--secondary); 
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0; height: 2px;
+            bottom: -5px; left: 0;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--primary); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .btn-nav {
+            background: var(--grad);
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 50px;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1509391366360-fe5bb584850a?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 { 
+            font-family: 'Montserrat'; 
+            font-size: clamp(2.5rem, 6vw, 4.5rem); 
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 span { color: var(--accent); }
+
+        .hero-content p { font-size: 1.2rem; max-width: 800px; margin: 0 auto 40px; opacity: 0.9; }
+
+        .hero-btns { display: flex; gap: 20px; justify-content: center; }
+
+        /* --- BOTONES --- */
+        .btn {
+            padding: 18px 40px;
+            background: var(--grad);
+            color: white;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+        }
+
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(29, 132, 207, 0.4); }
+        .btn-outline:hover { background: white; color: var(--primary); }
+
+        /* --- SECCIONES GENERALES --- */
+        section { padding: 100px 8%; }
+
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-family: 'Montserrat'; font-size: 2.5rem; position: relative; display: inline-block; }
+        .section-title h2::after {
+            content: ''; width: 60px; height: 4px; background: var(--primary);
+            position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
+        }
+
+        /* --- NOSOTROS & EQUIPO --- */
+        .nosotros-main { max-width: 800px; margin: 0 auto 50px; text-align: center; }
+        .experience-badge { 
+            background: var(--primary); color: white; padding: 5px 15px; 
+            border-radius: 20px; font-weight: bold; margin-bottom: 20px; display: inline-block;
+        }
+
+        .nosotros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        
+        .nosotros-card {
+            background: white; padding: 40px; border-radius: 20px; box-shadow: var(--shadow);
+            transition: var(--transition); text-align: center;
+        }
+
+        .solar-highlight { background: var(--grad-solar); color: white; }
+        .solar-highlight .card-icon { color: white !important; }
+
+        .card-icon { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
+
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+        .team-card { background: white; border-radius: 25px; overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); }
+        .team-img { height: 320px; overflow: hidden; }
+        .team-img img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+        .team-card:hover .team-img img { transform: scale(1.1); }
+        .team-info { padding: 25px; text-align: center; }
+        .team-info span { color: var(--primary); font-weight: bold; text-transform: uppercase; font-size: 0.8rem; }
+
+        /* --- SERVICIOS --- */
+        .servicios-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .servicios-grid .card { 
+            background: white; padding: 50px 30px; border-radius: 20px; 
+            text-align: center; transition: var(--transition); box-shadow: var(--shadow);
+        }
+        .servicios-grid .card:hover { background: var(--secondary); color: white; transform: translateY(-10px); }
+        .servicios-grid .card i { font-size: 3rem; color: var(--primary); margin-bottom: 20px; }
+
+        /* --- CONTACTO --- */
+        .contact-container { 
+            display: grid; grid-template-columns: 1fr 1.5fr; 
+            background: white; border-radius: 30px; overflow: hidden; box-shadow: var(--shadow);
+        }
+        .contact-info { background: var(--secondary); color: white; padding: 60px; }
+        .contact-info h3 { font-family: 'Montserrat'; margin-bottom: 30px; }
+        .contact-info p { margin-bottom: 20px; display: flex; align-items: center; gap: 15px; }
+        .contact-info i { color: var(--primary); }
+
+        #formContacto { padding: 60px; display: flex; flex-direction: column; gap: 20px; }
+        input, textarea { 
+            width: 100%; padding: 15px; border: 1px solid #ddd; 
+            border-radius: 10px; font-family: inherit; background: #fdfdfd;
+        }
+        input:focus { outline: none; border-color: var(--primary); }
+
+        /* --- FOOTER --- */
+        footer { background: var(--secondary); color: white; text-align: center; padding: 60px 20px; border-top: 4px solid var(--primary); }
+        .footer-logo { height: 60px; margin-bottom: 20px; }
+
+        /* --- ANIMACIÓN REVEAL --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s all ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- RESPONSIVO --- */
+        @media (max-width: 992px) {
+            .contact-container { grid-template-columns: 1fr; }
+            .nav-links { display: none; } /* Aquí podrías implementar menú hamburguesa */
+            .navbar { padding: 0 5%; }
+        }
+    </style>
 </head>
 <body>
 
@@ -16,12 +221,6 @@
     <a href="#inicio" class="logo">
         <img src="aragspa.png" alt="Logo ARAG SPA Ingeniería">
     </a>
-    
-    <input type="checkbox" id="menu-check" style="display:none;">
-    <label for="menu-check" class="menu-btn">
-        <i class="fas fa-bars"></i>
-    </label>
-
     <ul class="nav-links">
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#nosotros">Nosotros</a></li>
@@ -41,8 +240,10 @@
     </div>
 </header>
 
-<section id="nosotros" class="reveal">
-    <div class="section-title">
+
+
+<section id="nosotros">
+    <div class="section-title reveal">
         <h2>Quiénes Somos</h2>
     </div>
 
@@ -73,37 +274,29 @@
             </div>
         </div>
 
-        <div class="team-title reveal">
+        <div class="team-title reveal" style="text-align:center; margin-top:80px;">
             <h3>Nuestro Liderazgo Técnico</h3>
         </div>
         
         <div class="team-grid">
             <div class="team-card reveal">
-                <div class="team-img">
-                    <img src="foto-lider.jpg" alt="Gerente de Proyectos">
-                </div>
+                <div class="team-img"><img src="foto-lider.jpg" alt="Gerente"></div>
                 <div class="team-info">
                     <h4>Nombre Apellido</h4>
                     <span>Gerente de Proyectos</span>
                     <p>Especialista en infraestructura eléctrica industrial.</p>
                 </div>
             </div>
-
-            <div class="team-card solar-border reveal">
-                <div class="team-img">
-                    <img src="diego-jara.jpg" alt="Diego Jara">
-                </div>
+            <div class="team-card reveal solar-border" style="border-bottom: 5px solid var(--accent);">
+                <div class="team-img"><img src="diego-jara.jpg" alt="Diego Jara"></div>
                 <div class="team-info">
                     <h4>Diego Jara</h4>
                     <span>Especialista Energía Solar</span>
                     <p>Líder del área fotovoltaica y eficiencia sustentable.</p>
                 </div>
             </div>
-
             <div class="team-card reveal">
-                <div class="team-img">
-                    <img src="foto-ingeniero.jpg" alt="Ingeniero de Terreno">
-                </div>
+                <div class="team-img"><img src="foto-ingeniero.jpg" alt="Ingeniero"></div>
                 <div class="team-info">
                     <h4>Nombre Apellido</h4>
                     <span>Ingeniero de Terreno</span>
@@ -114,25 +307,22 @@
     </div>
 </section>
 
-<section id="servicios" class="reveal">
-    <div class="section-title">
+<section id="servicios" style="background: #f1f5f9;">
+    <div class="section-title reveal">
         <h2>Nuestros Servicios</h2>
     </div>
     <div class="servicios-grid">
         <div class="card reveal">
-            <div class="card-overlay"></div>
             <i class="fas fa-drafting-pencil"></i>
             <h3>Ingeniería y Diseño</h3>
             <p>Desarrollo de ingeniería de detalle para plantas solares y sistemas de potencia.</p>
         </div>
         <div class="card reveal">
-            <div class="card-overlay"></div>
             <i class="fas fa-hard-hat"></i>
             <h3>Montaje y Construcción</h3>
             <p>Ejecución de obras en media y baja tensión con estándares de excelencia.</p>
         </div>
         <div class="card reveal">
-            <div class="card-overlay"></div>
             <i class="fas fa-file-signature"></i>
             <h3>Gestión Normativa</h3>
             <p>Tramitación TE1, TE4 y aseguramiento de cumplimiento legal SEC.</p>
@@ -140,8 +330,8 @@
     </div>
 </section>
 
-<section id="contacto" class="reveal">
-    <div class="section-title">
+<section id="contacto">
+    <div class="section-title reveal">
         <h2>Hablemos de tu Proyecto</h2>
     </div>
     <div class="contact-container reveal">
@@ -150,35 +340,51 @@
             <p><i class="fas fa-envelope"></i> contacto@aragspa.cl</p>
             <p><i class="fas fa-phone-alt"></i> +56 9 1234 5678</p>
             <p><i class="fas fa-map-marker-alt"></i> Santiago, Chile</p>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-            </div>
         </div>
-        
         <form id="formContacto">
-            <div class="input-group">
-                <input type="text" id="nombre" placeholder="Nombre completo" required>
-            </div>
-            <div class="input-group">
-                <input type="email" id="email" placeholder="Correo electrónico" required>
-            </div>
-            <div class="input-group">
-                <textarea id="mensaje" rows="4" placeholder="¿En qué podemos ayudarte?" required></textarea>
-            </div>
+            <input type="text" placeholder="Nombre completo" required>
+            <input type="email" placeholder="Correo electrónico" required>
+            <textarea rows="4" placeholder="¿En qué podemos ayudarte?" required></textarea>
             <button type="submit" class="btn">Enviar Solicitud <i class="fas fa-paper-plane"></i></button>
         </form>
     </div>
 </section>
 
 <footer>
-    <div class="footer-content">
-        <img src="aragspa-white.png" alt="ARAG SPA" class="footer-logo">
-        <p>&copy; 2026 ARAG SPA Ingeniería. Potenciando la industria con energía inteligente.</p>
-    </div>
+    <img src="aragspa-white.png" alt="ARAG SPA" class="footer-logo">
+    <p>&copy; 2026 ARAG SPA Ingeniería. Potenciando la industria con energía inteligente.</p>
 </footer>
 
-<script src="script.js"></script>
+<script>
+    // --- ANIMACIÓN DE SCROLL REVEAL ---
+    function reveal() {
+        var reveals = document.querySelectorAll(".reveal");
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+            var elementVisible = 150;
+            if (elementTop < windowHeight - elementVisible) {
+                reveals[i].classList.add("active");
+            }
+        }
+    }
+
+    window.addEventListener("scroll", reveal);
+    reveal(); // Ejecutar al cargar
+
+    // --- MANEJO DE FORMULARIO ---
+    document.getElementById('formContacto').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = this.querySelector('.btn');
+        btn.innerHTML = "Enviando... <i class='fas fa-spinner fa-spin'></i>";
+        
+        setTimeout(() => {
+            btn.innerHTML = "¡Mensaje Enviado! <i class='fas fa-check'></i>";
+            btn.style.background = "#28a745";
+            this.reset();
+        }, 2000);
+    });
+</script>
 
 </body>
 </html>
