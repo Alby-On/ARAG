@@ -73,7 +73,7 @@
         .hero-content h1 span { color: var(--accent); }
         .hero-content p { font-size: 1.2rem; max-width: 800px; margin: 0 auto 40px; opacity: 0.9; }
 
-        /* --- CARRUSEL DE MARCAS (NUEVO) --- */
+        /* --- CARRUSEL DE MARCAS (COLOR CORREGIDO) --- */
         .logos-section {
             background: white;
             padding: 40px 0;
@@ -91,7 +91,7 @@
 
         .logos-slider {
             display: flex;
-            width: calc(250px * 12); /* Doble del número de marcas para el bucle */
+            width: calc(250px * 12); 
             animation: scroll 30s linear infinite;
         }
         .logos-slider:hover { animation-play-state: paused; }
@@ -105,15 +105,17 @@
         .slide img {
             width: 150px;
             height: auto;
-            filter: grayscale(100%);
-            opacity: 0.6;
-            transition: 0.3s;
+            max-height: 65px;
+            object-fit: contain;
+            filter: none; /* Quitamos el blanco y negro */
+            opacity: 1; /* Opacidad total */
+            transition: var(--transition);
         }
-        .slide img:hover { filter: grayscale(0%); opacity: 1; transform: scale(1.1); }
+        .slide img:hover { transform: scale(1.1); filter: brightness(1.1); }
 
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-250px * 6)); } /* Cambiar el 6 por el total de logos originales */
+            100% { transform: translateX(calc(-250px * 6)); } 
         }
 
         /* --- BOTONES --- */
