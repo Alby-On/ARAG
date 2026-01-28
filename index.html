@@ -604,12 +604,12 @@
             <p><i class="fas fa-phone-alt"></i> +56 9 1234 5678</p>
         </div>
 
-        <form id="formContacto">
-            <input type="text" placeholder="Nombre completo" required>
-            <input type="email" placeholder="Correo electrónico" required>
-            <textarea rows="4" placeholder="¿En qué podemos ayudarte?" required></textarea>
-            <button type="submit" class="btn">Enviar Solicitud <i class="fas fa-paper-plane"></i></button>
-        </form>
+<form id="formContacto" action="enviar.php" method="POST">
+    <input type="text" name="nombre" placeholder="Nombre completo" required>
+    <input type="email" name="email" placeholder="Correo electrónico" required>
+    <textarea name="mensaje" rows="4" placeholder="¿En qué podemos ayudarte?" required></textarea>
+    <button type="submit" class="btn">Enviar Solicitud</button>
+</form>
     </div>
 </section>
 
