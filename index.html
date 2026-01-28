@@ -348,49 +348,58 @@
     display: block;
     object-fit: contain;
 }
-/* --- AJUSTES PARA 7 CARDS CON IMÁGENES --- */
+/* --- ESTRUCTURA ESPECÍFICA 3-3-1 --- */
         .servicios-grid {
             display: grid;
-            /* Crea una cuadrícula flexible que se adapta al ancho de pantalla */
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            /* Por defecto en móviles es 1 columna */
+            grid-template-columns: 1fr;
             gap: 30px;
-            align-items: stretch;
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
+        /* Configuración para tablets y escritorio */
+        @media (min-width: 768px) {
+            .servicios-grid {
+                grid-template-columns: repeat(3, 1fr); /* Crea 3 columnas iguales */
+            }
+
+            /* La card número 7 (la última) */
+            .servicios-grid .card:nth-child(7) {
+                grid-column: 2; /* Se posiciona en la columna central (la 2) */
+            }
+        }
+
+        /* --- ESTILO DE LAS IMÁGENES DENTRO DE LAS CARDS --- */
         .card {
             display: flex;
             flex-direction: column;
-            padding: 0 0 30px 0; /* Quitamos padding superior para que la imagen llegue al borde */
-            overflow: hidden; /* Para que la imagen respete el redondeado de la card */
+            padding: 0 !important; /* Imagen pegada arriba */
+            overflow: hidden;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
 
         .card-img {
             width: 100%;
-            height: 200px; /* Altura fija para que todas las cards midan lo mismo */
-            object-fit: cover; /* Recorta la imagen para que llene el espacio sin deformarse */
-            margin-bottom: 20px;
-            border-bottom: 3px solid var(--primary); /* Línea decorativa bajo la foto */
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 4px solid var(--primary);
         }
 
         .card h3 {
+            margin: 20px 0 10px;
             padding: 0 20px;
-            margin: 10px 0;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.25rem;
+            font-size: 1.3rem;
         }
 
         .card p {
-            padding: 0 25px;
+            padding: 0 20px 30px;
+            margin: 0;
+            color: #555;
             font-size: 0.95rem;
-            color: #64748b;
-            flex-grow: 1; /* Empuja el contenido para que las cards tengan la misma altura */
-        }
-
-        /* Ajuste para que con 7 cards, la última se vea bien en pantallas grandes */
-        @media (min-width: 1200px) {
-            .servicios-grid {
-                grid-template-columns: repeat(4, 1fr); /* 4 arriba, 3 abajo */
-            }
         }
 </style>
 </head>
