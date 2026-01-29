@@ -418,9 +418,9 @@
     display: block; /* Elimina espacios residuales */
     filter: grayscale(0.2) contrast(1.1); /* Opcional: le da un toque más serio */
 }
-/* --- SECCIÓN CLIENTES --- */
+/* --- SECCIÓN CLIENTES (COLORES ORIGINALES) --- */
 .clientes-section {
-    background-color: var(--white); /* Fondo claro para contrastar con las secciones oscuras */
+    background-color: var(--white);
 }
 
 .clientes-grid {
@@ -461,14 +461,9 @@
     max-width: 80%;
     max-height: 80%;
     object-fit: contain;
-    filter: grayscale(100%); /* Efecto elegante: logos en gris */
-    opacity: 0.7;
+    /* Eliminado el filtro de grises */
+    opacity: 1; /* Opacidad total para resaltar colores */
     transition: var(--transition);
-}
-
-.cliente-card:hover .cliente-logo-container img {
-    filter: grayscale(0%); /* El logo recupera su color al pasar el mouse */
-    opacity: 1;
 }
 
 .cliente-info h4 {
