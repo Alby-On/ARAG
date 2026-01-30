@@ -653,6 +653,80 @@
         display: none; /* Quitamos las líneas en móvil */
     }
 }
+/* --- Animación de Entrada (Scroll Reveal) --- */
+.reveal {
+    position: relative;
+    transform: translateY(50px);
+    opacity: 0;
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* --- Mejoras visuales para las Tarjetas --- */
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.benefit-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #eee;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Efecto al pasar el mouse (Hover) */
+.benefit-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 45px rgba(0, 77, 153, 0.15); /* Sombra con el azul de tu marca */
+    border-color: #004d99;
+}
+
+/* Animación del Icono */
+.benefit-icon i {
+    font-size: 2.5rem;
+    color: #004d99;
+    transition: transform 0.5s ease;
+}
+
+.benefit-card:hover .benefit-icon i {
+    transform: scale(1.2) rotate(10deg);
+    color: #ff9800; /* Un toque de color energía/alerta */
+}
+
+/* --- Barra de Estadísticas Animada --- */
+.stats-bar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: linear-gradient(135deg, #004d99 0%, #002d5c 100%);
+    color: white;
+    padding: 40px;
+    border-radius: 20px;
+    margin-top: 60px;
+}
+
+.stat-num {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ff9800;
+}
+
+/* Retraso escalonado para las tarjetas (Staggered Animation) */
+.benefit-card:nth-child(2) { transition-delay: 0.1s; }
+.benefit-card:nth-child(3) { transition-delay: 0.2s; }
+.benefit-card:nth-child(4) { transition-delay: 0.3s; }
 </style>
 </head>
 <body>
@@ -1076,6 +1150,25 @@
     window.addEventListener("scroll", reveal);
     window.addEventListener("load", reveal); // Se ejecuta al cargar la página
     reveal();
+
+    function reveal() {
+  var reveals = document.querySelectorAll(".reveal");
+
+  for (var i = 0; i < reveals.length; i++) {
+    var windowHeight = window.innerHeight;
+    var elementTop = reveals[i].getBoundingClientRect().top;
+    var elementVisible = 150; // Cuántos píxeles antes de verse se activa
+
+    if (elementTop < windowHeight - elementVisible) {
+      reveals[i].classList.add("active");
+    }
+  }
+}
+
+window.addEventListener("scroll", reveal);
+
+// Ejecutar una vez al cargar por si el usuario ya está ahí
+reveal();
 </script>
 <a href="https://wa.me/5693220000" class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
     <i class="fab fa-whatsapp"></i>
