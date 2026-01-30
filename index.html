@@ -478,6 +478,12 @@
     color: #666;
     line-height: 1.4;
 }
+/* Clase que se aplicará mediante JavaScript */
+.nav-links a.active {
+    font-weight: bold;
+    color: #007bff; /* Cambia el color según tu marca */
+    border-bottom: 2px solid #007bff;
+}
 </style>
 </head>
 <body>
@@ -802,6 +808,7 @@
 
 <script>
     function reveal() {
+        // --- Tu lógica original de revelado ---
         var reveals = document.querySelectorAll(".reveal");
         for (var i = 0; i < reveals.length; i++) {
             var windowHeight = window.innerHeight;
@@ -810,11 +817,50 @@
                 reveals[i].classList.add("active");
             }
         }
+
+        // --- Nueva lógica para resaltar el menú ---
+        const sections = document.querySelectorAll("section[id], header[id]"); // Detecta secciones con ID
+        const navLinks = document.querySelectorAll(".nav-links a");
+
+        let currentSectionId = "";
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            // Si el scroll actual está dentro del rango de la sección
+            if (window.scrollY >= (sectionTop - 200)) { 
+                currentSectionId = section.getAttribute("id");
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove("active");
+            if (link.getAttribute("href").includes(currentSectionId)) {
+                link.classList.add("active");
+            }
+        });
     }
+
+    // Lógica para Scroll Suave al hacer clic
+    document.querySelectorAll('.nav-links a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 70, // Ajuste para que el navbar no tape el título
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
     window.addEventListener("scroll", reveal);
+    window.addEventListener("load", reveal); // Se ejecuta al cargar la página
     reveal();
 </script>
-<a href="https://wa.me/56977462774" class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
+<a href="https://wa.me/5693220000" class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
     <i class="fab fa-whatsapp"></i>
     <span class="tooltip-wsp">¿Necesitas ayuda?</span>
 </a>
