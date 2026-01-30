@@ -535,6 +535,105 @@
         grid-template-columns: 1fr; /* Una sola columna en celulares */
     }
 }
+/* Estilos generales de la sección */
+.why-choose-us {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #ffffff 0%, #f4f7f9 100%);
+}
+
+.why-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-subtitle {
+    color: #666;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 10px auto;
+}
+
+/* Layout en dos columnas para el contenido principal */
+.benefits-container {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.benefits-grid {
+    flex: 2;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* Items individuales */
+.benefit-item {
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    display: flex;
+    gap: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.benefit-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,123,255,0.1);
+}
+
+.benefit-icon {
+    font-size: 2.2rem;
+    color: #007bff;
+    background: rgba(0,123,255,0.1);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* Panel de estadísticas lateral */
+.stats-panel {
+    flex: 1;
+    background: #007bff;
+    color: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 400px;
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.stat-box p {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+/* Responsivo */
+@media (max-width: 992px) {
+    .benefits-container { flex-direction: column; }
+    .stats-panel { width: 100%; min-height: auto; flex-direction: row; }
+}
+
+@media (max-width: 600px) {
+    .stats-panel { flex-direction: column; gap: 30px; }
+}
 </style>
 </head>
 <body>
@@ -789,45 +888,58 @@
 </section>
 <section id="por-que-elegirnos" class="why-choose-us">
     <div class="container">
-        <h2 class="section-title reveal">¿Por qué elegirnos?</h2>
-        <div class="benefits-grid">
-            <div class="benefit-item reveal">
-                <div class="benefit-icon">
-                    <i class="fas fa-check-circle"></i>
+        <div class="why-header reveal">
+            <h2 class="section-title">¿Por qué confiar en ARAG SPA?</h2>
+            <p class="section-subtitle">Combinamos rigor técnico con innovación sostenible para optimizar su infraestructura energética.</p>
+        </div>
+
+        <div class="benefits-container">
+            <div class="benefits-grid">
+                <div class="benefit-item reveal">
+                    <div class="benefit-icon"><i class="fas fa-microchip"></i></div>
+                    <div class="benefit-text">
+                        <h4>Ingeniería de Vanguardia</h4>
+                        <p>No solo instalamos; diseñamos soluciones optimizadas mediante software de simulación energética para maximizar el retorno de su inversión.</p>
+                    </div>
                 </div>
-                <div class="benefit-text">
-                    <h4>Experiencia Técnica</h4>
-                    <p>Contamos con un equipo de ingenieros altamente calificados en proyectos eléctricos y solares.</p>
+
+                <div class="benefit-item reveal">
+                    <div class="benefit-icon"><i class="fas fa-balance-scale"></i></div>
+                    <div class="benefit-text">
+                        <h4>Certificación y Legalidad</h4>
+                        <p>Gestión completa de trámites TE1 y TE4 ante la SEC. Aseguramos que su proyecto sea 100% legal, seguro y asegurable.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item reveal">
+                    <div class="benefit-icon"><i class="fas fa-tools"></i></div>
+                    <div class="benefit-text">
+                        <h4>Post-Venta Especializada</h4>
+                        <p>Nuestro compromiso no termina con la entrega. Ofrecemos planes de mantenimiento preventivo y monitoreo remoto de sistemas solares.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item reveal">
+                    <div class="benefit-icon"><i class="fas fa-leaf"></i></div>
+                    <div class="benefit-text">
+                        <h4>Sostenibilidad Rentable</h4>
+                        <p>Ayudamos a reducir su huella de carbono mientras disminuimos drásticamente sus costos operativos mensuales en energía.</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="benefit-item reveal">
-                <div class="benefit-icon">
-                    <i class="fas fa-clock"></i>
+            <div class="stats-panel reveal">
+                <div class="stat-box">
+                    <span class="stat-number">+100</span>
+                    <p>Proyectos Ejecutados</p>
                 </div>
-                <div class="benefit-text">
-                    <h4>Cumplimiento de Plazos</h4>
-                    <p>Gestión eficiente de proyectos para asegurar la entrega en el tiempo acordado.</p>
+                <div class="stat-box">
+                    <span class="stat-number">100%</span>
+                    <p>Cumplimiento SEC</p>
                 </div>
-            </div>
-
-            <div class="benefit-item reveal">
-                <div class="benefit-icon">
-                    <i class="fas fa-file-contract"></i>
-                </div>
-                <div class="benefit-text">
-                    <h4>Normativa Vigente</h4>
-                    <p>Garantizamos que todas nuestras instalaciones cumplen estrictamente con la normativa SEC.</p>
-                </div>
-            </div>
-
-            <div class="benefit-item reveal">
-                <div class="benefit-icon">
-                    <i class="fas fa-handshake"></i>
-                </div>
-                <div class="benefit-text">
-                    <h4>Atención Personalizada</h4>
-                    <p>Asesoría técnica directa para adaptar cada solución a las necesidades del cliente.</p>
+                <div class="stat-box">
+                    <span class="stat-number">24/7</span>
+                    <p>Soporte Técnico</p>
                 </div>
             </div>
         </div>
