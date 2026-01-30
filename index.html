@@ -535,104 +535,123 @@
         grid-template-columns: 1fr; /* Una sola columna en celulares */
     }
 }
-/* Estilos generales de la sección */
+/* 1. Contenedor General */
 .why-choose-us {
-    padding: 100px 0;
-    background: linear-gradient(135deg, #ffffff 0%, #f4f7f9 100%);
+    padding: 100px 20px;
+    background-color: #fcfcfc;
 }
 
 .why-header {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
 }
 
-.section-subtitle {
-    color: #666;
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin: 10px auto;
+.why-header h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 15px;
 }
 
-/* Layout en dos columnas para el contenido principal */
-.benefits-container {
-    display: flex;
-    gap: 50px;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
+/* 2. Grid de Beneficios (Simetría) */
 .benefits-grid {
-    flex: 2;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas fijas en PC */
+    gap: 25px;
+    max-width: 1100px;
+    margin: 0 auto 60px auto;
 }
 
-/* Items individuales */
-.benefit-item {
+.benefit-card {
     background: #fff;
-    padding: 25px;
-    border-radius: 12px;
+    padding: 30px;
+    border-radius: 15px;
     display: flex;
+    align-items: center;
     gap: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
+    border: 1px solid #eee;
+    transition: 0.3s ease;
 }
 
-.benefit-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(0,123,255,0.1);
+.benefit-card:hover {
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transform: translateY(-5px);
 }
 
 .benefit-icon {
-    font-size: 2.2rem;
+    font-size: 2rem;
     color: #007bff;
-    background: rgba(0,123,255,0.1);
-    width: 60px;
-    height: 60px;
+    background: rgba(0, 123, 255, 0.05);
+    width: 70px;
+    height: 70px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
     flex-shrink: 0;
 }
 
-/* Panel de estadísticas lateral */
-.stats-panel {
-    flex: 1;
+.benefit-info h4 {
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+    color: #222;
+}
+
+.benefit-info p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* 3. Franja de Estadísticas (Estructura Horizontal) */
+.stats-bar {
+    max-width: 900px;
+    margin: 0 auto;
     background: #007bff;
-    color: #fff;
-    padding: 40px;
-    border-radius: 20px;
+    border-radius: 100px; /* Forma de píldora moderna */
+    padding: 30px 50px;
     display: flex;
-    flex-direction: column;
     justify-content: space-around;
-    min-height: 400px;
+    align-items: center;
+    color: #fff;
+}
+
+.stat-item {
     text-align: center;
 }
 
-.stat-number {
+.stat-num {
     display: block;
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: bold;
-    margin-bottom: 5px;
 }
 
-.stat-box p {
-    font-size: 0.9rem;
+.stat-desc {
+    font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    opacity: 0.9;
 }
 
-/* Responsivo */
-@media (max-width: 992px) {
-    .benefits-container { flex-direction: column; }
-    .stats-panel { width: 100%; min-height: auto; flex-direction: row; }
+.stat-divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(255,255,255,0.3);
 }
 
-@media (max-width: 600px) {
-    .stats-panel { flex-direction: column; gap: 30px; }
+/* 4. Responsive (Orden en Móviles) */
+@media (max-width: 850px) {
+    .benefits-grid {
+        grid-template-columns: 1fr; /* Una columna en móvil */
+    }
+    
+    .stats-bar {
+        flex-direction: column;
+        gap: 20px;
+        border-radius: 20px;
+    }
+
+    .stat-divider {
+        display: none; /* Quitamos las líneas en móvil */
+    }
 }
 </style>
 </head>
@@ -889,58 +908,58 @@
 <section id="por-que-elegirnos" class="why-choose-us">
     <div class="container">
         <div class="why-header reveal">
-            <h2 class="section-title">¿Por qué confiar en ARAG SPA?</h2>
-            <p class="section-subtitle">Combinamos rigor técnico con innovación sostenible para optimizar su infraestructura energética.</p>
+            <h2 class="section-title">¿Por qué elegir ARAG SPA?</h2>
+            <p class="section-subtitle">Excelencia técnica y compromiso legal en cada proyecto.</p>
         </div>
 
-        <div class="benefits-container">
-            <div class="benefits-grid">
-                <div class="benefit-item reveal">
-                    <div class="benefit-icon"><i class="fas fa-microchip"></i></div>
-                    <div class="benefit-text">
-                        <h4>Ingeniería de Vanguardia</h4>
-                        <p>No solo instalamos; diseñamos soluciones optimizadas mediante software de simulación energética para maximizar el retorno de su inversión.</p>
-                    </div>
-                </div>
-
-                <div class="benefit-item reveal">
-                    <div class="benefit-icon"><i class="fas fa-balance-scale"></i></div>
-                    <div class="benefit-text">
-                        <h4>Certificación y Legalidad</h4>
-                        <p>Gestión completa de trámites TE1 y TE4 ante la SEC. Aseguramos que su proyecto sea 100% legal, seguro y asegurable.</p>
-                    </div>
-                </div>
-
-                <div class="benefit-item reveal">
-                    <div class="benefit-icon"><i class="fas fa-tools"></i></div>
-                    <div class="benefit-text">
-                        <h4>Post-Venta Especializada</h4>
-                        <p>Nuestro compromiso no termina con la entrega. Ofrecemos planes de mantenimiento preventivo y monitoreo remoto de sistemas solares.</p>
-                    </div>
-                </div>
-
-                <div class="benefit-item reveal">
-                    <div class="benefit-icon"><i class="fas fa-leaf"></i></div>
-                    <div class="benefit-text">
-                        <h4>Sostenibilidad Rentable</h4>
-                        <p>Ayudamos a reducir su huella de carbono mientras disminuimos drásticamente sus costos operativos mensuales en energía.</p>
-                    </div>
+        <div class="benefits-grid">
+            <div class="benefit-card reveal">
+                <div class="benefit-icon"><i class="fas fa-microchip"></i></div>
+                <div class="benefit-info">
+                    <h4>Ingeniería de Vanguardia</h4>
+                    <p>Diseños optimizados mediante software de simulación energética.</p>
                 </div>
             </div>
 
-            <div class="stats-panel reveal">
-                <div class="stat-box">
-                    <span class="stat-number">+100</span>
-                    <p>Proyectos Ejecutados</p>
+            <div class="benefit-card reveal">
+                <div class="benefit-icon"><i class="fas fa-balance-scale"></i></div>
+                <div class="benefit-info">
+                    <h4>Certificación SEC</h4>
+                    <p>Gestión completa de trámites TE1 y TE4 para proyectos 100% legales.</p>
                 </div>
-                <div class="stat-box">
-                    <span class="stat-number">100%</span>
-                    <p>Cumplimiento SEC</p>
+            </div>
+
+            <div class="benefit-card reveal">
+                <div class="benefit-icon"><i class="fas fa-tools"></i></div>
+                <div class="benefit-info">
+                    <h4>Post-Venta Activa</h4>
+                    <p>Monitoreo remoto y planes de mantenimiento preventivo especializado.</p>
                 </div>
-                <div class="stat-box">
-                    <span class="stat-number">24/7</span>
-                    <p>Soporte Técnico</p>
+            </div>
+
+            <div class="benefit-card reveal">
+                <div class="benefit-icon"><i class="fas fa-leaf"></i></div>
+                <div class="benefit-info">
+                    <h4>Ahorro Garantizado</h4>
+                    <p>Reducción drástica de costos operativos y huella de carbono.</p>
                 </div>
+            </div>
+        </div>
+
+        <div class="stats-bar reveal">
+            <div class="stat-item">
+                <span class="stat-num">+100</span>
+                <span class="stat-desc">Proyectos</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-num">100%</span>
+                <span class="stat-desc">Seguridad</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-num">24/7</span>
+                <span class="stat-desc">Soporte</span>
             </div>
         </div>
     </div>
