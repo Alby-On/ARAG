@@ -666,50 +666,67 @@
     opacity: 1;
 }
 
-/* --- Mejoras visuales para las Tarjetas --- */
+/* --- Estructura de la Grilla --- */
 .benefits-grid {
     display: grid;
-    /* Mantenemos las 4 columnas pero aumentamos el espacio entre ellas */
     grid-template-columns: repeat(4, 1fr); 
-    gap: 40px; /* Aumentamos el espacio para que no estén apretadas */
+    gap: 30px; /* Espacio equilibrado entre tarjetas */
     margin-top: 40px;
+    align-items: stretch; /* Asegura que todas midan lo mismo de alto */
 }
 
+/* --- Estilo de las Tarjetas (Ajuste Vertical) --- */
 .benefit-card {
     background: #ffffff;
-    /* Ajustamos el padding: más espacio arriba/abajo (45px) y el justo a los lados (20px) */
-    padding: 45px 20px; 
+    padding: 40px 20px; 
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid #eee;
-    overflow: hidden;
-    position: relative;
-    /* Añadimos centrado para que el contenido no se deforme al reducirse el ancho */
-    text-align: center; 
+    display: flex;
+    flex-direction: column; /* Apila los elementos uno sobre otro */
+    align-items: center;    /* Centra los elementos horizontalmente */
+    text-align: center;     /* Centra el texto */
 }
 
-/* Efecto al pasar el mouse (Hover) */
 .benefit-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 45px rgba(0, 77, 153, 0.15);
     border-color: #004d99;
 }
 
-/* Animación del Icono */
+/* --- Icono Arriba del Título --- */
+.benefit-icon {
+    margin-bottom: 20px; /* Separa el icono del título */
+}
+
 .benefit-icon i {
-    font-size: 2.5rem;
+    font-size: 2.2rem; /* Tamaño optimizado para no deformar */
     color: #004d99;
-    margin-bottom: 20px; /* Espacio extra bajo el icono */
     transition: transform 0.5s ease;
 }
 
 .benefit-card:hover .benefit-icon i {
-    transform: scale(1.2) rotate(10deg);
+    transform: scale(1.1) rotate(5deg);
     color: #ff9800;
 }
 
-/* --- Barra de Estadísticas Animada --- */
+/* --- Información (Título y Párrafo) --- */
+.benefit-info h4 {
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.2;
+}
+
+.benefit-info p {
+    font-size: 0.85rem; /* Fuente ligeramente más pequeña para que quepa mejor */
+    color: #666;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* --- Barra de Estadísticas --- */
 .stats-bar {
     display: flex;
     justify-content: space-around;
@@ -728,27 +745,22 @@
     color: #ff9800;
 }
 
-/* Retraso escalonado para las tarjetas */
+/* Retraso escalonado */
 .benefit-card:nth-child(2) { transition-delay: 0.1s; }
 .benefit-card:nth-child(3) { transition-delay: 0.2s; }
 .benefit-card:nth-child(4) { transition-delay: 0.3s; }
 
-/* --- Ajuste Responsivo Básico --- */
-@media (max-width: 1200px) {
+/* --- Ajuste Responsivo --- */
+@media (max-width: 1100px) {
     .benefits-grid {
-        gap: 20px; /* Reducimos el espacio un poco en pantallas medianas antes del salto */
-    }
-}
-
-@media (max-width: 992px) {
-    .benefits-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets para evitar deformación */
+        grid-template-columns: repeat(2, 1fr); /* 2x2 en pantallas medianas para no apretar */
+        gap: 20px;
     }
 }
 
 @media (max-width: 600px) {
     .benefits-grid {
-        grid-template-columns: 1fr; /* 1 columna en celulares */
+        grid-template-columns: 1fr; /* 1 columna en móviles */
     }
 }
 </style>
