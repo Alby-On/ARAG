@@ -669,21 +669,24 @@
 /* --- Mejoras visuales para las Tarjetas --- */
 .benefits-grid {
     display: grid;
-    /* Cambio realizado: Forzamos 4 columnas de igual tamaño */
+    /* Mantenemos las 4 columnas pero aumentamos el espacio entre ellas */
     grid-template-columns: repeat(4, 1fr); 
-    gap: 25px;
+    gap: 40px; /* Aumentamos el espacio para que no estén apretadas */
     margin-top: 40px;
 }
 
 .benefit-card {
     background: #ffffff;
-    padding: 30px;
+    /* Ajustamos el padding: más espacio arriba/abajo (45px) y el justo a los lados (20px) */
+    padding: 45px 20px; 
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid #eee;
     overflow: hidden;
     position: relative;
+    /* Añadimos centrado para que el contenido no se deforme al reducirse el ancho */
+    text-align: center; 
 }
 
 /* Efecto al pasar el mouse (Hover) */
@@ -697,6 +700,7 @@
 .benefit-icon i {
     font-size: 2.5rem;
     color: #004d99;
+    margin-bottom: 20px; /* Espacio extra bajo el icono */
     transition: transform 0.5s ease;
 }
 
@@ -729,10 +733,16 @@
 .benefit-card:nth-child(3) { transition-delay: 0.2s; }
 .benefit-card:nth-child(4) { transition-delay: 0.3s; }
 
-/* --- Ajuste Responsivo Básico (Opcional pero recomendado) --- */
+/* --- Ajuste Responsivo Básico --- */
+@media (max-width: 1200px) {
+    .benefits-grid {
+        gap: 20px; /* Reducimos el espacio un poco en pantallas medianas antes del salto */
+    }
+}
+
 @media (max-width: 992px) {
     .benefits-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets para evitar deformación */
     }
 }
 
