@@ -484,6 +484,57 @@
     color: #007bff; /* Cambia el color según tu marca */
     border-bottom: 2px solid #007bff;
 }
+.why-choose-us {
+    padding: 80px 0;
+    background-color: #f9f9f9; /* Fondo ligero para contrastar */
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas en desktop */
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.benefit-icon {
+    font-size: 2rem;
+    color: #007bff; /* Azul corporativo */
+    flex-shrink: 0;
+}
+
+.benefit-text h4 {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+    color: #222;
+}
+
+.benefit-text p {
+    margin: 0;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Responsivo para móviles */
+@media (max-width: 768px) {
+    .benefits-grid {
+        grid-template-columns: 1fr; /* Una sola columna en celulares */
+    }
+}
 </style>
 </head>
 <body>
@@ -497,6 +548,7 @@
         <li><a href="#nosotros">Quiénes Somos</a></li>
         <li><a href="#servicios">Servicios</a></li>
         <li><a href="#clientes">Clientes</a></li>
+        <li><a href="#por-que-elegirnos">¿Por qué nosotros?</a></li>
         <li><a href="#contacto" class="btn-nav">Contacto</a></li>
     </ul>
 </nav>
@@ -731,7 +783,52 @@
         
     </div>
 </section>
-    
+<section id="por-que-elegirnos" class="why-choose-us">
+    <div class="container">
+        <h2 class="section-title reveal">¿Por qué elegirnos?</h2>
+        <div class="benefits-grid">
+            <div class="benefit-item reveal">
+                <div class="benefit-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="benefit-text">
+                    <h4>Experiencia Técnica</h4>
+                    <p>Contamos con un equipo de ingenieros altamente calificados en proyectos eléctricos y solares.</p>
+                </div>
+            </div>
+
+            <div class="benefit-item reveal">
+                <div class="benefit-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="benefit-text">
+                    <h4>Cumplimiento de Plazos</h4>
+                    <p>Gestión eficiente de proyectos para asegurar la entrega en el tiempo acordado.</p>
+                </div>
+            </div>
+
+            <div class="benefit-item reveal">
+                <div class="benefit-icon">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <div class="benefit-text">
+                    <h4>Normativa Vigente</h4>
+                    <p>Garantizamos que todas nuestras instalaciones cumplen estrictamente con la normativa SEC.</p>
+                </div>
+            </div>
+
+            <div class="benefit-item reveal">
+                <div class="benefit-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <div class="benefit-text">
+                    <h4>Atención Personalizada</h4>
+                    <p>Asesoría técnica directa para adaptar cada solución a las necesidades del cliente.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <section id="contacto">
     <div class="section-title reveal">
         <h2>Hablemos de tu Proyecto</h2>
