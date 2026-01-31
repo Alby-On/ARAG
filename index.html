@@ -763,6 +763,49 @@
         grid-template-columns: 1fr; /* 1 columna en móviles */
     }
 }
+/* --- ESTILOS PC --- */
+.menu-toggle {
+    display: none; /* Oculto en PC */
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.8rem;
+    color: #333; /* Ajusta según el color de tu logo */
+}
+
+/* --- ESTILOS MÓVIL --- */
+@media (max-width: 1024px) {
+    .menu-toggle {
+        display: block; /* Solo aparece en pantallas pequeñas */
+    }
+
+    .nav-links {
+        display: none; /* Ocultamos la lista por defecto */
+        flex-direction: column;
+        position: absolute;
+        top: 100%; /* Justo debajo de la navbar */
+        left: 0;
+        width: 100%;
+        background-color: white; 
+        padding: 20px 0;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        z-index: 1000;
+    }
+
+    .nav-links.active {
+        display: flex; /* Se muestra al hacer clic */
+    }
+
+    .nav-links li {
+        margin: 15px 0;
+        text-align: center;
+    }
+
+    .nav-links li a {
+        display: block;
+        width: 100%;
+    }
+}
 </style>
 </head>
 <body>
@@ -772,6 +815,24 @@
         <img src="aragspa.png" alt="Logo ARAG SPA Ingeniería">
     </a>
     <ul class="nav-links">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#nosotros">Quiénes Somos</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#clientes">Clientes</a></li>
+        <li><a href="#por-que-elegirnos">¿Por qué nosotros?</a></li>
+        <li><a href="#contacto" class="btn-nav">Contacto</a></li>
+    </ul>
+</nav>
+<nav class="navbar moviles">
+    <a href="#inicio" class="logo">
+        <img src="aragspa.png" alt="Logo ARAG SPA Ingeniería">
+    </a>
+
+    <button class="menu-toggle" id="mobile-menu" aria-label="Abrir menú">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <ul class="nav-links" id="nav-list">
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#nosotros">Quiénes Somos</a></li>
         <li><a href="#servicios">Servicios</a></li>
@@ -1280,6 +1341,27 @@ const formArag = document.getElementById('formContacto');
       });
     });
   }
+const menuBtn = document.getElementById('mobile-menu');
+    const navList = document.getElementById('nav-list');
+
+    if (menuBtn && navList) {
+        menuBtn.addEventListener('click', () => {
+            navList.classList.toggle('active');
+            
+            // Cambia el icono de Barras a X
+            const icon = menuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Cierra el menú al hacer clic en cualquier opción (importante para OnePage)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+                menuBtn.querySelector('i').classList.replace('fa-times', 'fa-bars');
+            });
+        });
+    }
 </script>
 <a href="https://wa.me/5693220000" class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
     <i class="fab fa-whatsapp"></i>
