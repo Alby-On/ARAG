@@ -1100,17 +1100,34 @@
     </div>
 </div>
 
-<form id="formContacto" name="contacto-aragspa" method="POST" netlify>
-    <input type="hidden" name="form-name" value="contacto-nueva-web">
+<form id="formContacto" method="POST">
+    <input type="hidden" name="access_key" value="7af1807d-02f2-4797-a4db-27b5e3c61c1e">
+    <input type="hidden" name="subject" value="Nueva Solicitud de Contacto - ARAG SpA">
+    <input type="hidden" name="redirect" value="">
 
-    <input type="text" name="nombre" placeholder="Nombre completo" required minlength="3">
-    <input type="email" name="email" placeholder="Correo electrónico" required>
-    <textarea name="mensaje" rows="4" placeholder="¿En qué podemos ayudarte?" required minlength="10"></textarea>
+    <div class="form-group">
+        <input type="text" name="nombre" placeholder="Nombre completo" required minlength="3">
+    </div>
+    
+    <div class="form-group">
+        <input type="email" name="email" placeholder="Correo electrónico" required>
+    </div>
+
+    <div class="form-group">
+        <input type="tel" name="telefono" placeholder="Teléfono (9XXXXXXXX)" 
+               pattern="[0-9]{9}" 
+               title="Ingresa los 9 dígitos de tu móvil (ej: 912345678)" 
+               required>
+    </div>
+
+    <div class="form-group">
+        <textarea name="mensaje" rows="4" placeholder="¿En qué podemos ayudarte?" required minlength="10"></textarea>
+    </div>
     
     <button type="submit" class="btn">Enviar Solicitud</button>
 </form>
 
-<div id="toast-success" style="display: none; position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #00b300; color: white; padding: 15px 30px; border-radius: 50px; z-index: 9999; box-shadow: 0 4px 12px rgba(0,0,0,0.2); font-weight: bold;">
+<div id="toast-success" style="display: none; position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #007bff; color: white; padding: 15px 30px; border-radius: 50px; z-index: 9999; box-shadow: 0 4px 12px rgba(0,0,0,0.2); font-weight: bold;">
     ¡Solicitud enviada con éxito!
 </div>
     </div>
@@ -1213,35 +1230,53 @@ window.addEventListener("scroll", reveal);
 // Ejecutar una vez al cargar por si el usuario ya está ahí
 reveal();
 
-const form = document.getElementById('formContacto');
+const formArag = document.getElementById('formContacto');
   
-  if (form) {
-    form.addEventListener("submit", (e) => {
-      e.preventDefault(); // Detiene el salto a la página de Netlify
+  if (formArag) {
+    formArag.addEventListener("submit", function(e) {
+      e.preventDefault();
 
-      const formData = new FormData(form);
-      
-      fetch("/", {
+      const formData = new FormData(formArag);
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+
+      // Mostramos un mensaje de "Enviando..." en el botón (opcional)
+      const btn = formArag.querySelector('button');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = "Enviando...";
+      btn.disabled = true;
+
+      fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData).toString(),
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: json
       })
-      .then(() => {
-        // Mostrar el mensaje flotante
-        const toast = document.getElementById("toast-success");
-        toast.style.display = "block";
-        
-        // Limpiar el formulario
-        form.reset();
-
-        // Ocultar el mensaje después de 4 segundos
-        setTimeout(() => {
-          toast.style.display = "none";
-        }, 4000);
+      .then(async (response) => {
+        let jsonResponse = await response.json();
+        if (response.status == 200) {
+          // ÉXITO: Mostrar Toast
+          const toast = document.getElementById("toast-success");
+          toast.style.display = "block";
+          formArag.reset();
+        } else {
+          console.log(response);
+          alert("Error: " + jsonResponse.message);
+        }
       })
       .catch((error) => {
-        console.error("Error:", error);
-        alert("Hubo un problema al enviar. Inténtalo de nuevo.");
+        console.log(error);
+        alert("Algo salió mal. Por favor, intenta de nuevo.");
+      })
+      .then(() => {
+        // Restaurar botón y ocultar toast tras 4 segundos
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        setTimeout(() => {
+          document.getElementById("toast-success").style.display = "none";
+        }, 4000);
       });
     });
   }
