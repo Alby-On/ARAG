@@ -1100,12 +1100,19 @@
     </div>
 </div>
 
-<form id="formContacto" action="enviar.php" method="POST">
-    <input type="text" name="nombre" placeholder="Nombre completo" required>
+<form id="formContacto" name="contacto-nueva-web" method="POST" netlify>
+    <input type="hidden" name="form-name" value="contacto-nueva-web">
+
+    <input type="text" name="nombre" placeholder="Nombre completo" required minlength="3">
     <input type="email" name="email" placeholder="Correo electrónico" required>
-    <textarea name="mensaje" rows="4" placeholder="¿En qué podemos ayudarte?" required></textarea>
+    <textarea name="mensaje" rows="4" placeholder="¿En qué podemos ayudarte?" required minlength="10"></textarea>
+    
     <button type="submit" class="btn">Enviar Solicitud</button>
 </form>
+
+<div id="toast-success" style="display: none; position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #00b300; color: white; padding: 15px 30px; border-radius: 50px; z-index: 9999; box-shadow: 0 4px 12px rgba(0,0,0,0.2); font-weight: bold;">
+    ¡Solicitud enviada con éxito!
+</div>
     </div>
 </section>
 <div class="logos-section">
@@ -1205,6 +1212,39 @@ window.addEventListener("scroll", reveal);
 
 // Ejecutar una vez al cargar por si el usuario ya está ahí
 reveal();
+
+const form = document.getElementById('formContacto');
+  
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault(); // Detiene el salto a la página de Netlify
+
+      const formData = new FormData(form);
+      
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData).toString(),
+      })
+      .then(() => {
+        // Mostrar el mensaje flotante
+        const toast = document.getElementById("toast-success");
+        toast.style.display = "block";
+        
+        // Limpiar el formulario
+        form.reset();
+
+        // Ocultar el mensaje después de 4 segundos
+        setTimeout(() => {
+          toast.style.display = "none";
+        }, 4000);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Hubo un problema al enviar. Inténtalo de nuevo.");
+      });
+    });
+  }
 </script>
 <a href="https://wa.me/5693220000" class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
     <i class="fab fa-whatsapp"></i>
