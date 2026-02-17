@@ -285,6 +285,20 @@
         }
 
         /* --- BOTÓN WHATSAPP --- */
+        @keyframes pulse-wsp {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        @keyframes shake-icon {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(15deg); }
+            50% { transform: rotate(-15deg); }
+            75% { transform: rotate(15deg); }
+            100% { transform: rotate(0deg); }
+        }
+
         .whatsapp-btn {
             position: fixed;
             bottom: 30px;
@@ -303,12 +317,20 @@
             justify-content: center;
             text-decoration: none;
             transition: var(--transition);
+            /* Animación constante de pulso */
+            animation: pulse-wsp 2s infinite;
         }
 
         .whatsapp-btn:hover {
             transform: scale(1.1) translateY(-5px);
             background-color: #20ba5a;
             box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5);
+        }
+
+        /* Animación del icono al pasar el mouse */
+        .whatsapp-btn:hover i {
+            display: inline-block;
+            animation: shake-icon 0.5s ease infinite;
         }
 
         .tooltip-wsp {
