@@ -853,6 +853,29 @@
         width: 100%;
     }
 }
+/* Estilo para alinear el logo dentro del título */
+.title-with-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px; /* Espacio entre el texto y el logo */
+    flex-wrap: wrap; /* Para que en móviles se acomode bien */
+}
+
+.inline-logo {
+    height: 45px; /* Ajusta según el tamaño de tu fuente */
+    width: auto;
+    object-fit: contain;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Ajuste para móviles */
+@media (max-width: 768px) {
+    .inline-logo {
+        height: 35px;
+    }
+}
 </style>
 </head>
 <body>
