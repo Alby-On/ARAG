@@ -439,7 +439,7 @@
 
     /* --- 8. SECCIÓN "¿POR QUÉ ELEGIRNOS?" & STATS --- */
     .why-choose-us {
-        padding: 100px 8%; /* Alineado con el resto de las secciones */
+        padding: 100px 8%; 
         background-color: #fcfcfc;
     }
 
@@ -452,14 +452,14 @@
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 25px;
-        margin: 40px auto 0; /* Centra la grilla horizontalmente */
-        max-width: 1200px;    /* Evita que las cards se estiren demasiado en PC */
+        margin: 40px auto 0; 
+        max-width: 1200px;    
         align-items: stretch;
     }
 
     .benefit-card {
         background: #ffffff;
-        padding: 30px 20px;   /* Un poco más compacto */
+        padding: 30px 20px;   
         border-radius: 15px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -490,7 +490,7 @@
     }
 
     .benefit-icon i {
-        font-size: 2rem; /* Icono un poco más proporcional */
+        font-size: 2rem; 
         color: #004d99;
         transition: transform 0.5s ease;
     }
@@ -505,9 +505,12 @@
         font-size: 1.1rem;
         color: #333;
         line-height: 1.2;
-        min-height: 2.4em; /* Ayuda a que los títulos se alineen simétricamente */
+        min-height: 2.4em; 
         display: flex;
         align-items: center;
+        justify-content: center; /* CENTRA EL CONTENIDO DEL FLEX */
+        text-align: center;      /* CENTRA EL TEXTO */
+        width: 100%;             /* ASEGURA QUE OCUPE TODO EL ANCHO */
     }
 
     .benefit-info p {
