@@ -10,267 +10,349 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <style>
-        /* --- 1. VARIABLES Y CONFIGURACIÓN BASE --- 
-           Define los colores corporativos, fuentes y transiciones globales. */
-        :root {
-            --primary: #1D84CF;   
-            --secondary: #1A1A1A; 
-            --accent: #FFB800;    
-            --light: #f8fafc;
-            --white: #ffffff;
-            --grad: linear-gradient(135deg, #1D84CF 0%, #0a4d7a 100%);
-            --grad-solar: linear-gradient(135deg, #FFB800 0%, #f1a100 100%);
-            --shadow: 0 15px 35px rgba(0,0,0,0.08);
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
+    /* =========================================
+       1. VARIABLES Y CONFIGURACIÓN GLOBAL
+       ========================================= */
+    :root {
+        --primary: #1D84CF;   
+        --secondary: #1A1A1A; 
+        --accent: #FFB800;    
+        --light: #f8fafc;
+        --white: #ffffff;
+        --grad: linear-gradient(135deg, #1D84CF 0%, #0a4d7a 100%);
+        --grad-solar: linear-gradient(135deg, #FFB800 0%, #f1a100 100%);
+        --shadow: 0 15px 35px rgba(0,0,0,0.08);
+        --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
 
-        *, *::before, *::after { box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            margin: 0;
-            font-family: 'Open Sans', sans-serif;
-            color: var(--secondary);
-            background-color: var(--light);
-            overflow-x: hidden;
-            line-height: 1.7;
-        }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+        margin: 0;
+        font-family: 'Open Sans', sans-serif;
+        color: var(--secondary);
+        background-color: var(--light);
+        overflow-x: hidden;
+        line-height: 1.7;
+    }
 
-        /* --- 2. NAVEGACIÓN (NAVBAR) --- 
-           Estilos para la barra superior, efectos de desenfoque y links. */
-        .navbar {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 0 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
+    /* =========================================
+       2. NAVEGACIÓN (PC Y MÓVIL)
+       ========================================= */
+    .navbar {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 0 8%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        width: 100%;
+        height: 85px;
+        z-index: 2000;
+        box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    }
+    .logo img { height: 50px; }
+    .nav-links { display: flex; gap: 30px; list-style: none; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--secondary); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; transition: var(--transition); }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-links a.active { font-weight: bold; color: #007bff; border-bottom: 2px solid #007bff; }
+    .btn-nav { background: var(--grad); color: white !important; padding: 10px 20px; border-radius: 50px; }
+
+    /* Botón Hamburguesa Móvil */
+    .menu-toggle {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.8rem;
+        color: #333;
+    }
+
+    @media (max-width: 1024px) {
+        .menu-toggle { display: block; }
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
             width: 100%;
-            height: 85px;
-            z-index: 2000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            background-color: white; 
+            padding: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            z-index: 1000;
         }
-        .logo img { height: 50px; }
-        .nav-links { display: flex; gap: 30px; list-style: none; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--secondary); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; transition: var(--transition); }
-        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
-        .nav-links a.active { border-bottom: 2px solid var(--primary); }
-        .btn-nav { background: var(--grad); color: white !important; padding: 10px 20px; border-radius: 50px; }
+        .nav-links.active { display: flex; }
+        .nav-links li { margin: 15px 0; text-align: center; }
+        .nav-links li a { display: block; width: 100%; }
+    }
 
-        /* Estilos específicos para el menú móvil */
-        .menu-toggle { display: none; background: none; border: none; cursor: pointer; font-size: 1.8rem; color: #333; }
+    /* =========================================
+       3. HERO (BANNER PRINCIPAL)
+       ========================================= */
+    .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        background-color: #000;
+    }
+    .hero-slider { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+    .slide-bg {
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        background-size: cover; background-position: center;
+        opacity: 0; transform: scale(1); animation: imageFadeZoom 15s linear infinite;
+    }
+    .slide-bg:nth-child(1) { animation-delay: 0s; }
+    .slide-bg:nth-child(2) { animation-delay: 5s; }
+    .slide-bg:nth-child(3) { animation-delay: 10s; }
 
-        @media (max-width: 1024px) {
-            .menu-toggle { display: block; }
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%; left: 0; width: 100%;
-                background-color: white; padding: 20px 0;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            }
-            .nav-links.active { display: flex; }
-            .nav-links li { margin: 15px 0; text-align: center; }
-        }
+    .hero-overlay {
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7));
+        z-index: 2;
+    }
+    .hero-content {
+        position: relative; z-index: 3; padding: 0 20px; max-width: 1000px;
+        text-shadow: 0 4px 15px rgba(0,0,0,0.6); animation: fadeInUp 1.2s ease-out forwards;
+    }
+    .hero-content h1 { 
+        font-family: 'Montserrat', sans-serif; font-weight: 800;
+        font-size: clamp(2.8rem, 7vw, 5rem); line-height: 1.1; 
+        margin: 0 0 25px 0; letter-spacing: -1px; color: var(--white);
+    }
+    .hero-content h1 span { color: var(--accent); }
+    .hero-content p { 
+        font-size: clamp(1.1rem, 2vw, 1.4rem); max-width: 800px; 
+        margin: 0 auto 45px; opacity: 1; font-weight: 400; line-height: 1.6;
+    }
 
-        /* --- 3. HERO SECTION (BANNER PRINCIPAL) --- 
-           Controla el slider de fondo y el contenido de bienvenida. */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            background-color: #000;
-        }
-        .hero-slider { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
-        .slide-bg {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover; background-position: center;
-            opacity: 0; animation: imageFadeZoom 15s linear infinite;
-        }
-        .hero-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7));
-            z-index: 2;
-        }
-        .hero-content { position: relative; z-index: 3; padding: 0 20px; max-width: 1000px; animation: fadeInUp 1.2s ease-out forwards; }
-        .hero-content h1 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: clamp(2.8rem, 7vw, 5rem); margin: 0 0 25px 0; color: var(--white); }
-        .hero-content h1 span { color: var(--accent); }
-        .hero-content p { font-size: clamp(1.1rem, 2vw, 1.4rem); max-width: 800px; margin: 0 auto 45px; line-height: 1.6; }
+    /* =========================================
+       4. CARRUSEL DE MARCAS
+       ========================================= */
+    .logos-section { overflow: hidden; padding: 40px 0; background: white; position: relative; width: 100%; }
+    .logos-section::before, .logos-section::after { content: ""; position: absolute; top: 0; width: 150px; height: 100%; z-index: 5; }
+    .logos-section::before { left: 0; background: linear-gradient(to right, white, transparent); }
+    .logos-section::after { right: 0; background: linear-gradient(to left, white, transparent); }
 
-        .slide-bg:nth-child(1) { animation-delay: 0s; }
-        .slide-bg:nth-child(2) { animation-delay: 5s; }
-        .slide-bg:nth-child(3) { animation-delay: 10s; }
+    .logos-slider { display: flex; width: max-content; animation: scroll 30s linear infinite; will-change: transform; }
+    .logos-slider:hover { animation-play-state: paused; }
+    .slide { width: 250px; flex: 0 0 250px; display: flex; align-items: center; justify-content: center; }
+    .slide img { width: 150px; height: auto; max-height: 65px; object-fit: contain; pointer-events: none; }
 
-        /* --- 4. CARRUSEL DE LOGOS (MARCAS) --- 
-           Efecto de desplazamiento infinito de marcas colaboradoras. */
-        .logos-section { overflow: hidden; padding: 40px 0; background: white; position: relative; width: 100%; }
-        .logos-section::before, .logos-section::after { content: ""; position: absolute; top: 0; width: 150px; height: 100%; z-index: 5; }
-        .logos-section::before { left: 0; background: linear-gradient(to right, white, transparent); }
-        .logos-section::after { right: 0; background: linear-gradient(to left, white, transparent); }
-        .logos-slider { display: flex; width: max-content; animation: scroll 30s linear infinite; will-change: transform; }
-        .logos-slider:hover { animation-play-state: paused; }
-        .slide { width: 250px; flex: 0 0 250px; display: flex; align-items: center; justify-content: center; }
-        .slide img { width: 150px; height: auto; max-height: 65px; object-fit: contain; }
+    /* =========================================
+       5. NOSOTROS Y EQUIPO
+       ========================================= */
+    section { padding: 100px 8%; }
+    .section-title { text-align: center; margin-bottom: 60px; }
+    .section-title h2 { font-family: 'Montserrat'; font-size: 2.5rem; position: relative; }
+    .title-with-logo { display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap; }
+    .inline-logo { height: 45px; width: auto; object-fit: contain; display: inline-block; vertical-align: middle; }
 
-        /* --- 5. SECCIONES GENERALES Y GRIDS --- 
-           Layouts compartidos para Nosotros, Servicios y Equipo. */
-        section { padding: 100px 8%; }
-        .section-title { text-align: center; margin-bottom: 60px; }
-        .section-title h2 { font-family: 'Montserrat'; font-size: 2.5rem; position: relative; }
-        .title-with-logo { display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .inline-logo { height: 45px; width: auto; object-fit: contain; }
+    .nosotros-main { text-align: center; max-width: 900px; margin: 0 auto 50px; }
+    .experience-badge { background: var(--accent); color: var(--secondary); display: inline-block; padding: 5px 20px; border-radius: 50px; font-weight: 800; margin-bottom: 15px; }
 
-        .nosotros-main { text-align: center; max-width: 900px; margin: 0 auto 50px; }
-        .experience-badge { background: var(--accent); color: var(--secondary); display: inline-block; padding: 5px 20px; border-radius: 50px; font-weight: 800; margin-bottom: 15px; }
+    .nosotros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+    .nosotros-card { background: white; padding: 40px; border-radius: 20px; box-shadow: var(--shadow); transition: var(--transition); text-align: center; border: 1px solid transparent; }
+    .nosotros-card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 20px 40px rgba(29, 132, 207, 0.15); }
 
-        .nosotros-grid, .servicios-grid, .team-grid { display: grid; gap: 30px; }
-        .nosotros-grid, .team-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-        
-        /* Servicios: Estructura 3-3-1 */
-        .servicios-grid { grid-template-columns: 1fr; max-width: 1100px; margin: 0 auto; }
-        @media (min-width: 768px) {
-            .servicios-grid { grid-template-columns: repeat(3, 1fr); }
-            .servicios-grid .card:nth-child(7) { grid-column: 2; }
-        }
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 60px; }
+    .team-card { background: white; border-radius: 25px; overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); }
+    .team-card:hover { transform: translateY(-10px); }
+    .team-img { height: 320px; overflow: hidden; }
+    .team-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+    .team-card:hover .team-img img { transform: scale(1.1); }
+    .team-info { padding: 25px; text-align: center; }
+    .team-info h4 { font-family: 'Montserrat'; margin: 0; font-size: 1.2rem; }
+    .team-info p { color: var(--primary); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; margin-top: 5px; }
 
-        /* --- 6. TARJETAS (CARDS) --- 
-           Estilos para las cajas de servicios y equipo con sus efectos hover. */
-        .card, .team-card { 
-            background: white; border-radius: 20px; box-shadow: var(--shadow); 
-            transition: var(--transition); overflow: hidden; border: 1px solid transparent; 
-        }
-        .card { display: flex; flex-direction: column; padding: 0 !important; position: relative; }
-        .card:hover, .team-card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 20px 40px rgba(29, 132, 207, 0.2); }
-        
-        .card-img { width: 100%; height: 200px; object-fit: cover; border-bottom: 4px solid var(--primary); transition: transform 0.6s ease; }
-        .card:hover .card-img { transform: scale(1.1); }
-        .card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 5px; background: var(--grad); transform: scaleX(0); transition: transform 0.4s ease; }
-        .card:hover::after { transform: scaleX(1); }
+    /* =========================================
+       6. SERVICIOS (ESTRUCTURA 3-3-1)
+       ========================================= */
+    .servicios-grid { display: grid; grid-template-columns: 1fr; gap: 30px; max-width: 1100px; margin: 0 auto; }
 
-        .card h3, .card p { padding: 0 20px; }
-        .card h3 { margin: 20px 0 10px; font-size: 1.3rem; }
-        .card p { margin-bottom: 30px; color: #555; font-size: 0.95rem; }
+    @media (min-width: 768px) {
+        .servicios-grid { grid-template-columns: repeat(3, 1fr); }
+        .servicios-grid .card:nth-child(7) { grid-column: 2; }
+    }
 
-        .team-img { height: 320px; overflow: hidden; }
-        .team-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .team-info { padding: 25px; text-align: center; }
-        .team-info p { color: var(--primary); font-weight: 700; text-transform: uppercase; }
+    .card { 
+        background: white; border-radius: 20px; box-shadow: var(--shadow); transition: var(--transition); 
+        text-align: center; border: 1px solid transparent; display: flex; flex-direction: column; 
+        padding: 0 !important; overflow: hidden; position: relative;
+    }
+    .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(29, 132, 207, 0.2); border: 1px solid var(--primary); }
 
-        /* --- 7. SECCIÓN "¿POR QUÉ NOSOTROS?" --- 
-           Grilla de 4 columnas con iconos y barra de estadísticas. */
-        .benefits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 40px; }
-        .benefit-card {
-            background: #ffffff; padding: 40px 20px; border-radius: 15px; border: 1px solid #eee;
-            display: flex; flex-direction: column; align-items: center; text-align: center; transition: var(--transition);
-        }
-        .benefit-card:hover { transform: translateY(-10px); border-color: #004d99; box-shadow: 0 15px 45px rgba(0, 77, 153, 0.15); }
-        .benefit-icon i { font-size: 2.2rem; color: #004d99; margin-bottom: 20px; transition: 0.5s; }
-        .benefit-card:hover .benefit-icon i { transform: scale(1.1) rotate(5deg); color: #ff9800; }
+    .card-img { width: 100%; height: 200px; object-fit: cover; border-bottom: 4px solid var(--primary); transition: transform 0.6s ease; }
+    .card:hover .card-img { transform: scale(1.1); }
+    
+    .card h3 { margin: 20px 0 10px; padding: 0 20px; font-size: 1.3rem; }
+    .card p { padding: 0 20px 30px; margin: 0; color: #555; font-size: 0.95rem; }
 
-        .stats-bar {
-            display: flex; justify-content: space-around; align-items: center;
-            background: linear-gradient(135deg, #004d99 0%, #002d5c 100%);
-            color: white; padding: 40px; border-radius: 20px; margin-top: 60px;
-        }
-        .stat-num { display: block; font-size: 2.5rem; font-weight: bold; color: #ff9800; }
-        .stat-divider { width: 1px; height: 40px; background: rgba(255,255,255,0.3); }
+    /* Efecto barra inferior en hover */
+    .card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 5px; background: var(--grad); transform: scaleX(0); transition: transform 0.4s ease; }
+    .card:hover::after { transform: scaleX(1); }
 
-        @media (max-width: 1100px) { .benefits-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 600px) { .benefits-grid { grid-template-columns: 1fr; } .stats-bar { flex-direction: column; gap: 20px; } .stat-divider { display: none; } }
+    .card-icon, .card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; display: inline-block; transition: var(--transition); }
+    .solar-highlight { background: var(--grad-solar); color: white; }
+    .solar-highlight .card-icon { color: white; }
+    .solar-highlight:hover { border-color: var(--white); box-shadow: 0 20px 40px rgba(255, 184, 0, 0.3); }
 
-        /* --- 8. CLIENTES --- 
-           Tarjetas de logos para las empresas que confían en ARAG SPA. */
-        .clientes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
-        .cliente-card { background: var(--light); border-radius: 20px; padding: 30px; text-align: center; border: 1px solid #eee; transition: var(--transition); }
-        .cliente-logo-container img { max-width: 80%; max-height: 80px; object-fit: contain; }
+    /* =========================================
+       7. CLIENTES
+       ========================================= */
+    .clientes-section { background-color: var(--white); }
+    .clientes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: 50px; }
+    .cliente-card { background: var(--light); border-radius: 20px; padding: 30px; text-align: center; transition: var(--transition); border: 1px solid #eee; display: flex; flex-direction: column; align-items: center; }
+    .cliente-card:hover { transform: translateY(-10px); box-shadow: var(--shadow); border-color: var(--primary); }
+    .cliente-logo-container { width: 100%; height: 100px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+    .cliente-logo-container img { max-width: 80%; max-height: 80%; object-fit: contain; opacity: 1; transition: var(--transition); }
+    .cliente-info h4 { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; margin-bottom: 10px; color: var(--secondary); }
+    .cliente-info p { font-size: 0.9rem; color: #666; line-height: 1.4; }
 
-        /* --- 9. CONTACTO Y FORMULARIO --- 
-           Layout del formulario y recuadro del mapa. */
-        .contact-container { display: grid; grid-template-columns: 1fr 1.5fr; background: white; border-radius: 30px; overflow: hidden; box-shadow: var(--shadow); }
-        .contact-info { background: var(--secondary); color: white; padding: 60px; }
-        .contact-logo { background-color: white; display: inline-flex; padding: 15px; border-radius: 12px; margin-bottom: 25px; }
-        .contact-logo img { height: 40px; }
-        
-        #formContacto { padding: 60px; display: flex; flex-direction: column; gap: 20px; }
-        input, textarea { width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 10px; }
-        
-        .map-container { width: 100%; height: 250px; margin-top: 25px; border-radius: 15px; overflow: hidden; border: 2px solid rgba(255, 255, 255, 0.1); }
-        .map-container iframe { width: 100%; height: 100%; filter: grayscale(0.2) contrast(1.1); }
+    /* =========================================
+       8. POR QUÉ ELEGIRNOS (ESTILOS DUPLICADOS AGRUPADOS)
+       ========================================= */
+    .why-choose-us { padding: 100px 20px; background-color: #fcfcfc; }
+    .why-header { text-align: center; margin-bottom: 50px; }
+    .why-header h2 { font-size: 2.5rem; color: #333; margin-bottom: 15px; }
 
-        /* --- 10. FOOTER --- */
-        footer { background: var(--secondary); color: white; padding: 60px 20px; border-top: 4px solid var(--primary); }
-        .footer-content { display: flex; flex-direction: column; align-items: center; gap: 30px; }
-        .footer-logo { height: 55px; filter: brightness(0) invert(1); }
-        .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 20px; margin-top: 40px; text-align: center; }
+    /* Grilla de Beneficios */
+    .benefits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 40px; align-items: stretch; }
 
-        /* --- 11. BOTONES Y ELEMENTOS FLOTANTES --- */
-        .btn { 
-            padding: 18px 40px; background: var(--grad); color: white; border-radius: 50px; 
-            font-weight: 700; text-decoration: none; display: inline-block; 
-            transition: var(--transition); border: none; cursor: pointer;
-            animation: pulse-blue 3s infinite;
-        }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(29, 132, 207, 0.4); animation: none; }
+    .benefit-card { 
+        background: #ffffff; padding: 40px 20px; border-radius: 15px; border: 1px solid #eee;
+        display: flex; flex-direction: column; align-items: center; text-align: center; transition: 0.3s ease;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+    .benefit-card:hover { transform: translateY(-10px); box-shadow: 0 15px 45px rgba(0, 77, 153, 0.15); border-color: #004d99; }
+    .benefit-icon { margin-bottom: 20px; font-size: 2rem; color: #007bff; flex-shrink: 0; }
+    .benefit-icon i { font-size: 2.2rem; color: #004d99; transition: transform 0.5s ease; }
+    .benefit-card:hover .benefit-icon i { transform: scale(1.1) rotate(5deg); color: #ff9800; }
 
-        .whatsapp-btn {
-            position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
-            background-color: #25d366; color: white; border-radius: 50px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 35px; z-index: 3000; text-decoration: none;
-            animation: pulse-wsp 2s infinite; transition: var(--transition);
-        }
-        .whatsapp-btn:hover { background-color: #20ba5a; transform: scale(1.1); }
-        .whatsapp-btn:hover i { animation: shake-icon 0.5s ease infinite; }
+    .benefit-info h4 { margin-bottom: 12px; font-size: 1.1rem; color: #333; line-height: 1.2; }
+    .benefit-info p { font-size: 0.85rem; color: #666; line-height: 1.5; margin: 0; }
 
-        .tooltip-wsp {
-            position: absolute; right: 75px; background: white; color: var(--secondary);
-            padding: 8px 15px; border-radius: 10px; font-weight: 700; opacity: 0;
-            visibility: hidden; transition: var(--transition); white-space: nowrap;
-        }
-        .whatsapp-btn:hover .tooltip-wsp { opacity: 1; visibility: visible; }
+    /* Barra de Estadísticas */
+    .stats-bar { 
+        max-width: 900px; margin: 60px auto 0; background: linear-gradient(135deg, #004d99 0%, #002d5c 100%); 
+        border-radius: 100px; padding: 40px; display: flex; justify-content: space-around; align-items: center; color: #fff;
+    }
+    .stat-item { text-align: center; }
+    .stat-num { display: block; font-size: 2.5rem; font-weight: bold; color: #ff9800; }
+    .stat-desc { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+    .stat-divider { width: 1px; height: 40px; background: rgba(255,255,255,0.3); }
 
-        /* --- 12. ANIMACIONES (KEYFRAMES) --- */
-        @keyframes imageFadeZoom {
-            0% { opacity: 0; transform: scale(1); }
-            10% { opacity: 1; }
-            33% { opacity: 1; }
-            43% { opacity: 0; transform: scale(1.1); }
-            100% { opacity: 0; }
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-2000px); } }
-        @keyframes pulse-wsp {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-        @keyframes pulse-blue {
-            0% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7); }
-            70% { box-shadow: 0 0 0 20px rgba(0, 123, 255, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0); }
-        }
-        @keyframes shake-icon {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(15deg); }
-            50% { transform: rotate(-15deg); }
-        }
+    @media (max-width: 1100px) { .benefits-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 850px) {
+        .benefits-grid { grid-template-columns: 1fr; }
+        .stats-bar { flex-direction: column; gap: 20px; border-radius: 20px; }
+        .stat-divider { display: none; }
+    }
 
-        /* --- 13. CLASES DE ESTADO (SCROLL REVEAL) --- */
-        .reveal { opacity: 0; transform: translateY(50px); transition: 0.8s all ease; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .benefit-card:nth-child(2) { transition-delay: 0.1s; }
-        .benefit-card:nth-child(3) { transition-delay: 0.2s; }
-        .benefit-card:nth-child(4) { transition-delay: 0.3s; }
+    /* =========================================
+       9. CONTACTO Y MAPA
+       ========================================= */
+    .contact-container { display: grid; grid-template-columns: 1fr 1.5fr; background: white; border-radius: 30px; overflow: hidden; box-shadow: var(--shadow); }
+    .contact-info { background: var(--secondary); color: white; padding: 60px; }
+    .contact-logo { background-color: white; display: inline-flex; padding: 15px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+    .contact-logo img { height: 40px; width: auto; display: block; object-fit: contain; }
+    
+    #formContacto { padding: 60px; display: flex; flex-direction: column; gap: 20px; }
+    input, textarea { width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 10px; }
+
+    .map-container { width: 100%; height: 250px; margin-top: 25px; border-radius: 15px; overflow: hidden; border: 2px solid rgba(255, 255, 255, 0.1); background-color: #333; }
+    .map-container iframe { width: 100%; height: 100%; display: block; filter: grayscale(0.2) contrast(1.1); }
+
+    /* =========================================
+       10. FOOTER
+       ========================================= */
+    footer { background: var(--secondary); color: white; text-align: center; padding: 60px 20px; border-top: 4px solid var(--primary); }
+    .footer-container-centered { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 60px 0 20px; }
+    .footer-content { display: flex; flex-direction: column; align-items: center; gap: 30px; width: 100%; margin-bottom: 40px; }
+    .footer-brand { display: flex; flex-direction: column; align-items: center; max-width: 500px; }
+    .footer-logo-container { display: flex; justify-content: center; width: 100%; margin-bottom: 20px; }
+    .footer-logo { height: 55px; width: auto; object-fit: contain; filter: brightness(0) invert(1); transition: transform 0.3s ease; }
+    .footer-logo:hover { transform: scale(1.05); }
+    .footer-brand p { color: #cbd5e1; font-size: 0.9rem; line-height: 1.6; max-width: 300px; margin: 0 auto; }
+    .footer-bottom { width: 100%; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 20px; text-align: center; }
+
+    /* =========================================
+       11. BOTONES Y ANIMACIONES DE PULSO
+       ========================================= */
+    .btn { padding: 18px 40px; background: var(--grad); color: white; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-block; transition: all 0.3s ease; border: none; cursor: pointer; animation: pulse-blue 3s infinite; position: relative; }
+    .btn-outline { background: transparent; border: 2px solid white; margin-left: 10px; }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(29, 132, 207, 0.4); animation: none; }
+
+    /* WhatsApp Flotante */
+    .whatsapp-btn {
+        position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
+        background-color: #25d366; color: white; border-radius: 50px; text-align: center;
+        font-size: 35px; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3); z-index: 3000;
+        display: flex; align-items: center; justify-content: center; text-decoration: none;
+        transition: var(--transition); animation: pulse-wsp 2s infinite;
+    }
+    .whatsapp-btn:hover { transform: scale(1.1) translateY(-5px); background-color: #20ba5a; box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5); }
+    .whatsapp-btn:hover i { display: inline-block; animation: shake-icon 0.5s ease infinite; }
+
+    .tooltip-wsp {
+        position: absolute; right: 75px; background: white; color: var(--secondary);
+        padding: 8px 15px; border-radius: 10px; font-size: 0.9rem; font-weight: 700;
+        box-shadow: var(--shadow); opacity: 0; visibility: hidden; transition: var(--transition); white-space: nowrap;
+    }
+    .whatsapp-btn:hover .tooltip-wsp { opacity: 1; visibility: visible; }
+
+    /* =========================================
+       12. KEYFRAMES (TODAS LAS ANIMACIONES)
+       ========================================= */
+    @keyframes pulse-blue {
+        0% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7); }
+        70% { box-shadow: 0 0 0 20px rgba(0, 123, 255, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0); }
+    }
+    @keyframes pulse-wsp {
+        0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+        70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+    @keyframes shake-icon {
+        0% { transform: rotate(0deg); }
+        25% { transform: rotate(15deg); }
+        50% { transform: rotate(-15deg); }
+        75% { transform: rotate(15deg); }
+        100% { transform: rotate(0deg); }
+    }
+    @keyframes imageFadeZoom {
+        0% { opacity: 0; transform: scale(1); }
+        10% { opacity: 1; }
+        33% { opacity: 1; }
+        43% { opacity: 0; transform: scale(1.1); }
+        100% { opacity: 0; }
+    }
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-2000px); }
+    }
+
+    /* =========================================
+       13. REVEAL (SCROLL ANIMATION)
+       ========================================= */
+    .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s all ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .benefit-card:nth-child(2) { transition-delay: 0.1s; }
+    .benefit-card:nth-child(3) { transition-delay: 0.2s; }
+    .benefit-card:nth-child(4) { transition-delay: 0.3s; }
+
 </style>
 </head>
 <body>
