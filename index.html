@@ -149,11 +149,12 @@
 
         /* --- CARRUSEL DE MARCAS --- */
         .logos-section {
-            background: white;
+            overflow: hidden; /* Corta lo que sobra */
             padding: 40px 0;
-            border-bottom: 1px solid #eee;
-            overflow: hidden;
+            background: white;
             position: relative;
+            display: flex;
+            align-items: center;
         }
         .logos-section::before, .logos-section::after {
             content: "";
@@ -163,10 +164,11 @@
         .logos-section::before { left: 0; background: linear-gradient(to right, white, transparent); }
         .logos-section::after { right: 0; background: linear-gradient(to left, white, transparent); }
 
-        .logos-slider {
+       .logos-slider {
             display: flex;
-            width: calc(250px * 12); 
-            animation: scroll 30s linear infinite;
+            /* Esto es clave: permite que el contenedor sea tan ancho como necesite */
+            width: max-content; 
+            animation: scroll 20s linear infinite; /* Bajé a 20s para que sea más dinámico */
         }
         .logos-slider:hover { animation-play-state: paused; }
 
@@ -187,9 +189,14 @@
         }
         .slide img:hover { transform: scale(1.1); filter: brightness(1.1); }
 
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-250px * 6)); } 
+       @keyframes scroll {
+            0% {
+            transform: translateX(0);
+        }
+            100% {
+            /* Se desplaza exactamente la mitad (el primer grupo de 8 logos) */
+            transform: translateX(-50%);
+        }
         }
 
         /* --- SECCIONES Y GRID --- */
