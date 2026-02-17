@@ -1362,6 +1362,11 @@ const menuBtn = document.getElementById('mobile-menu');
             });
         });
     }
+const telInput = document.querySelector('input[name="telefono"]');
+telInput.addEventListener('input', function (e) {
+    let x = e.target.value.replace(/\D/g, '').match(/(\d{0,9})/);
+    e.target.value = x[0];
+});
 </script>
 <a href="https://wa.me/5693220000" class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
     <i class="fab fa-whatsapp"></i>
