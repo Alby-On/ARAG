@@ -876,6 +876,31 @@
         height: 35px;
     }
 }
+/* AJUSTES FOOTER*/
+.footer-logo-container {
+    margin-bottom: 20px;
+}
+
+.footer-logo {
+    height: 50px; /* Un poco más grande que el del título para que destaque */
+    width: auto;
+    object-fit: contain;
+    filter: brightness(0) invert(1); /* OPCIONAL: Si tu logo es oscuro, esto lo vuelve blanco para que resalte en el footer */
+}
+
+.footer-brand p {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 300px;
+}
+
+/* Ajuste móvil */
+@media (max-width: 768px) {
+    .footer-logo {
+        height: 40px;
+    }
+}
 </style>
 </head>
 <body>
