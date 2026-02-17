@@ -147,44 +147,39 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-       /* --- CARRUSEL DE MARCAS --- */
+     /* --- CARRUSEL DE MARCAS --- */
 .logos-section {
     overflow: hidden; 
     padding: 40px 0;
     background: white;
     position: relative;
-    display: flex;
-    align-items: center;
+    width: 100%; /* Asegura que ocupe todo el ancho */
 }
 
-/* Los degradados laterales */
+/* Degradados laterales para ocultar el "corte" */
 .logos-section::before, .logos-section::after {
     content: "";
     position: absolute;
-    top: 0; width: 100px; height: 100%; z-index: 2;
+    top: 0; width: 150px; height: 100%; z-index: 5;
 }
 .logos-section::before { left: 0; background: linear-gradient(to right, white, transparent); }
 .logos-section::after { right: 0; background: linear-gradient(to left, white, transparent); }
 
 .logos-slider {
     display: flex;
-    width: max-content; 
-    /* Usamos 50% pero con display: inline-flex para asegurar que el ancho sea exacto */
-    display: inline-flex;
+    width: max-content; /* El contenedor se estira según los logos */
     animation: scroll 30s linear infinite;
+    will-change: transform; /* Mejora el rendimiento en Chrome/Edge */
 }
 
 .logos-slider:hover { animation-play-state: paused; }
 
 .slide {
-    /* Forzamos el ancho exacto y eliminamos cualquier espacio extra */
     width: 250px;
-    flex: 0 0 250px; 
+    flex: 0 0 250px; /* Bloquea el ancho a 250px exactos */
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0;
-    padding: 0;
 }
 
 .slide img {
@@ -192,19 +187,19 @@
     height: auto;
     max-height: 65px;
     object-fit: contain;
-    filter: none;
-    opacity: 1;
-    transition: var(--transition);
+    pointer-events: none; /* Evita que el arrastre accidental rompa la fluidez */
 }
-.slide img:hover { transform: scale(1.1); filter: brightness(1.1); }
 
 @keyframes scroll {
     0% {
         transform: translateX(0);
     }
     100% {
-        /* Al usar inline-flex y flex: 0 0 250px, el 50% ahora sí es exacto matemáticamente */
-        transform: translateX(-50%);
+        /* IMPORTANTE: Si tienes 2 sets de 8 logos, el total son 16. 
+           Cada set mide 2000px (8 * 250). 
+           Al llegar a -2000px, el logo 9 (que es Legrand) estará 
+           exactamente donde empezó el logo 1. */
+        transform: translateX(-2000px); 
     }
 }
         /* --- SECCIONES Y GRID --- */
@@ -878,6 +873,15 @@
 
 <div class="logos-section">
     <div class="logos-slider">
+        <div class="slide"><img src="https://raw.githubusercontent.com/Alby-On/ARAG/main/images/legrand.png" alt="Legrand"></div>
+        <div class="slide"><img src="https://raw.githubusercontent.com/Alby-On/ARAG/main/images/schneider_electric.png" alt="Schneider Electric"></div>
+        <div class="slide"><img src="https://raw.githubusercontent.com/Alby-On/ARAG/main/images/siemens.png" alt="Siemens"></div>
+        <div class="slide"><img src="https://raw.githubusercontent.com/Alby-On/ARAG/main/images/abb.png" alt="ABB"></div>
+        <div class="slide"><img src="https://raw.githubusercontent.com/Alby-On/ARAG/main/images/huawei.png" alt="Huawei Solar"></div>
+        <div class="slide"><img src="https://raw.githubusercontent.com/Alby-On/ARAG/main/images/phillips.png" alt="Philips"></div>
+        <div class="slide"><img src="https://raw.githubusercontent.com/Alby-On/ARAG/main/images/fronius.png" alt="Fronius"></div>
+        <div class="slide"><img src="https://raw.githubusercontent.com/Alby-On/ARAG/main/images/victron.png" alt="Victron Energy"></div>
+        
         <div class="slide"><img src="https://raw.githubusercontent.com/Alby-On/ARAG/main/images/legrand.png" alt="Legrand"></div>
         <div class="slide"><img src="https://raw.githubusercontent.com/Alby-On/ARAG/main/images/schneider_electric.png" alt="Schneider Electric"></div>
         <div class="slide"><img src="https://raw.githubusercontent.com/Alby-On/ARAG/main/images/siemens.png" alt="Siemens"></div>
