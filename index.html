@@ -168,14 +168,15 @@
 .logos-slider {
     display: flex;
     width: max-content; 
-    animation: scroll 25s linear infinite; /* Un poco más lento para suavidad */
+    /* Cambiamos a 30s para que el desplazamiento de 2000px sea suave */
+    animation: scroll 30s linear infinite; 
 }
 
 .logos-slider:hover { animation-play-state: paused; }
 
 .slide {
-    width: 250px;
-    flex-shrink: 0; /* EVITA QUE LOS LOGOS SE ACHIQUEN Y ROMPAN EL CÁLCULO */
+    width: 250px; /* Ancho fijo garantizado */
+    flex-shrink: 0; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -197,8 +198,8 @@
         transform: translateX(0);
     }
     100% {
-        /* Desplaza exactamente la mitad del ancho total del slider (el primer set de 8) */
-        transform: translateX(-50%);
+        /* 8 logos x 250px = 2000px. Esto hace que el salto sea milimétrico */
+        transform: translateX(-2000px);
     }
 }
         /* --- SECCIONES Y GRID --- */
