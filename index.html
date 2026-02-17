@@ -148,57 +148,59 @@
         }
 
         /* --- CARRUSEL DE MARCAS --- */
-        .logos-section {
-            overflow: hidden; /* Corta lo que sobra */
-            padding: 40px 0;
-            background: white;
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-        .logos-section::before, .logos-section::after {
-            content: "";
-            position: absolute;
-            top: 0; width: 100px; height: 100%; z-index: 2;
-        }
-        .logos-section::before { left: 0; background: linear-gradient(to right, white, transparent); }
-        .logos-section::after { right: 0; background: linear-gradient(to left, white, transparent); }
+.logos-section {
+    overflow: hidden; 
+    padding: 40px 0;
+    background: white;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
 
-       .logos-slider {
-            display: flex;
-            /* Esto es clave: permite que el contenedor sea tan ancho como necesite */
-            width: max-content; 
-            animation: scroll 20s linear infinite; /* Bajé a 20s para que sea más dinámico */
-        }
-        .logos-slider:hover { animation-play-state: paused; }
+.logos-section::before, .logos-section::after {
+    content: "";
+    position: absolute;
+    top: 0; width: 100px; height: 100%; z-index: 2;
+}
+.logos-section::before { left: 0; background: linear-gradient(to right, white, transparent); }
+.logos-section::after { right: 0; background: linear-gradient(to left, white, transparent); }
 
-        .slide {
-            width: 250px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .slide img {
-            width: 150px;
-            height: auto;
-            max-height: 65px;
-            object-fit: contain;
-            filter: none;
-            opacity: 1;
-            transition: var(--transition);
-        }
-        .slide img:hover { transform: scale(1.1); filter: brightness(1.1); }
+.logos-slider {
+    display: flex;
+    width: max-content; 
+    animation: scroll 25s linear infinite; /* Un poco más lento para suavidad */
+}
 
-       @keyframes scroll {
-            0% {
-            transform: translateX(0);
-        }
-            100% {
-            /* Se desplaza exactamente la mitad (el primer grupo de 8 logos) */
-            transform: translateX(-50%);
-        }
-        }
+.logos-slider:hover { animation-play-state: paused; }
 
+.slide {
+    width: 250px;
+    flex-shrink: 0; /* EVITA QUE LOS LOGOS SE ACHIQUEN Y ROMPAN EL CÁLCULO */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide img {
+    width: 150px;
+    height: auto;
+    max-height: 65px;
+    object-fit: contain;
+    filter: none;
+    opacity: 1;
+    transition: var(--transition);
+}
+.slide img:hover { transform: scale(1.1); filter: brightness(1.1); }
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* Desplaza exactamente la mitad del ancho total del slider (el primer set de 8) */
+        transform: translateX(-50%);
+    }
+}
         /* --- SECCIONES Y GRID --- */
         section { padding: 100px 8%; }
         .section-title { text-align: center; margin-bottom: 60px; }
