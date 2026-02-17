@@ -10,993 +10,351 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <style>
-        /* --- VARIABLES Y RESET --- */
-        :root {
-            --primary: #1D84CF;   
-            --secondary: #1A1A1A; 
-            --accent: #FFB800;    
-            --light: #f8fafc;
-            --white: #ffffff;
-            --grad: linear-gradient(135deg, #1D84CF 0%, #0a4d7a 100%);
-            --grad-solar: linear-gradient(135deg, #FFB800 0%, #f1a100 100%);
-            --shadow: 0 15px 35px rgba(0,0,0,0.08);
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        *, *::before, *::after { box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            margin: 0;
-            font-family: 'Open Sans', sans-serif;
-            color: var(--secondary);
-            background-color: var(--light);
-            overflow-x: hidden;
-            line-height: 1.7;
-        }
-
-        /* --- NAVEGACIÓN --- */
-        .navbar {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 0 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            width: 100%;
-            height: 85px;
-            z-index: 2000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
-        }
-        .logo img { height: 50px; }
-        .nav-links { display: flex; gap: 30px; list-style: none; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--secondary); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; transition: var(--transition); }
-        .nav-links a:hover { color: var(--primary); }
-        .btn-nav { background: var(--grad); color: white !important; padding: 10px 20px; border-radius: 50px; }
-
-        /* --- HERO CON SLIDER REFORZADO --- */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            background-color: #000;
-        }
-
-        .hero-slider {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        .slide-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transform: scale(1);
-            animation: imageFadeZoom 15s linear infinite;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7));
-            z-index: 2;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 3;
-            padding: 0 20px;
-            max-width: 1000px;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.6);
-            animation: fadeInUp 1.2s ease-out forwards;
-        }
-
-        .hero-content h1 { 
-            font-family: 'Montserrat', sans-serif; 
-            font-weight: 800;
-            font-size: clamp(2.8rem, 7vw, 5rem); 
-            line-height: 1.1; 
-            margin: 0 0 25px 0;
-            letter-spacing: -1px;
-            color: var(--white);
-        }
-
-        .hero-content h1 span { color: var(--accent); }
-
-        .hero-content p { 
-            font-size: clamp(1.1rem, 2vw, 1.4rem);
-            max-width: 800px; 
-            margin: 0 auto 45px; 
-            opacity: 1;
-            font-weight: 400;
-            line-height: 1.6;
-        }
-
-        .slide-bg:nth-child(1) { animation-delay: 0s; }
-        .slide-bg:nth-child(2) { animation-delay: 5s; }
-        .slide-bg:nth-child(3) { animation-delay: 10s; }
-
-        @keyframes imageFadeZoom {
-            0% { opacity: 0; transform: scale(1); }
-            10% { opacity: 1; }
-            33% { opacity: 1; }
-            43% { opacity: 0; transform: scale(1.1); }
-            100% { opacity: 0; }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-     /* --- CARRUSEL DE MARCAS --- */
-.logos-section {
-    overflow: hidden; 
-    padding: 40px 0;
-    background: white;
-    position: relative;
-    width: 100%; /* Asegura que ocupe todo el ancho */
-}
-
-/* Degradados laterales para ocultar el "corte" */
-.logos-section::before, .logos-section::after {
-    content: "";
-    position: absolute;
-    top: 0; width: 150px; height: 100%; z-index: 5;
-}
-.logos-section::before { left: 0; background: linear-gradient(to right, white, transparent); }
-.logos-section::after { right: 0; background: linear-gradient(to left, white, transparent); }
-
-.logos-slider {
-    display: flex;
-    width: max-content; /* El contenedor se estira según los logos */
-    animation: scroll 30s linear infinite;
-    will-change: transform; /* Mejora el rendimiento en Chrome/Edge */
-}
-
-.logos-slider:hover { animation-play-state: paused; }
-
-.slide {
-    width: 250px;
-    flex: 0 0 250px; /* Bloquea el ancho a 250px exactos */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.slide img {
-    width: 150px;
-    height: auto;
-    max-height: 65px;
-    object-fit: contain;
-    pointer-events: none; /* Evita que el arrastre accidental rompa la fluidez */
-}
-
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        /* IMPORTANTE: Si tienes 2 sets de 8 logos, el total son 16. 
-           Cada set mide 2000px (8 * 250). 
-           Al llegar a -2000px, el logo 9 (que es Legrand) estará 
-           exactamente donde empezó el logo 1. */
-        transform: translateX(-2000px); 
-    }
-}
-        /* --- SECCIONES Y GRID --- */
-        section { padding: 100px 8%; }
-        .section-title { text-align: center; margin-bottom: 60px; }
-        .section-title h2 { font-family: 'Montserrat'; font-size: 2.5rem; position: relative; }
-        
-        .nosotros-main { text-align: center; max-width: 900px; margin: 0 auto 50px; }
-        .experience-badge { background: var(--accent); color: var(--secondary); display: inline-block; padding: 5px 20px; border-radius: 50px; font-weight: 800; margin-bottom: 15px; }
-
-        /* --- MEJORA DE TARJETAS (NOSOTROS Y SERVICIOS) --- */
-        .nosotros-grid, .servicios-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 30px; 
-        }
-
-        .nosotros-card, .card { 
-            background: white; 
-            padding: 40px; 
-            border-radius: 20px; 
-            box-shadow: var(--shadow); 
-            transition: var(--transition); 
-            text-align: center;
-            border: 1px solid transparent;
-        }
-
-        .nosotros-card:hover, .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(29, 132, 207, 0.15);
-        }
-
-        .solar-highlight { 
-            background: var(--grad-solar); 
-            color: white; 
-        }
-        .solar-highlight .card-icon { color: white; }
-        .solar-highlight:hover {
-            border-color: var(--white);
-            box-shadow: 0 20px 40px rgba(255, 184, 0, 0.3);
-        }
-
-        .card-icon, .card i { 
-            font-size: 2.5rem; 
-            color: var(--primary); 
-            margin-bottom: 20px; 
-            display: inline-block;
-            transition: var(--transition);
-        }
-        
-        /* --- ESTILO EQUIPO --- */
-        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 60px; }
-        .team-card { background: white; border-radius: 25px; overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); }
-        .team-card:hover { transform: translateY(-10px); }
-        .team-img { height: 320px; overflow: hidden; }
-        .team-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .team-card:hover .team-img img { transform: scale(1.1); }
-        .team-info { padding: 25px; text-align: center; }
-        .team-info h4 { font-family: 'Montserrat'; margin: 0; font-size: 1.2rem; }
-        .team-info p { color: var(--primary); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; margin-top: 5px; }
-
-        /* --- BOTONES Y CONTACTO --- */
-        .btn { padding: 18px 40px; background: var(--grad); color: white; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-block; transition: var(--transition); border: none; cursor: pointer; }
-        .btn-outline { background: transparent; border: 2px solid white; margin-left: 10px; }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(29, 132, 207, 0.4); }
-
-        .contact-container { display: grid; grid-template-columns: 1fr 1.5fr; background: white; border-radius: 30px; overflow: hidden; box-shadow: var(--shadow); }
-        .contact-info { background: var(--secondary); color: white; padding: 60px; }
-        #formContacto { padding: 60px; display: flex; flex-direction: column; gap: 20px; }
-        input, textarea { width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 10px; }
-
-        footer { background: var(--secondary); color: white; text-align: center; padding: 60px 20px; border-top: 4px solid var(--primary); }
-
-        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s all ease; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        @media (max-width: 992px) {
-            .contact-container { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
-            .hero-btns { flex-direction: column; gap: 15px; }
-            .btn-outline { margin-left: 0; }
-        }
-
-        /* --- BOTÓN WHATSAPP --- */
-        @keyframes pulse-wsp {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-
-        @keyframes shake-icon {
-            0% { transform: rotate(0deg); }
-            25% { transform: rotate(15deg); }
-            50% { transform: rotate(-15deg); }
-            75% { transform: rotate(15deg); }
-            100% { transform: rotate(0deg); }
-        }
-
-        .whatsapp-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background-color: #25d366;
-            color: white;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 35px;
-            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
-            z-index: 3000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: var(--transition);
-            /* Animación constante de pulso */
-            animation: pulse-wsp 2s infinite;
-        }
-
-        .whatsapp-btn:hover {
-            transform: scale(1.1) translateY(-5px);
-            background-color: #20ba5a;
-            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5);
-        }
-
-        /* Animación del icono al pasar el mouse */
-        .whatsapp-btn:hover i {
-            display: inline-block;
-            animation: shake-icon 0.5s ease infinite;
-        }
-
-        .tooltip-wsp {
-            position: absolute;
-            right: 75px;
-            background: white;
-            color: var(--secondary);
-            padding: 8px 15px;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            box-shadow: var(--shadow);
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-            white-space: nowrap;
-        }
-
-        .whatsapp-btn:hover .tooltip-wsp {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        @media (max-width: 768px) {
-            .whatsapp-btn {
-                bottom: 20px;
-                right: 20px;
-                width: 55px;
-                height: 55px;
-                font-size: 30px;
-            }
-            .tooltip-wsp { display: none; }
-        }
-    /* --- ESTILO RECUADRO LOGO CONTACTO --- */
-.contact-logo {
-    background-color: white; /* El recuadro blanco */
-    display: inline-flex;    /* Se ajusta al tamaño del logo */
-    padding: 15px;           /* Espacio interno entre el logo y el borde blanco */
-    border-radius: 12px;     /* Bordes redondeados */
-    margin-bottom: 25px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Un poco de sombra para dar profundidad */
-}
-
-.contact-logo img {
-    height: 40px;            /* Tamaño reducido al 50% aproximadamente */
-    width: auto;
-    display: block;
-    object-fit: contain;
-}
-/* --- ESTRUCTURA ESPECÍFICA 3-3-1 --- */
-        .servicios-grid {
-            display: grid;
-            /* Por defecto en móviles es 1 columna */
-            grid-template-columns: 1fr;
-            gap: 30px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        /* Configuración para tablets y escritorio */
-        @media (min-width: 768px) {
-            .servicios-grid {
-                grid-template-columns: repeat(3, 1fr); /* Crea 3 columnas iguales */
-            }
-
-            /* La card número 7 (la última) */
-            .servicios-grid .card:nth-child(7) {
-                grid-column: 2; /* Se posiciona en la columna central (la 2) */
-            }
-        }
-
-        /* --- ESTILO DE LAS IMÁGENES DENTRO DE LAS CARDS --- */
-        .card {
-            display: flex;
-            flex-direction: column;
-            padding: 0 !important; /* Imagen pegada arriba */
-            overflow: hidden;
-            background: var(--white);
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .card-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 4px solid var(--primary);
-        }
-
-        .card h3 {
-            margin: 20px 0 10px;
-            padding: 0 20px;
-            font-size: 1.3rem;
-        }
-
-        .card p {
-            padding: 0 20px 30px;
-            margin: 0;
-            color: #555;
-            font-size: 0.95rem;
-        }
-    .card {
-    overflow: hidden;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(29, 132, 207, 0.2);
-    border: 1px solid var(--primary);
-}
-
-.card-img {
-    transition: transform 0.6s ease;
-}
-
-.card:hover .card-img {
-    transform: scale(1.1); /* La imagen hace un zoom suave */
-}
-.card {
-    position: relative; /* Necesario para el efecto */
-}
-
-.card::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background: var(--grad); /* Usa tu gradiente azul */
-    transform: scaleX(0);
-    transition: transform 0.4s ease;
-}
-
-.card:hover::after {
-    transform: scaleX(1);
-}
-    /* --- ESTILO DEL MAPA --- */
-.map-container {
-    width: 100%;
-    height: 250px; /* Altura del mapa dentro del cuadro negro */
-    margin-top: 25px;
-    border-radius: 15px;
-    overflow: hidden;
-    border: 2px solid rgba(255, 255, 255, 0.1); /* Un borde sutil */
-    background-color: #333; /* Fondo mientras carga */
-}
-
-.map-container iframe {
-    width: 100%;
-    height: 100%;
-    display: block; /* Elimina espacios residuales */
-    filter: grayscale(0.2) contrast(1.1); /* Opcional: le da un toque más serio */
-}
-/* --- SECCIÓN CLIENTES (COLORES ORIGINALES) --- */
-.clientes-section {
-    background-color: var(--white);
-}
-
-.clientes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-    margin-top: 50px;
-}
-
-.cliente-card {
-    background: var(--light);
-    border-radius: 20px;
-    padding: 30px;
-    text-align: center;
-    transition: var(--transition);
-    border: 1px solid #eee;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.cliente-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow);
-    border-color: var(--primary);
-}
-
-.cliente-logo-container {
-    width: 100%;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.cliente-logo-container img {
-    max-width: 80%;
-    max-height: 80%;
-    object-fit: contain;
-    /* Eliminado el filtro de grises */
-    opacity: 1; /* Opacidad total para resaltar colores */
-    transition: var(--transition);
-}
-
-.cliente-info h4 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    color: var(--secondary);
-}
-
-.cliente-info p {
-    font-size: 0.9rem;
-    color: #666;
-    line-height: 1.4;
-}
-/* Clase que se aplicará mediante JavaScript */
-.nav-links a.active {
-    font-weight: bold;
-    color: #007bff; /* Cambia el color según tu marca */
-    border-bottom: 2px solid #007bff;
-}
-.why-choose-us {
-    padding: 80px 0;
-    background-color: #f9f9f9; /* Fondo ligero para contrastar */
-}
-
-.section-title {
-    text-align: center;
-    margin-bottom: 50px;
-    font-size: 2.5rem;
-    color: #333;
-}
-
-.benefits-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Dos columnas en desktop */
-    gap: 40px;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.benefit-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-}
-
-.benefit-icon {
-    font-size: 2rem;
-    color: #007bff; /* Azul corporativo */
-    flex-shrink: 0;
-}
-
-.benefit-text h4 {
-    margin: 0 0 10px 0;
-    font-size: 1.2rem;
-    color: #222;
-}
-
-.benefit-text p {
-    margin: 0;
-    color: #666;
-    line-height: 1.6;
-}
-
-/* Responsivo para móviles */
-@media (max-width: 768px) {
-    .benefits-grid {
-        grid-template-columns: 1fr; /* Una sola columna en celulares */
-    }
-}
-/* 1. Contenedor General */
-.why-choose-us {
-    padding: 100px 20px;
-    background-color: #fcfcfc;
-}
-
-.why-header {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.why-header h2 {
-    font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 15px;
-}
-
-/* 2. Grid de Beneficios (Simetría) */
-.benefits-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas fijas en PC */
-    gap: 25px;
-    max-width: 1100px;
-    margin: 0 auto 60px auto;
-}
-
-.benefit-card {
-    background: #fff;
-    padding: 30px;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    border: 1px solid #eee;
-    transition: 0.3s ease;
-}
-
-.benefit-card:hover {
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    transform: translateY(-5px);
-}
-
-.benefit-icon {
-    font-size: 2rem;
-    color: #007bff;
-    background: rgba(0, 123, 255, 0.05);
-    width: 70px;
-    height: 70px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.benefit-info h4 {
-    margin-bottom: 5px;
-    font-size: 1.2rem;
-    color: #222;
-}
-
-.benefit-info p {
-    font-size: 0.95rem;
-    color: #666;
-    line-height: 1.4;
-}
-
-/* 3. Franja de Estadísticas (Estructura Horizontal) */
-.stats-bar {
-    max-width: 900px;
-    margin: 0 auto;
-    background: #007bff;
-    border-radius: 100px; /* Forma de píldora moderna */
-    padding: 30px 50px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    color: #fff;
-}
-
-.stat-item {
-    text-align: center;
-}
-
-.stat-num {
-    display: block;
-    font-size: 2rem;
-    font-weight: bold;
-}
-
-.stat-desc {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.stat-divider {
-    width: 1px;
-    height: 40px;
-    background: rgba(255,255,255,0.3);
-}
-
-/* 4. Responsive (Orden en Móviles) */
-@media (max-width: 850px) {
-    .benefits-grid {
-        grid-template-columns: 1fr; /* Una columna en móvil */
-    }
-    
-    .stats-bar {
-        flex-direction: column;
-        gap: 20px;
-        border-radius: 20px;
+    /* =========================================
+       1. VARIABLES Y CONFIGURACIÓN GLOBAL
+       ========================================= */
+    :root {
+        --primary: #1D84CF;   
+        --secondary: #1A1A1A; 
+        --accent: #FFB800;    
+        --light: #f8fafc;
+        --white: #ffffff;
+        --grad: linear-gradient(135deg, #1D84CF 0%, #0a4d7a 100%);
+        --grad-solar: linear-gradient(135deg, #FFB800 0%, #f1a100 100%);
+        --shadow: 0 15px 35px rgba(0,0,0,0.08);
+        --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
 
-    .stat-divider {
-        display: none; /* Quitamos las líneas en móvil */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+        margin: 0;
+        font-family: 'Open Sans', sans-serif;
+        color: var(--secondary);
+        background-color: var(--light);
+        overflow-x: hidden;
+        line-height: 1.7;
     }
-}
-/* --- Animación de Entrada (Scroll Reveal) --- */
-.reveal {
-    position: relative;
-    transform: translateY(50px);
-    opacity: 0;
-    transition: all 0.8s ease-out;
-}
 
-.reveal.active {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-/* --- Estructura de la Grilla --- */
-.benefits-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); 
-    gap: 30px; /* Espacio equilibrado entre tarjetas */
-    margin-top: 40px;
-    align-items: stretch; /* Asegura que todas midan lo mismo de alto */
-}
-
-/* --- Estilo de las Tarjetas (Ajuste Vertical) --- */
-.benefit-card {
-    background: #ffffff;
-    padding: 40px 20px; 
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid #eee;
-    display: flex;
-    flex-direction: column; /* Apila los elementos uno sobre otro */
-    align-items: center;    /* Centra los elementos horizontalmente */
-    text-align: center;     /* Centra el texto */
-}
-
-.benefit-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 45px rgba(0, 77, 153, 0.15);
-    border-color: #004d99;
-}
-
-/* --- Icono Arriba del Título --- */
-.benefit-icon {
-    margin-bottom: 20px; /* Separa el icono del título */
-}
-
-.benefit-icon i {
-    font-size: 2.2rem; /* Tamaño optimizado para no deformar */
-    color: #004d99;
-    transition: transform 0.5s ease;
-}
-
-.benefit-card:hover .benefit-icon i {
-    transform: scale(1.1) rotate(5deg);
-    color: #ff9800;
-}
-
-/* --- Información (Título y Párrafo) --- */
-.benefit-info h4 {
-    margin-bottom: 12px;
-    font-size: 1.1rem;
-    color: #333;
-    line-height: 1.2;
-}
-
-.benefit-info p {
-    font-size: 0.85rem; /* Fuente ligeramente más pequeña para que quepa mejor */
-    color: #666;
-    line-height: 1.5;
-    margin: 0;
-}
-
-/* --- Barra de Estadísticas --- */
-.stats-bar {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background: linear-gradient(135deg, #004d99 0%, #002d5c 100%);
-    color: white;
-    padding: 40px;
-    border-radius: 20px;
-    margin-top: 60px;
-}
-
-.stat-num {
-    display: block;
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #ff9800;
-}
-
-/* Retraso escalonado */
-.benefit-card:nth-child(2) { transition-delay: 0.1s; }
-.benefit-card:nth-child(3) { transition-delay: 0.2s; }
-.benefit-card:nth-child(4) { transition-delay: 0.3s; }
-
-/* --- Ajuste Responsivo --- */
-@media (max-width: 1100px) {
-    .benefits-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2x2 en pantallas medianas para no apretar */
-        gap: 20px;
+    /* =========================================
+       2. NAVEGACIÓN (PC Y MÓVIL)
+       ========================================= */
+    .navbar {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 0 8%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        width: 100%;
+        height: 85px;
+        z-index: 2000;
+        box-shadow: 0 2px 20px rgba(0,0,0,0.05);
     }
-}
+    .logo img { height: 50px; }
+    .nav-links { display: flex; gap: 30px; list-style: none; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--secondary); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; transition: var(--transition); }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-links a.active { font-weight: bold; color: #007bff; border-bottom: 2px solid #007bff; }
+    .btn-nav { background: var(--grad); color: white !important; padding: 10px 20px; border-radius: 50px; }
 
-@media (max-width: 600px) {
-    .benefits-grid {
-        grid-template-columns: 1fr; /* 1 columna en móviles */
-    }
-}
-/* --- ESTILOS PC --- */
-.menu-toggle {
-    display: none; /* Oculto en PC */
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.8rem;
-    color: #333; /* Ajusta según el color de tu logo */
-}
-
-/* --- ESTILOS MÓVIL --- */
-@media (max-width: 1024px) {
     .menu-toggle {
-        display: block; /* Solo aparece en pantallas pequeñas */
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.8rem;
+        color: #333;
     }
 
-    .nav-links {
-        display: none; /* Ocultamos la lista por defecto */
-        flex-direction: column;
-        position: absolute;
-        top: 100%; /* Justo debajo de la navbar */
-        left: 0;
-        width: 100%;
-        background-color: white; 
-        padding: 20px 0;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        z-index: 1000;
+    @media (max-width: 1024px) {
+        .menu-toggle { display: block; }
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: white; 
+            padding: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .nav-links.active { display: flex; }
+        .nav-links li { margin: 15px 0; text-align: center; }
+        .nav-links li a { display: block; width: 100%; }
     }
 
-    .nav-links.active {
-        display: flex; /* Se muestra al hacer clic */
-    }
-
-    .nav-links li {
-        margin: 15px 0;
+    /* =========================================
+       3. HERO (BANNER PRINCIPAL)
+       ========================================= */
+    .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
         text-align: center;
+        position: relative;
+        overflow: hidden;
+        background-color: #000;
+    }
+    .hero-slider { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+    .slide-bg {
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        background-size: cover; background-position: center;
+        opacity: 0; transform: scale(1); animation: imageFadeZoom 15s linear infinite;
+    }
+    .slide-bg:nth-child(1) { animation-delay: 0s; }
+    .slide-bg:nth-child(2) { animation-delay: 5s; }
+    .slide-bg:nth-child(3) { animation-delay: 10s; }
+
+    .hero-overlay {
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7));
+        z-index: 2;
+    }
+    .hero-content {
+        position: relative; z-index: 3; padding: 0 20px; max-width: 1000px;
+        text-shadow: 0 4px 15px rgba(0,0,0,0.6); animation: fadeInUp 1.2s ease-out forwards;
+    }
+    .hero-content h1 { 
+        font-family: 'Montserrat', sans-serif; font-weight: 800;
+        font-size: clamp(2.8rem, 7vw, 5rem); line-height: 1.1; 
+        margin: 0 0 25px 0; letter-spacing: -1px; color: var(--white);
+    }
+    .hero-content h1 span { color: var(--accent); }
+    .hero-content p { 
+        font-size: clamp(1.1rem, 2vw, 1.4rem); max-width: 800px; 
+        margin: 0 auto 45px; opacity: 1; font-weight: 400; line-height: 1.6;
     }
 
-    .nav-links li a {
-        display: block;
-        width: 100%;
+    /* =========================================
+       4. CARRUSEL DE MARCAS
+       ========================================= */
+    .logos-section { overflow: hidden; padding: 40px 0; background: white; position: relative; width: 100%; }
+    .logos-section::before, .logos-section::after { content: ""; position: absolute; top: 0; width: 150px; height: 100%; z-index: 5; }
+    .logos-section::before { left: 0; background: linear-gradient(to right, white, transparent); }
+    .logos-section::after { right: 0; background: linear-gradient(to left, white, transparent); }
+
+    .logos-slider { display: flex; width: max-content; animation: scroll 30s linear infinite; will-change: transform; }
+    .logos-slider:hover { animation-play-state: paused; }
+    .slide { width: 250px; flex: 0 0 250px; display: flex; align-items: center; justify-content: center; }
+    .slide img { width: 150px; height: auto; max-height: 65px; object-fit: contain; pointer-events: none; }
+
+    /* =========================================
+       5. NOSOTROS Y EQUIPO
+       ========================================= */
+    section { padding: 100px 8%; }
+    .section-title { text-align: center; margin-bottom: 60px; }
+    .section-title h2 { font-family: 'Montserrat'; font-size: 2.5rem; position: relative; }
+    .title-with-logo { display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap; }
+    .inline-logo { height: 45px; width: auto; object-fit: contain; display: inline-block; vertical-align: middle; }
+
+    .nosotros-main { text-align: center; max-width: 900px; margin: 0 auto 50px; }
+    .experience-badge { background: var(--accent); color: var(--secondary); display: inline-block; padding: 5px 20px; border-radius: 50px; font-weight: 800; margin-bottom: 15px; }
+
+    .nosotros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+    .nosotros-card { background: white; padding: 40px; border-radius: 20px; box-shadow: var(--shadow); transition: var(--transition); text-align: center; border: 1px solid transparent; }
+    .nosotros-card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 20px 40px rgba(29, 132, 207, 0.15); }
+
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 60px; }
+    .team-card { background: white; border-radius: 25px; overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); }
+    .team-card:hover { transform: translateY(-10px); }
+    .team-img { height: 320px; overflow: hidden; }
+    .team-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+    .team-card:hover .team-img img { transform: scale(1.1); }
+    .team-info { padding: 25px; text-align: center; }
+    .team-info h4 { font-family: 'Montserrat'; margin: 0; font-size: 1.2rem; }
+    .team-info p { color: var(--primary); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; margin-top: 5px; }
+
+    /* =========================================
+       6. SERVICIOS (ESTRUCTURA 3-3-1)
+       ========================================= */
+    .servicios-grid { display: grid; grid-template-columns: 1fr; gap: 30px; max-width: 1100px; margin: 0 auto; }
+
+    @media (min-width: 768px) {
+        .servicios-grid { grid-template-columns: repeat(3, 1fr); }
+        .servicios-grid .card:nth-child(7) { grid-column: 2; }
     }
-}
-/* Estilo para alinear el logo dentro del título */
-.title-with-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px; /* Espacio entre el texto y el logo */
-    flex-wrap: wrap; /* Para que en móviles se acomode bien */
-}
 
-.inline-logo {
-    height: 45px; /* Ajusta según el tamaño de tu fuente */
-    width: auto;
-    object-fit: contain;
-    display: inline-block;
-    vertical-align: middle;
-}
-
-/* Ajuste para móviles */
-@media (max-width: 768px) {
-    .inline-logo {
-        height: 35px;
+    .card { 
+        background: white; border-radius: 20px; box-shadow: var(--shadow); transition: var(--transition); 
+        text-align: center; border: 1px solid transparent; display: flex; flex-direction: column; 
+        padding: 0 !important; overflow: hidden; position: relative;
     }
-}
-/* AJUSTES FOOTER */
-.footer-container-centered {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centra horizontalmente */
-    text-align: center;  /* Centra el texto interno */
-    padding: 60px 0 20px; /* Añade respiro al contenido */
-}
+    .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(29, 132, 207, 0.2); border: 1px solid var(--primary); }
 
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-    width: 100%;
-    margin-bottom: 40px;
-}
-
-/* Ajuste específico para el bloque de marca */
-.footer-brand {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 500px;
-}
-
-.footer-logo-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.footer-logo {
-    height: 55px;
-    width: auto;
-    object-fit: contain;
-    filter: brightness(0) invert(1); /* Mantiene el logo visible en fondos oscuros */
-    transition: transform 0.3s ease;
-}
-
-.footer-logo:hover {
-    transform: scale(1.05); /* Efecto sutil de interacción */
-}
-
-.footer-brand p {
-    color: #cbd5e1;
-    font-size: 0.9rem;
-    line-height: 1.6;
-    max-width: 300px;
-    margin: 0 auto;
-}
-
-.footer-bottom {
-    width: 100%;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 20px;
-    text-align: center;
-}
-
-/* Ajuste móvil */
-@media (max-width: 768px) {
-    .footer-logo {
-        height: 40px;
-    }
-}
-/* Animación de Pulso para el botón principal */
-.btn {
-    position: relative;
-    display: inline-block;
-    padding: 12px 28px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
+    .card-img { width: 100%; height: 200px; object-fit: cover; border-bottom: 4px solid var(--primary); transition: transform 0.6s ease; }
+    .card:hover .card-img { transform: scale(1.1); }
     
-    /* El toque de hoy: Animación de pulso */
-    animation: pulse-blue 3s infinite;
-}
+    .card h3 { margin: 20px 0 10px; padding: 0 20px; font-size: 1.3rem; }
+    .card p { padding: 0 20px 30px; margin: 0; color: #555; font-size: 0.95rem; }
 
-/* Solo el botón de acción principal se detiene al pasar el mouse */
-.btn:hover {
-    animation: none;
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
+    .card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 5px; background: var(--grad); transform: scaleX(0); transition: transform 0.4s ease; }
+    .card:hover::after { transform: scaleX(1); }
 
-/* Keyframes para el efecto de onda expansiva */
-@keyframes pulse-blue {
-    0% {
-        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7); /* Cambia el color aquí si es necesario */
+    .card-icon, .card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; display: inline-block; transition: var(--transition); }
+    .solar-highlight { background: var(--grad-solar); color: white; }
+    .solar-highlight .card-icon { color: white; }
+    .solar-highlight:hover { border-color: var(--white); box-shadow: 0 20px 40px rgba(255, 184, 0, 0.3); }
+
+    /* =========================================
+       7. CLIENTES
+       ========================================= */
+    .clientes-section { background-color: var(--white); }
+    .clientes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: 50px; }
+    .cliente-card { background: var(--light); border-radius: 20px; padding: 30px; text-align: center; transition: var(--transition); border: 1px solid #eee; display: flex; flex-direction: column; align-items: center; }
+    .cliente-card:hover { transform: translateY(-10px); box-shadow: var(--shadow); border-color: var(--primary); }
+    .cliente-logo-container { width: 100%; height: 100px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+    .cliente-logo-container img { max-width: 80%; max-height: 80%; object-fit: contain; opacity: 1; transition: var(--transition); }
+    .cliente-info h4 { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; margin-bottom: 10px; color: var(--secondary); }
+    .cliente-info p { font-size: 0.9rem; color: #666; line-height: 1.4; }
+
+    /* =========================================
+       8. POR QUÉ ELEGIRNOS (RESTAURADO A 4 COLUMNAS)
+       ========================================= */
+    .why-choose-us { padding: 100px 20px; background-color: #fcfcfc; }
+    .why-header { text-align: center; margin-bottom: 50px; }
+    .why-header h2 { font-size: 2.5rem; color: #333; margin-bottom: 15px; }
+
+    /* Grilla de 4 columnas */
+    .benefits-grid { 
+        display: grid; 
+        grid-template-columns: repeat(4, 1fr); 
+        gap: 30px; 
+        margin-top: 40px; 
+        align-items: stretch; 
     }
-    70% {
-        box-shadow: 0 0 0 20px rgba(0, 123, 255, 0);
+
+    .benefit-card { 
+        background: #ffffff; padding: 40px 20px; border-radius: 15px; border: 1px solid #eee;
+        display: flex; flex-direction: column; align-items: center; text-align: center; transition: 0.3s ease;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     }
-    100% {
-        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+    .benefit-card:hover { transform: translateY(-10px); box-shadow: 0 15px 45px rgba(0, 77, 153, 0.15); border-color: #004d99; }
+    
+    .benefit-icon { margin-bottom: 20px; }
+    .benefit-icon i { font-size: 2.2rem; color: #004d99; transition: transform 0.5s ease; }
+    .benefit-card:hover .benefit-icon i { transform: scale(1.1) rotate(5deg); color: #ff9800; }
+
+    .benefit-info h4 { margin-bottom: 12px; font-size: 1.1rem; color: #333; line-height: 1.2; }
+    .benefit-info p { font-size: 0.85rem; color: #666; line-height: 1.5; margin: 0; }
+
+    /* Barra de Estadísticas */
+    .stats-bar { 
+        display: flex; justify-content: space-around; align-items: center;
+        background: linear-gradient(135deg, #004d99 0%, #002d5c 100%);
+        color: white; padding: 40px; border-radius: 20px; margin-top: 60px;
     }
-}
+    .stat-item { text-align: center; }
+    .stat-num { display: block; font-size: 2.5rem; font-weight: bold; color: #ff9800; }
+    .stat-desc { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+    .stat-divider { width: 1px; height: 40px; background: rgba(255,255,255,0.3); }
+
+    @media (max-width: 1100px) { .benefits-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { 
+        .benefits-grid { grid-template-columns: 1fr; } 
+        .stats-bar { flex-direction: column; gap: 20px; border-radius: 20px; }
+        .stat-divider { display: none; }
+    }
+
+    /* =========================================
+       9. CONTACTO Y MAPA
+       ========================================= */
+    .contact-container { display: grid; grid-template-columns: 1fr 1.5fr; background: white; border-radius: 30px; overflow: hidden; box-shadow: var(--shadow); }
+    .contact-info { background: var(--secondary); color: white; padding: 60px; }
+    .contact-logo { background-color: white; display: inline-flex; padding: 15px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+    .contact-logo img { height: 40px; width: auto; display: block; object-fit: contain; }
+    
+    #formContacto { padding: 60px; display: flex; flex-direction: column; gap: 20px; }
+    input, textarea { width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 10px; }
+
+    .map-container { width: 100%; height: 250px; margin-top: 25px; border-radius: 15px; overflow: hidden; border: 2px solid rgba(255, 255, 255, 0.1); background-color: #333; }
+    .map-container iframe { width: 100%; height: 100%; display: block; filter: grayscale(0.2) contrast(1.1); }
+
+    /* =========================================
+       10. FOOTER
+       ========================================= */
+    footer { background: var(--secondary); color: white; text-align: center; padding: 60px 20px; border-top: 4px solid var(--primary); }
+    .footer-container-centered { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 60px 0 20px; }
+    .footer-content { display: flex; flex-direction: column; align-items: center; gap: 30px; width: 100%; margin-bottom: 40px; }
+    .footer-brand { display: flex; flex-direction: column; align-items: center; max-width: 500px; }
+    .footer-logo-container { display: flex; justify-content: center; width: 100%; margin-bottom: 20px; }
+    .footer-logo { height: 55px; width: auto; object-fit: contain; filter: brightness(0) invert(1); transition: transform 0.3s ease; }
+    .footer-logo:hover { transform: scale(1.05); }
+    .footer-brand p { color: #cbd5e1; font-size: 0.9rem; line-height: 1.6; max-width: 300px; margin: 0 auto; }
+    .footer-bottom { width: 100%; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 20px; text-align: center; }
+
+    /* =========================================
+       11. BOTONES Y ANIMACIONES DE PULSO
+       ========================================= */
+    .btn { padding: 18px 40px; background: var(--grad); color: white; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-block; transition: all 0.3s ease; border: none; cursor: pointer; animation: pulse-blue 3s infinite; position: relative; }
+    .btn-outline { background: transparent; border: 2px solid white; margin-left: 10px; }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(29, 132, 207, 0.4); animation: none; }
+
+    .whatsapp-btn {
+        position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
+        background-color: #25d366; color: white; border-radius: 50px; text-align: center;
+        font-size: 35px; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3); z-index: 3000;
+        display: flex; align-items: center; justify-content: center; text-decoration: none;
+        transition: var(--transition); animation: pulse-wsp 2s infinite;
+    }
+    .whatsapp-btn:hover { transform: scale(1.1) translateY(-5px); background-color: #20ba5a; box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5); }
+    .whatsapp-btn:hover i { display: inline-block; animation: shake-icon 0.5s ease infinite; }
+
+    .tooltip-wsp {
+        position: absolute; right: 75px; background: white; color: var(--secondary);
+        padding: 8px 15px; border-radius: 10px; font-size: 0.9rem; font-weight: 700;
+        box-shadow: var(--shadow); opacity: 0; visibility: hidden; transition: var(--transition); white-space: nowrap;
+    }
+    .whatsapp-btn:hover .tooltip-wsp { opacity: 1; visibility: visible; }
+
+    /* =========================================
+       12. KEYFRAMES
+       ========================================= */
+    @keyframes pulse-blue {
+        0% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7); }
+        70% { box-shadow: 0 0 0 20px rgba(0, 123, 255, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0); }
+    }
+    @keyframes pulse-wsp {
+        0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+        70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+    @keyframes shake-icon {
+        0%, 100% { transform: rotate(0deg); }
+        25% { transform: rotate(15deg); }
+        50% { transform: rotate(-15deg); }
+    }
+    @keyframes imageFadeZoom {
+        0% { opacity: 0; transform: scale(1); }
+        10% { opacity: 1; }
+        33% { opacity: 1; }
+        43% { opacity: 0; transform: scale(1.1); }
+        100% { opacity: 0; }
+    }
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-2000px); }
+    }
+
+    /* =========================================
+       13. REVEAL
+       ========================================= */
+    .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s all ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .benefit-card:nth-child(2) { transition-delay: 0.1s; }
+    .benefit-card:nth-child(3) { transition-delay: 0.2s; }
+    .benefit-card:nth-child(4) { transition-delay: 0.3s; }
 </style>
 </head>
 <body>
