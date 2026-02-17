@@ -147,7 +147,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- CARRUSEL DE MARCAS --- */
+       /* --- CARRUSEL DE MARCAS --- */
 .logos-section {
     overflow: hidden; 
     padding: 40px 0;
@@ -157,6 +157,7 @@
     align-items: center;
 }
 
+/* Los degradados laterales */
 .logos-section::before, .logos-section::after {
     content: "";
     position: absolute;
@@ -168,18 +169,22 @@
 .logos-slider {
     display: flex;
     width: max-content; 
-    /* Cambiamos a 30s para que el desplazamiento de 2000px sea suave */
-    animation: scroll 30s linear infinite; 
+    /* Usamos 50% pero con display: inline-flex para asegurar que el ancho sea exacto */
+    display: inline-flex;
+    animation: scroll 30s linear infinite;
 }
 
 .logos-slider:hover { animation-play-state: paused; }
 
 .slide {
-    width: 250px; /* Ancho fijo garantizado */
-    flex-shrink: 0; 
+    /* Forzamos el ancho exacto y eliminamos cualquier espacio extra */
+    width: 250px;
+    flex: 0 0 250px; 
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0;
+    padding: 0;
 }
 
 .slide img {
@@ -198,8 +203,8 @@
         transform: translateX(0);
     }
     100% {
-        /* 8 logos x 250px = 2000px. Esto hace que el salto sea milimétrico */
-        transform: translateX(-2000px);
+        /* Al usar inline-flex y flex: 0 0 250px, el 50% ahora sí es exacto matemáticamente */
+        transform: translateX(-50%);
     }
 }
         /* --- SECCIONES Y GRID --- */
