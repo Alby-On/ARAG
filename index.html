@@ -876,16 +876,49 @@
         height: 35px;
     }
 }
-/* AJUSTES FOOTER*/
+/* AJUSTES FOOTER */
+.footer-container-centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente */
+    text-align: center;  /* Centra el texto interno */
+    padding: 60px 0 20px; /* Añade respiro al contenido */
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+/* Ajuste específico para el bloque de marca */
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+}
+
 .footer-logo-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
     margin-bottom: 20px;
 }
 
 .footer-logo {
-    height: 50px; /* Un poco más grande que el del título para que destaque */
+    height: 55px;
     width: auto;
     object-fit: contain;
-    filter: brightness(0) invert(1); /* OPCIONAL: Si tu logo es oscuro, esto lo vuelve blanco para que resalte en el footer */
+    filter: brightness(0) invert(1); /* Mantiene el logo visible en fondos oscuros */
+    transition: transform 0.3s ease;
+}
+
+.footer-logo:hover {
+    transform: scale(1.05); /* Efecto sutil de interacción */
 }
 
 .footer-brand p {
@@ -893,6 +926,14 @@
     font-size: 0.9rem;
     line-height: 1.6;
     max-width: 300px;
+    margin: 0 auto;
+}
+
+.footer-bottom {
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    text-align: center;
 }
 
 /* Ajuste móvil */
