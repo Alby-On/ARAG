@@ -964,6 +964,39 @@
         height: 40px;
     }
 }
+/* Animación de Pulso para el botón principal */
+.btn {
+    position: relative;
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    
+    /* El toque de hoy: Animación de pulso */
+    animation: pulse-blue 3s infinite;
+}
+
+/* Solo el botón de acción principal se detiene al pasar el mouse */
+.btn:hover {
+    animation: none;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Keyframes para el efecto de onda expansiva */
+@keyframes pulse-blue {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7); /* Cambia el color aquí si es necesario */
+    }
+    70% {
+        box-shadow: 0 0 0 20px rgba(0, 123, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+    }
+}
 </style>
 </head>
 <body>
@@ -1013,7 +1046,7 @@
         <h1>Ingeniería Eléctrica <br><span>de Vanguardia</span></h1>
         <p>ARAG SPA Ingeniería: Soluciones en Ingeniería y construcción, montaje y puesta en marcha de proyectos fotovoltaicos e industriales.</p>
         <div class="hero-btns">
-            <a href="#contacto" class="btn">Empezar Proyecto</a>
+            <a href="#contacto" class="btn btn-pulse">Empezar Proyecto</a>
             <a href="#servicios" class="btn btn-outline">Ver Servicios</a>
         </div>
     </div>
