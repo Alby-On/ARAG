@@ -920,66 +920,88 @@
         70% { box-shadow: 0 0 0 20px rgba(0, 123, 255, 0); }
         100% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0); }
     }
-/* --- Estilos para el Menú del Footer --- */
+/* --- Estilos para el Footer Minimalista (Logo y Lista) --- */
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding-bottom: 20px;
+}
+
+.footer-brand {
+    display: flex;
+    justify-content: center;
+}
+
+.footer-logo {
+    height: 65px; /* Tamaño optimizado al estar solo */
+    width: auto;
+    filter: brightness(0) invert(1);
+    transition: var(--transition);
+}
+
+.footer-logo:hover {
+    transform: scale(1.05);
+}
+
 .footer-nav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
 }
 
-.footer-nav h4 {
-    color: var(--primary);
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    letter-spacing: 2px;
-    margin-bottom: 5px;
-}
-
-.footer-links {
+.footer-links-list {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+    flex-direction: column; /* Formato lista vertical */
+    gap: 12px;
 }
 
-.footer-links a {
+.footer-links-list li a {
     color: #cbd5e1;
     text-decoration: none;
-    font-size: 0.85rem;
-    transition: var(--transition);
+    font-size: 0.9rem;
     font-weight: 600;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
-.footer-links a:hover {
+/* El pequeño icono técnico para la lista */
+.footer-links-list li a i {
+    font-size: 0.7rem;
+    color: var(--primary);
+}
+
+.footer-links-list li a:hover {
     color: var(--white);
-    transform: translateY(-2px);
+    transform: translateX(5px); /* Desplazamiento sutil a la derecha */
 }
 
-/* Ajuste para que se vea bien en conjunto */
-@media (min-width: 992px) {
+/* Ajustes de alineación para Escritorio */
+@media (min-width: 768px) {
     .footer-content {
-        flex-direction: row; /* Alinea logo a la izquierda y menú a la derecha */
-        justify-content: space-between;
-        align-items: flex-start;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
         text-align: left;
     }
-    
+
     .footer-brand {
-        align-items: flex-start;
-        text-align: left;
+        justify-content: flex-start;
     }
 
     .footer-nav {
-        align-items: flex-end;
+        align-items: flex-start;
     }
 
-    .footer-links {
-        justify-content: flex-end;
-        max-width: 400px; /* Evita que se estire demasiado */
+    .footer-links-list li a {
+        justify-content: flex-start;
     }
 }
 </style>
@@ -1417,18 +1439,16 @@
                 <div class="footer-logo-container">
                     <img src="aragspa.png" alt="Logo ARAG SPA" class="footer-logo">
                 </div>
-                <p>Soluciones integrales en ingeniería eléctrica y energías renovables en la Región del Ñuble.</p>
             </div>
 
             <div class="footer-nav">
-                <h4>Navegación</h4>
-                <ul class="footer-links">
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#nosotros">Quiénes Somos</a></li>
-                    <li><a href="#servicios">Servicios</a></li>
-                    <li><a href="#clientes">Clientes</a></li>
-                    <li><a href="#por-que-elegirnos">¿Por qué nosotros?</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
+                <ul class="footer-links-list">
+                    <li><a href="#inicio"><i class="fas fa-chevron-right"></i> Inicio</a></li>
+                    <li><a href="#nosotros"><i class="fas fa-chevron-right"></i> Quiénes Somos</a></li>
+                    <li><a href="#servicios"><i class="fas fa-chevron-right"></i> Servicios</a></li>
+                    <li><a href="#clientes"><i class="fas fa-chevron-right"></i> Clientes</a></li>
+                    <li><a href="#por-que-elegirnos"><i class="fas fa-chevron-right"></i> ¿Por qué nosotros?</a></li>
+                    <li><a href="#contacto"><i class="fas fa-chevron-right"></i> Contacto</a></li>
                 </ul>
             </div>
         </div>
