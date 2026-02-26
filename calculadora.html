@@ -59,6 +59,55 @@
 @media (max-width: 768px) {
     .resumen-container { flex-direction: column; }
 }
+.formulario-container {
+    background: #2e7d32;
+    padding: 30px;
+    border-radius: 15px;
+    margin-top: 40px;
+    color: white;
+}
+.formulario-container h3 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 1.5em;
+}
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+.form-group label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+.form-group select, .form-group input {
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+}
+.btn-next {
+    width: 100%;
+    margin-top: 25px;
+    background: #ffc107;
+    color: #333;
+    border: none;
+    padding: 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.btn-next:hover {
+    background: #ffca28;
+}
     </style>
 </head>
 <body>
@@ -107,6 +156,37 @@
         <div class="resumen-valor"><span id="resumenMes">0.00</span> <small>kWh</small></div>
         <p class="resumen-desc">Energía total al mes</p>
     </div>
+</div>
+<div class="formulario-container">
+    <h3>Casi listo: Obtén tu configuración solar</h3>
+    <form id="solarLeadForm">
+        <div class="form-grid">
+            <div class="form-group">
+                <label>Tu Región:</label>
+                <select id="userRegion" required>
+                    <option value="" disabled selected>Selecciona tu región...</option>
+                    <option value="arica">Arica y Parinacota (Radiación Alta)</option>
+                    <option value="antofagasta">Antofagasta (Radiación Extrema)</option>
+                    <option value="metropolitana">Región Metropolitana (Radiación Media-Alta)</option>
+                    <option value="nuble">Región de Ñuble (Radiación Media)</option>
+                    <option value="biobio">Región del Biobío (Radiación Media-Baja)</option>
+                    <option value="loslagos">Región de los Lagos (Radiación Baja)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Potencia Total (Watts):</label>
+                <input type="text" id="formWatts" readonly style="background: #f0f0f0;">
+            </div>
+
+            <div class="form-group">
+                <label>Consumo Mensual (kWh):</label>
+                <input type="text" id="formKwhMes" readonly style="background: #f0f0f0;">
+            </div>
+        </div>
+
+        <button type="button" class="btn-next" onclick="nextStep()">Siguiente: Ver paneles necesarios ➔</button>
+    </form>
 </div>
 </div>
 
@@ -217,6 +297,10 @@
     document.getElementById('totalWatts').innerText = totalW.toLocaleString(); // con separador de miles
     document.getElementById('resumenDia').innerText = totalD.toFixed(2);
     document.getElementById('resumenMes').innerText = totalM.toFixed(1);
+
+    // Dentro de updateTotals()...
+    document.getElementById('formWatts').value = totalW + " W";
+    document.getElementById('formKwhMes').value = totalM.toFixed(2) + " kWh";
 }
 
     function removeRow(btn) {
@@ -225,6 +309,17 @@
     }
 
     window.onload = addRow;
+function nextStep() {
+    const region = document.getElementById('userRegion').value;
+    if (!region) {
+        alert("Por favor, selecciona tu región para calcular la radiación.");
+        return;
+    }
+    
+    // Aquí podrías mostrar un modal, otra sección o enviar los datos
+    alert("¡Datos capturados! Calculando paneles para la región de " + region);
+    // Próximo paso: Generar propuesta técnica
+}
 </script>
 
 </body>
