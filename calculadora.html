@@ -140,6 +140,57 @@
 .item-res .val { font-size: 1.4em; color: #333; font-weight: 800; }
 .total-costo { background: #e8f5e9; border: 1px solid #2e7d32; }
 .total-costo .val { color: #2e7d32; }
+    .contacto-container {
+    background: #1a237e; /* Azul profesional para diferenciar del cálculo */
+    padding: 30px;
+    border-radius: 15px;
+    margin-top: 30px;
+    color: white;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+.contacto-container h3 { margin-top: 0; text-align: center; color: #ffca28; }
+.grid-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+.field { display: flex; flex-direction: column; }
+.field.full { grid-column: span 2; }
+.field label { font-size: 0.9em; margin-bottom: 5px; font-weight: bold; }
+.field input, .field select {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1em;
+}
+.btn-finalizar {
+    grid-column: span 2;
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.btn-siguiente-paso {
+    background: #2e7d32;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+}
+@media (max-width: 600px) {
+    .grid-form { grid-template-columns: 1fr; }
+    .field.full { grid-column: span 1; }
+    .btn-finalizar { grid-column: span 1; }
+}
     </style>
 </head>
 <body>
@@ -251,6 +302,46 @@
         </div>
     </div>
     <p style="font-size: 0.8em; margin-top: 15px; color: #666;">*Valores referenciales sujetos a factibilidad técnica y variaciones de mercado.</p>
+</div>
+<div id="contactoFinal" class="contacto-container" style="display: none;">
+    <h3>🚀 ¡Solicita tu Asesoría Personalizada!</h3>
+    <p>Ingresa tus datos para que un experto valide tu proyecto.</p>
+    
+    <form id="leadForm" class="grid-form">
+        <div class="field">
+            <label>Nombre</label>
+            <input type="text" id="nombre" placeholder="Tu nombre" required>
+        </div>
+        <div class="field">
+            <label>Apellido</label>
+            <input type="text" id="apellido" placeholder="Tu apellido" required>
+        </div>
+        <div class="field">
+            <label>Teléfono</label>
+            <input type="tel" id="telefono" placeholder="+56 9 1234 5678" required>
+        </div>
+        <div class="field">
+            <label>Comuna</label>
+            <input type="text" id="comuna" placeholder="Ej: Chillán" required>
+        </div>
+        <div class="field full">
+            <label>Email</label>
+            <input type="email" id="email" placeholder="correo@ejemplo.com" required>
+        </div>
+        <div class="field full">
+            <label>Horario de contacto preferido</label>
+            <select id="horario">
+                <option value="mañana">Mañana (09:00 - 13:00)</option>
+                <option value="tarde">Tarde (14:00 - 18:00)</option>
+                <option value="vespertino">Vespertino (18:00 - 21:00)</option>
+            </select>
+        </div>
+        <button type="submit" class="btn-finalizar">Enviar Solicitud y Finalizar</button>
+    </form>
+</div>
+
+<div id="btnPasoContacto" style="display: none; text-align: center; margin-top: 20px;">
+    <button class="btn-siguiente-paso" onclick="mostrarContacto()">Continuar con mi solicitud ➔</button>
 </div>
 </div>
 
@@ -425,6 +516,38 @@ function nextStep() {
     // Scroll suave hacia el resultado
     document.getElementById('resultadoFinal').scrollIntoView({ behavior: 'smooth' });
 }
+// Actualizamos la función nextStep que ya tenías para que muestre el botón de continuar
+function nextStep() {
+    const hsp = parseFloat(document.getElementById('userRegion').value);
+    if (!hsp) {
+        alert("Por favor, selecciona tu región para calcular.");
+        return;
+    }
+
+    // ... (Mantén aquí todos tus cálculos de la respuesta anterior)
+
+    // Mostrar el recuadro de resultados
+    document.getElementById('resultadoFinal').style.display = 'block';
+    
+    // Mostrar el botón para el siguiente paso (el formulario de contacto)
+    document.getElementById('btnPasoContacto').style.display = 'block';
+    
+    // Scroll suave hacia el resultado
+    document.getElementById('resultadoFinal').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Nueva función para mostrar el formulario final
+function mostrarContacto() {
+    document.getElementById('contactoFinal').style.display = 'block';
+    document.getElementById('contactoFinal').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Manejo del envío del formulario
+document.getElementById('leadForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert("¡Muchas gracias! Hemos recibido tu solicitud. Un especialista se contactará contigo en el horario preferido.");
+    // Aquí podrías integrar el envío real a tu correo o base de datos
+});
 </script>
 
 </body>
