@@ -114,6 +114,32 @@
     border: 1px solid rgba(255, 255, 255, 0.4);
     font-weight: bold;
 }
+.resultado-propuesta {
+    background: #ffffff;
+    border: 2px solid #2e7d32;
+    padding: 25px;
+    border-radius: 15px;
+    margin-top: 30px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+.resultado-propuesta h3 { color: #2e7d32; margin-top: 0; text-align: center; }
+.grid-resultados {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+.item-res {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #eee;
+}
+.item-res .tit { display: block; font-size: 0.85em; color: #555; font-weight: bold; margin-bottom: 5px; }
+.item-res .val { font-size: 1.4em; color: #333; font-weight: 800; }
+.total-costo { background: #e8f5e9; border: 1px solid #2e7d32; }
+.total-costo .val { color: #2e7d32; }
     </style>
 </head>
 <body>
@@ -203,6 +229,28 @@
 
         <button type="button" class="btn-next" onclick="nextStep()">Siguiente: Calcular Paneles ➔</button>
     </form>
+</div>
+<div id="resultadoFinal" class="resultado-propuesta" style="display: none;">
+    <h3>📊 Propuesta Técnica Estimada</h3>
+    <div class="grid-resultados">
+        <div class="item-res">
+            <span class="tit">Inversor Recomendado</span>
+            <span class="val" id="resInversor">0 kW</span>
+        </div>
+        <div class="item-res">
+            <span class="tit">Paneles (Mono-PERC 580W)</span>
+            <span class="val" id="resPaneles">0 Unidades</span>
+        </div>
+        <div class="item-res">
+            <span class="tit">Banco de Baterías Litio</span>
+            <span class="val" id="resBaterias">0 kWh</span>
+        </div>
+        <div class="item-res total-costo">
+            <span class="tit">Inversión Estimada (IVA Inc.)</span>
+            <span class="val" id="resCosto">$0</span>
+        </div>
+    </div>
+    <p style="font-size: 0.8em; margin-top: 15px; color: #666;">*Valores referenciales sujetos a factibilidad técnica y variaciones de mercado.</p>
 </div>
 </div>
 
@@ -335,6 +383,47 @@ function nextStep() {
     // Aquí podrías mostrar un modal, otra sección o enviar los datos
     alert("¡Datos capturados! Calculando paneles para la región de " + region);
     // Próximo paso: Generar propuesta técnica
+}
+function nextStep() {
+    const hsp = parseFloat(document.getElementById('userRegion').value);
+    if (!hsp) {
+        alert("Por favor, selecciona tu región para calcular.");
+        return;
+    }
+
+    // 1. Obtener datos de los inputs (limpiando texto para dejar solo números)
+    const totalWattsCarga = parseFloat(document.getElementById('formWatts').value.replace(/\D/g,'')) || 0;
+    const kwhMes = parseFloat(document.getElementById('formKwhMes').value) || 0;
+    const kwhDia = kwhMes / 30;
+
+    // 2. Cálculo de Inversor: Carga máxima + 20% de margen de seguridad
+    const potenciaInversor = (totalWattsCarga * 1.2) / 1000; 
+    
+    // 3. Cálculo de Paneles (580W)
+    // Fórmula: (kWh día / (HSP * Eficiencia 0.75)) / Potencia Panel
+    const potenciaInstalarWp = (kwhDia / (hsp * 0.75)) * 1000;
+    const numPaneles = Math.ceil(potenciaInstalarWp / 580);
+
+    // 4. Capacidad Baterías (Ejemplo: Cubrir 1 día de autonomía)
+    // Generalmente se recomienda 1.5 a 2 veces el consumo diario para litio
+    const capacidadBateria = kwhDia * 1.5;
+
+    // 5. Costo Estimado (Aproximación: $1.200.000 por kWp instalado + Baterías)
+    // Ajustado con IVA (19%)
+    const costoBase = (potenciaInstalarWp * 1100) + (capacidadBateria * 350000);
+    const costoTotalConIva = costoBase * 1.19;
+
+    // Mostrar Resultados en el HTML
+    document.getElementById('resInversor').innerText = potenciaInversor.toFixed(1) + " kW";
+    document.getElementById('resPaneles').innerText = numPaneles + " Unidades";
+    document.getElementById('resBaterias').innerText = capacidadBateria.toFixed(1) + " kWh";
+    document.getElementById('resCosto').innerText = "$" + Math.round(costoTotalConIva).toLocaleString('es-CL');
+
+    // Mostrar el recuadro
+    document.getElementById('resultadoFinal').style.display = 'block';
+    
+    // Scroll suave hacia el resultado
+    document.getElementById('resultadoFinal').scrollIntoView({ behavior: 'smooth' });
 }
 </script>
 
