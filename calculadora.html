@@ -464,78 +464,58 @@ function updateTotals() {
     }
 
     window.onload = addRow;
+// UNICA FUNCIÓN PARA CALCULAR Y MOSTRAR RESULTADOS
 function nextStep() {
-    const region = document.getElementById('userRegion').value;
-    if (!region) {
+    const hsp = parseFloat(document.getElementById('userRegion').value);
+    
+    if (!hsp) {
         alert("Por favor, selecciona tu región para calcular la radiación.");
         return;
     }
-    
-    // Aquí podrías mostrar un modal, otra sección o enviar los datos
-    alert("¡Datos capturados! Calculando paneles para la región de " + region);
-    // Próximo paso: Generar propuesta técnica
-}
-function nextStep() {
-    const hsp = parseFloat(document.getElementById('userRegion').value);
-    if (!hsp) {
-        alert("Por favor, selecciona tu región para calcular.");
+
+    // 1. Obtener datos y limpiar (quitar "W", "kWh", etc. para que sean números)
+    const totalWattsCarga = parseFloat(document.getElementById('formWatts').value.replace(/[^0-9.]/g, '')) || 0;
+    const kwhMes = parseFloat(document.getElementById('formKwhMes').value.replace(/[^0-9.]/g, '')) || 0;
+    const kwhDia = kwhMes / 30;
+
+    if (totalWattsCarga === 0) {
+        alert("Primero debes agregar artefactos a la tabla.");
         return;
     }
 
-    // 1. Obtener datos de los inputs (limpiando texto para dejar solo números)
-    const totalWattsCarga = parseFloat(document.getElementById('formWatts').value.replace(/\D/g,'')) || 0;
-    const kwhMes = parseFloat(document.getElementById('formKwhMes').value) || 0;
-    const kwhDia = kwhMes / 30;
-
-    // 2. Cálculo de Inversor: Carga máxima + 20% de margen de seguridad
+    // 2. Cálculo de Inversor (Carga + 20% margen)
     const potenciaInversor = (totalWattsCarga * 1.2) / 1000; 
     
     // 3. Cálculo de Paneles (580W)
-    // Fórmula: (kWh día / (HSP * Eficiencia 0.75)) / Potencia Panel
     const potenciaInstalarWp = (kwhDia / (hsp * 0.75)) * 1000;
     const numPaneles = Math.ceil(potenciaInstalarWp / 580);
 
-    // 4. Capacidad Baterías (Ejemplo: Cubrir 1 día de autonomía)
-    // Generalmente se recomienda 1.5 a 2 veces el consumo diario para litio
+    // 4. Baterías (1.5 días de autonomía)
     const capacidadBateria = kwhDia * 1.5;
 
-    // 5. Costo Estimado (Aproximación: $1.200.000 por kWp instalado + Baterías)
-    // Ajustado con IVA (19%)
+    // 5. Costo Estimado con IVA
     const costoBase = (potenciaInstalarWp * 1100) + (capacidadBateria * 350000);
     const costoTotalConIva = costoBase * 1.19;
 
-    // Mostrar Resultados en el HTML
+    // ACTUALIZAR INTERFAZ
     document.getElementById('resInversor').innerText = potenciaInversor.toFixed(1) + " kW";
     document.getElementById('resPaneles').innerText = numPaneles + " Unidades";
     document.getElementById('resBaterias').innerText = capacidadBateria.toFixed(1) + " kWh";
     document.getElementById('resCosto').innerText = "$" + Math.round(costoTotalConIva).toLocaleString('es-CL');
 
-    // Mostrar el recuadro
+    // MOSTRAR CUADROS OCULTOS
     document.getElementById('resultadoFinal').style.display = 'block';
-    
-    // Scroll suave hacia el resultado
-    document.getElementById('resultadoFinal').scrollIntoView({ behavior: 'smooth' });
-}
-// Actualizamos la función nextStep que ya tenías para que muestre el botón de continuar
-function nextStep() {
-    const hsp = parseFloat(document.getElementById('userRegion').value);
-    if (!hsp) {
-        alert("Por favor, selecciona tu región para calcular.");
-        return;
-    }
-
-    // ... (Mantén aquí todos tus cálculos de la respuesta anterior)
-
-    // Mostrar el recuadro de resultados
-    document.getElementById('resultadoFinal').style.display = 'block';
-    
-    // Mostrar el botón para el siguiente paso (el formulario de contacto)
     document.getElementById('btnPasoContacto').style.display = 'block';
     
-    // Scroll suave hacia el resultado
+    // Scroll automático
     document.getElementById('resultadoFinal').scrollIntoView({ behavior: 'smooth' });
 }
 
+// Función para mostrar el formulario de contacto
+function mostrarContacto() {
+    document.getElementById('contactoFinal').style.display = 'block';
+    document.getElementById('contactoFinal').scrollIntoView({ behavior: 'smooth' });
+}
 // Nueva función para mostrar el formulario final
 function mostrarContacto() {
     document.getElementById('contactoFinal').style.display = 'block';
