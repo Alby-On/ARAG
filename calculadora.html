@@ -108,6 +108,12 @@
 .btn-next:hover {
     background: #ffca28;
 }
+.form-group input[readonly] {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    font-weight: bold;
+}
     </style>
 </head>
 <body>
@@ -165,27 +171,37 @@
                 <label>Tu Región:</label>
                 <select id="userRegion" required>
                     <option value="" disabled selected>Selecciona tu región...</option>
-                    <option value="arica">Arica y Parinacota (Radiación Alta)</option>
-                    <option value="antofagasta">Antofagasta (Radiación Extrema)</option>
-                    <option value="metropolitana">Región Metropolitana (Radiación Media-Alta)</option>
-                    <option value="nuble">Región de Ñuble (Radiación Media)</option>
-                    <option value="biobio">Región del Biobío (Radiación Media-Baja)</option>
-                    <option value="loslagos">Región de los Lagos (Radiación Baja)</option>
+                    <option value="6.5">Arica y Parinacota</option>
+                    <option value="6.4">Tarapacá</option>
+                    <option value="6.6">Antofagasta</option>
+                    <option value="6.2">Atacama</option>
+                    <option value="5.8">Coquimbo</option>
+                    <option value="5.2">Valparaíso</option>
+                    <option value="5.1">Metropolitana de Santiago</option>
+                    <option value="4.8">O'Higgins</option>
+                    <option value="4.5">Maule</option>
+                    <option value="4.2">Ñuble</option>
+                    <option value="4.0">Biobío</option>
+                    <option value="3.8">La Araucanía</option>
+                    <option value="3.5">Los Ríos</option>
+                    <option value="3.2">Los Lagos</option>
+                    <option value="2.8">Aysén</option>
+                    <option value="2.5">Magallanes y la Antártica Chilena</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label>Potencia Total (Watts):</label>
-                <input type="text" id="formWatts" readonly style="background: #f0f0f0;">
+                <label>Potencia Total Instalada:</label>
+                <input type="text" id="formWatts" readonly>
             </div>
 
             <div class="form-group">
-                <label>Consumo Mensual (kWh):</label>
-                <input type="text" id="formKwhMes" readonly style="background: #f0f0f0;">
+                <label>Consumo Mensual:</label>
+                <input type="text" id="formKwhMes" readonly>
             </div>
         </div>
 
-        <button type="button" class="btn-next" onclick="nextStep()">Siguiente: Ver paneles necesarios ➔</button>
+        <button type="button" class="btn-next" onclick="nextStep()">Siguiente: Calcular Paneles ➔</button>
     </form>
 </div>
 </div>
@@ -274,7 +290,7 @@
         updateTotals();
     }
 
-   function updateTotals() {
+function updateTotals() {
     let totalW = 0, totalD = 0, totalM = 0;
     
     // Recorremos las filas para sumar Watts totales y kWh
@@ -298,9 +314,9 @@
     document.getElementById('resumenDia').innerText = totalD.toFixed(2);
     document.getElementById('resumenMes').innerText = totalM.toFixed(1);
 
-    // Dentro de updateTotals()...
-    document.getElementById('formWatts').value = totalW + " W";
-    document.getElementById('formKwhMes').value = totalM.toFixed(2) + " kWh";
+    // Actualizar los campos del formulario (Capa de datos)
+    document.getElementById('formWatts').value = totalW.toLocaleString() + " W";
+    document.getElementById('formKwhMes').value = totalM.toFixed(2) + " kWh/mes";
 }
 
     function removeRow(btn) {
