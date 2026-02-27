@@ -986,6 +986,13 @@ if (menuBtn && navList) {
         icon.classList.toggle('fa-times');
     });
 }
+window.addEventListener("load", function() {
+    const loader = document.getElementById("loader-wrapper");
+    // Agregamos una pequeña demora de 500ms para que se alcance a ver el efecto
+    setTimeout(() => {
+        loader.classList.add("loader-hidden");
+    }, 500);
+});
 </script>
 
 </body>
