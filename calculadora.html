@@ -780,10 +780,10 @@ img {
     <h3>🚀 ¡Solicita tu Asesoría Personalizada!</h3>
     <p>Ingresa tus datos para que un experto valide tu proyecto.</p>
     
- <form id="leadForm" class="grid-form" action="https://api.web3forms.com/submit" method="POST">
+<form id="leadForm" class="grid-form" action="https://api.web3forms.com/submit" method="POST">
     <input type="hidden" name="access_key" value="8a97ef50-7f77-4170-a4c9-0baeb5ac6e11">
-    <input type="hidden" name="subject" value="Nueva Solicitud de Cotización - ARAG SpA">
-    <input type="hidden" name="redirect" value="">
+    <input type="hidden" name="subject" value="Nueva Solicitud de Contacto - ARAG SpA">
+    <input type="hidden" name="from_name" value="Web ARAG SpA">
 
     <div class="field">
         <label>Nombre</label>
@@ -795,7 +795,7 @@ img {
     </div>
     <div class="field">
         <label>Teléfono</label>
-        <input type="tel" name="telefono" id="telefono" placeholder="+56 9 1234 5678" required>
+        <input type="tel" name="telefono" id="telefono" placeholder="9XXXXXXXX" pattern="[0-9]{9}" required>
     </div>
     <div class="field">
         <label>Comuna</label>
@@ -813,6 +813,7 @@ img {
             <option value="vespertino">Vespertino (18:00 - 21:00)</option>
         </select>
     </div>
+
     <button type="submit" class="btn-finalizar">Enviar Solicitud y Finalizar</button>
 </form>
 </div>
