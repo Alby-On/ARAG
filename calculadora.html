@@ -1032,11 +1032,34 @@ function mostrarContacto() {
     });
 }
 
-// Manejo del envío del formulario
+// Manejo del envío del formulario corregido
 document.getElementById('leadForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    alert("¡Muchas gracias! Hemos recibido tu solicitud. Un especialista se contactará contigo en el horario preferido.");
-    // Aquí podrías integrar el envío real a tu correo o base de datos
+
+    const formData = new FormData(this);
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    // Enviar a Web3Forms
+    fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: json
+    })
+    .then(response => {
+        if (response.ok) {
+            alert("¡Muchas gracias! Hemos recibido tu solicitud. Un especialista se contactará contigo en el horario preferido.");
+            this.reset(); // Limpia el formulario
+        } else {
+            alert("Error al enviar. Por favor, revisa la configuración de tu Key.");
+        }
+    })
+    .catch(error => {
+        alert("Algo salió mal. Revisa tu conexión a internet.");
+    });
 });
 const menuBtn = document.getElementById('mobile-menu');
 const navList = document.getElementById('nav-list');
