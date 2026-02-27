@@ -620,6 +620,26 @@ img {
         opacity: 1;
         visibility: visible;
     }
+    /* --- ANIMACIONES WHATSAPP --- */
+@keyframes pulse-wsp {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+@keyframes shake-icon {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(15deg); }
+    50% { transform: rotate(-15deg); }
+    75% { transform: rotate(15deg); }
+    100% { transform: rotate(0deg); }
+}
 /* --- MEJORAS ESTÉTICAS PARA EL FORMULARIO --- */
 
 /* Contenedor principal con un toque de profundidad */
