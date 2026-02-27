@@ -567,6 +567,59 @@ img {
     opacity: 0;
     visibility: hidden;
 }
+    /* --- 12. WHATSAPP FLOATING BUTTON --- */
+    .whatsapp-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        background-color: #25d366;
+        color: white;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 35px;
+        box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+        z-index: 3000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: var(--transition);
+        animation: pulse-wsp 2s infinite;
+    }
+
+    .whatsapp-btn:hover {
+        transform: scale(1.1) translateY(-5px);
+        background-color: #20ba5a;
+        box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5);
+    }
+
+    .whatsapp-btn:hover i {
+        display: inline-block;
+        animation: shake-icon 0.5s ease infinite;
+    }
+
+    .tooltip-wsp {
+        position: absolute;
+        right: 75px;
+        background: white;
+        color: var(--secondary);
+        padding: 8px 15px;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        box-shadow: var(--shadow);
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+        white-space: nowrap;
+    }
+
+    .whatsapp-btn:hover .tooltip-wsp {
+        opacity: 1;
+        visibility: visible;
+    }
 </style>
 </head>
 <nav class="navbar">
