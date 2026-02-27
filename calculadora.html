@@ -297,6 +297,145 @@
         width: auto;
     }
 }
+/* --- ESTILOS DEL FOOTER (ARAG SPA) --- */
+
+footer {
+    background: var(--secondary);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+    border-top: 4px solid var(--primary);
+}
+
+.footer-container-centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 60px 0 20px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+}
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+    justify-content: center;
+}
+
+.footer-logo-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.footer-logo {
+    height: 65px; /* Tamaño optimizado al estar solo */
+    width: auto;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    transition: var(--transition);
+}
+
+.footer-logo:hover {
+    transform: scale(1.05);
+}
+
+.footer-brand p {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.footer-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-links-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Formato lista vertical */
+    gap: 12px;
+}
+
+.footer-links-list li a {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* El pequeño icono técnico para la lista */
+.footer-links-list li a i {
+    font-size: 0.7rem;
+    color: var(--primary);
+}
+
+.footer-links-list li a:hover {
+    color: var(--white);
+    transform: translateX(5px); /* Desplazamiento sutil a la derecha */
+}
+
+.footer-bottom {
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* --- AJUSTES RESPONSIVE PARA EL FOOTER --- */
+
+@media (min-width: 768px) {
+    .footer-content {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        text-align: left;
+    }
+
+    .footer-brand {
+        justify-content: flex-start;
+    }
+
+    .footer-nav {
+        align-items: flex-start;
+    }
+
+    .footer-links-list li a {
+        justify-content: flex-start;
+    }
+    
+    .footer-logo {
+        height: 55px; /* Ajuste sutil para escritorio */
+    }
+}
 </style>
 </head>
 <nav class="navbar">
@@ -489,7 +628,36 @@
     <button class="btn-siguiente-paso" onclick="mostrarContacto()">Continuar con mi solicitud ➔</button>
 </div>
 </div>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo-container">
+                    <img src="aragspa.png" alt="Logo ARAG SPA" class="footer-logo">
+                </div>
+            </div>
 
+            <div class="footer-nav">
+                <ul class="footer-links-list">
+
+<li><a href="index.html#inicio">Inicio</a></li>
+                    
+                    <li><a href="index.html#inicio"><i class="fas fa-chevron-right"></i> Inicio</a></li>
+                    <li><a href="index.html#nosotros"><i class="fas fa-chevron-right"></i> Quiénes Somos</a></li>
+                    <li><a href="index.html#servicios"><i class="fas fa-chevron-right"></i> Servicios</a></li>
+                    <li><a href="index.html#clientes"><i class="fas fa-chevron-right"></i> Clientes</a></li>
+                    <li><a href="index.html#por-que-elegirnos"><i class="fas fa-chevron-right"></i> ¿Por qué nosotros?</a></li>
+                    <li><a href="calculadora.html"><i class="fas fa-chevron-right"></i> Calculador Solar</a></li>
+                    <li><a href="index.html#contacto"><i class="fas fa-chevron-right"></i> Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 ARAG SPA Ingeniería. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
 <script>
     const categorias = {
         "🔌 Electrodomésticos": {
