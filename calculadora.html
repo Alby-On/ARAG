@@ -782,32 +782,38 @@ img {
     
 <form id="leadForm" class="grid-form" action="https://api.web3forms.com/submit" method="POST">
     <input type="hidden" name="access_key" value="8a97ef50-7f77-4170-a4c9-0baeb5ac6e11">
-    <input type="hidden" name="subject" value="Nueva Solicitud de Contacto - ARAG SpA">
-    <input type="hidden" name="from_name" value="Web ARAG SpA">
+    
+    <input type="hidden" name="subject" value="Nueva Solicitud de Contacto">
+    <input type="hidden" name="from_name" value="Mi Sitio Web">
 
     <div class="field">
         <label>Nombre</label>
-        <input type="text" name="nombre" id="nombre" placeholder="Tu nombre" required>
+        <input type="text" name="name" id="nombre" placeholder="Tu nombre" required>
     </div>
+    
     <div class="field">
         <label>Apellido</label>
         <input type="text" name="apellido" id="apellido" placeholder="Tu apellido" required>
     </div>
+
     <div class="field">
         <label>Teléfono</label>
-        <input type="tel" name="telefono" id="telefono" placeholder="9XXXXXXXX" pattern="[0-9]{9}" required>
+        <input type="tel" name="phone" id="telefono" placeholder="9XXXXXXXX" pattern="[0-9]{9}" required>
     </div>
+
     <div class="field">
         <label>Comuna</label>
         <input type="text" name="comuna" id="comuna" placeholder="Ej: Chillán" required>
     </div>
+
     <div class="field full">
         <label>Email</label>
         <input type="email" name="email" id="email" placeholder="correo@ejemplo.com" required>
     </div>
+
     <div class="field full">
         <label>Horario de contacto preferido</label>
-        <select name="horario_contacto" id="horario">
+        <select name="horario_preferido" id="horario">
             <option value="mañana">Mañana (09:00 - 13:00)</option>
             <option value="tarde">Tarde (14:00 - 18:00)</option>
             <option value="vespertino">Vespertino (18:00 - 21:00)</option>
