@@ -273,6 +273,30 @@
         .field.full { grid-column: span 1; }
         .grid-resultados { grid-template-columns: 1fr; }
     }
+/* Estilo para el botón de Calculadora en la Navbar */
+.nav-links a.btn-calc {
+    color: var(--secondary) !important; /* Letras negras */
+    border: 2px solid var(--accent);   /* Contorno amarillo (#FFB800) */
+    padding: 8px 18px;
+    border-radius: 50px;               /* Forma de cápsula como el de contacto */
+    transition: var(--transition);
+    display: inline-block;
+}
+
+.nav-links a.btn-calc:hover {
+    background-color: var(--accent);   /* Se rellena de amarillo al pasar el mouse */
+    color: var(--secondary) !important;
+    box-shadow: 0 4px 15px rgba(255, 184, 0, 0.3);
+}
+
+/* Ajuste para que en móviles no se vea extraño */
+@media (max-width: 1024px) {
+    .nav-links a.btn-calc {
+        margin: 10px 0;
+        text-align: center;
+        width: auto;
+    }
+}
 </style>
 </head>
 <nav class="navbar">
@@ -285,7 +309,7 @@
         <li><a href="index.html#servicios">Servicios</a></li>
         <li><a href="index.html#clientes">Clientes</a></li>
         <li><a href="index.html#por-que-elegirnos">¿Por qué nosotros?</a></li>
-        <li><a href="calculadora.html" style="color: var(--accent); font-weight: 800;">Calculadora Solar</a></li>
+        <li><a href="calculadora.html" class="btn-calc">Calculadora Solar</a></li>
         <li><a href="index.html#contacto" class="btn-nav">Contacto</a></li>
     </ul>
 </nav>
@@ -305,7 +329,7 @@
         <li><a href="index.html#servicios">Servicios</a></li>
         <li><a href="index.html#clientes">Clientes</a></li>
         <li><a href="index.html#por-que-elegirnos">¿Por qué nosotros?</a></li>
-        <li><a href="calculadora.html" style="color: var(--accent); font-weight: 800;">Calculadora Solar</a></li>
+        <li><a href="calculadora.html" class="btn-calc">Calculadora Solar</a></li>
         <li><a href="index.html#contacto" class="btn-nav">Contacto</a></li>
     </ul>
 </nav>
