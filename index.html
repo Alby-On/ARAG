@@ -1495,18 +1495,31 @@
         });
     }
 
-    // Lógica para Scroll Suave al hacer clic
+ // Lógica para Scroll Suave al hacer clic
     document.querySelectorAll('.nav-links a').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
             
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 70, // Ajuste para que el navbar no tape el título
-                    behavior: 'smooth'
-                });
+            // --- NUEVA LÓGICA DE ESCAPE ---
+            // Si el href contiene "calculadora", no prevenimos el comportamiento por defecto
+            if (this.getAttribute('href').includes('calculadora')) {
+                return; // Detiene la ejecución de esta función y permite la navegación
+            }
+            
+            // Para el resto de los enlaces (secciones internas), aplicamos el scroll
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            
+            // Intentamos encontrar el elemento solo si el href empieza con #
+            if (targetId.startsWith('#')) {
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70, // Ajuste para que el navbar no tape el título
+                        behavior: 'smooth'
+                    });
+                }
             }
         });
     });
