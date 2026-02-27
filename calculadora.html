@@ -207,8 +207,65 @@
         .grid-form { grid-template-columns: 1fr; }
         .btn-finalizar { grid-column: span 1; }
     }
+    /* Asegura que el contenido no quede debajo de la Navbar fija */
+body {
+    padding-top: 85px; 
+}
+
+/* Ocultar la nav móvil en escritorio por defecto */
+.navbar.moviles {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    .navbar:not(.moviles) { display: none; }
+    .navbar.moviles { display: flex; }
+    
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 85px;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        padding: 20px 0;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    .nav-links.active { display: flex; }
+}
 </style>
 </head>
+<nav class="navbar">
+    <a href="index.html#inicio" class="logo">
+        <img src="aragspa.png" alt="Logo ARAG SPA Ingeniería">
+    </a>
+    <ul class="nav-links">
+        <li><a href="index.html#inicio">Inicio</a></li>
+        <li><a href="index.html#nosotros">Quiénes Somos</a></li>
+        <li><a href="index.html#servicios">Servicios</a></li>
+        <li><a href="calculadora.html" class="active">Calculadora Solar</a></li>
+        <li><a href="index.html#contacto" class="btn-nav">Contacto</a></li>
+    </ul>
+</nav>
+
+<nav class="navbar moviles">
+    <a href="index.html#inicio" class="logo">
+        <img src="aragspa.png" alt="Logo ARAG SPA Ingeniería">
+    </a>
+
+    <button class="menu-toggle" id="mobile-menu" aria-label="Abrir menú">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <ul class="nav-links" id="nav-list">
+        <li><a href="index.html#inicio">Inicio</a></li>
+        <li><a href="index.html#nosotros">Quiénes Somos</a></li>
+        <li><a href="index.html#servicios">Servicios</a></li>
+        <li><a href="calculadora.html">Calculadora Solar</a></li>
+        <li><a href="index.html#contacto" class="btn-nav">Contacto</a></li>
+    </ul>
+</nav>
 <body>
 
 <div class="container">
@@ -550,6 +607,17 @@ document.getElementById('leadForm').addEventListener('submit', function(e) {
     alert("¡Muchas gracias! Hemos recibido tu solicitud. Un especialista se contactará contigo en el horario preferido.");
     // Aquí podrías integrar el envío real a tu correo o base de datos
 });
+const menuBtn = document.getElementById('mobile-menu');
+const navList = document.getElementById('nav-list');
+
+if (menuBtn && navList) {
+    menuBtn.addEventListener('click', () => {
+        navList.classList.toggle('active');
+        const icon = menuBtn.querySelector('i');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
+    });
+}
 </script>
 
 </body>
