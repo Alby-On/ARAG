@@ -1011,15 +1011,18 @@ function nextStep() {
     document.getElementById('resultadoFinal').scrollIntoView({ behavior: 'smooth' });
 }
 
-// Función para mostrar el formulario de contacto
 function mostrarContacto() {
+    // 1. Mostramos el formulario
     document.getElementById('contactoFinal').style.display = 'block';
-    document.getElementById('contactoFinal').scrollIntoView({ behavior: 'smooth' });
-}
-// Nueva función para mostrar el formulario final
-function mostrarContacto() {
-    document.getElementById('contactoFinal').style.display = 'block';
-    document.getElementById('contactoFinal').scrollIntoView({ behavior: 'smooth' });
+    
+    // 2. Ocultamos el div que contiene el botón de "Continuar"
+    document.getElementById('btnPasoContacto').style.display = 'none';
+    
+    // 3. Movemos la vista suavemente al formulario
+    document.getElementById('contactoFinal').scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+    });
 }
 
 // Manejo del envío del formulario
