@@ -297,7 +297,7 @@
         width: auto;
     }
 }
-/* --- ESTILOS DEL FOOTER (ARAG SPA) --- */
+/* --- FOOTER --- */
 
 footer {
     background: var(--secondary);
@@ -329,8 +329,8 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 500px;
     justify-content: center;
+    max-width: 500px;
 }
 
 .footer-logo-container {
@@ -341,7 +341,7 @@ footer {
 }
 
 .footer-logo {
-    height: 65px; /* Tamaño optimizado al estar solo */
+    height: 65px;
     width: auto;
     object-fit: contain;
     filter: brightness(0) invert(1);
@@ -371,7 +371,7 @@ footer {
     padding: 0;
     margin: 0;
     display: flex;
-    flex-direction: column; /* Formato lista vertical */
+    flex-direction: column;
     gap: 12px;
 }
 
@@ -387,7 +387,6 @@ footer {
     gap: 10px;
 }
 
-/* El pequeño icono técnico para la lista */
 .footer-links-list li a i {
     font-size: 0.7rem;
     color: var(--primary);
@@ -395,7 +394,7 @@ footer {
 
 .footer-links-list li a:hover {
     color: var(--white);
-    transform: translateX(5px); /* Desplazamiento sutil a la derecha */
+    transform: translateX(5px);
 }
 
 .footer-bottom {
@@ -405,12 +404,7 @@ footer {
     text-align: center;
 }
 
-.footer-bottom p {
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.6);
-}
-
-/* --- AJUSTES RESPONSIVE PARA EL FOOTER --- */
+/* --- RESPONSIVE FOOTER --- */
 
 @media (min-width: 768px) {
     .footer-content {
@@ -431,9 +425,11 @@ footer {
     .footer-links-list li a {
         justify-content: flex-start;
     }
-    
+}
+
+@media (max-width: 768px) {
     .footer-logo {
-        height: 55px; /* Ajuste sutil para escritorio */
+        height: 40px;
     }
 }
 </style>
