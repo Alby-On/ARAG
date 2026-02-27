@@ -197,30 +197,35 @@
 
 <div class="container">
     <h2>Calculadora de Consumo Eléctrico</h2>
-    <button class="btn-add" onclick="addRow()">+ Añadir Artefacto</button>
 
-    <table id="calcTable">
-        <thead>
-            <tr>
-                <th>Artefacto Eléctrico</th>
-                <th>N° Equipos</th>
-                <th>Potencia (Watts)</th>
-                <th>Tiempo de Uso</th>
-                <th>kWh / Día</th>
-                <th>kWh / Mes</th>
-                <th>Acción</th>
-            </tr>
-        </thead>
-        <tbody id="tableBody"></tbody>
-        <tfoot>
-            <tr class="total-row">
-                <td colspan="4">TOTAL CONSUMO ESTIMADO</td>
-                <td id="totalDia">0.00</td>
-                <td id="totalMes">0.00</td>
-                <td></td>
-            </tr>
-        </tfoot>
-    </table>
+<table id="calcTable">
+    <thead>
+        <tr>
+            <th>Artefacto Eléctrico</th>
+            <th>N° Equipos</th>
+            <th>Potencia (Watts)</th>
+            <th>Tiempo de Uso</th>
+            <th>kWh / Día</th>
+            <th>kWh / Mes</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody id="tableBody">
+        </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="7" style="text-align: left; padding: 15px;">
+                <button class="btn-add" onclick="addRow()" style="margin: 0;">+ Añadir Artefacto</button>
+            </td>
+        </tr>
+        <tr class="total-row">
+            <td colspan="4">TOTAL CONSUMO ESTIMADO</td>
+            <td id="totalDia">0.000</td>
+            <td id="totalMes">0.00</td>
+            <td></td>
+        </tr>
+    </tfoot>
+</table>
   <div class="resumen-container">
     <div class="resumen-card">
         <span class="resumen-label">Carga Máxima de Trabajo</span>
