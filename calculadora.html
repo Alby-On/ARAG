@@ -297,67 +297,93 @@
         width: auto;
     }
 }
-/* --- FOOTER --- */
+    /* --- 13. FOOTER --- */
+    footer {
+        background: var(--secondary);
+        color: white;
+        text-align: center;
+        padding: 60px 20px;
+        border-top: 4px solid var(--primary);
+    }
 
-footer {
-    background: var(--secondary);
-    color: white;
-    text-align: center;
-    padding: 60px 20px;
-    border-top: 4px solid var(--primary);
-}
+    .footer-container-centered {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 60px 0 20px;
+    }
 
-.footer-container-centered {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 60px 0 20px;
-}
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        width: 100%;
+        margin-bottom: 40px;
+    }
 
+    .footer-brand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 500px;
+    }
+
+    .footer-logo-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .footer-logo {
+        height: 55px;
+        width: auto;
+        object-fit: contain;
+        filter: brightness(0) invert(1);
+        transition: transform 0.3s ease;
+    }
+
+    .footer-logo:hover { transform: scale(1.05); }
+
+    .footer-brand p {
+        color: #cbd5e1;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .footer-bottom {
+        width: 100%;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 20px;
+        text-align: center;
+    }
+    /* --- Estilos para el Footer Minimalista (Logo y Lista) --- */
 .footer-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
-    width: 100%;
-    margin-bottom: 40px;
     padding-bottom: 20px;
 }
 
 .footer-brand {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    max-width: 500px;
-}
-
-.footer-logo-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-bottom: 20px;
 }
 
 .footer-logo {
-    height: 65px;
+    height: 65px; /* Tamaño optimizado al estar solo */
     width: auto;
-    object-fit: contain;
     filter: brightness(0) invert(1);
     transition: var(--transition);
 }
 
 .footer-logo:hover {
     transform: scale(1.05);
-}
-
-.footer-brand p {
-    color: #cbd5e1;
-    font-size: 0.9rem;
-    line-height: 1.6;
-    max-width: 300px;
-    margin: 0 auto;
 }
 
 .footer-nav {
@@ -371,7 +397,7 @@ footer {
     padding: 0;
     margin: 0;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Formato lista vertical */
     gap: 12px;
 }
 
@@ -387,6 +413,7 @@ footer {
     gap: 10px;
 }
 
+/* El pequeño icono técnico para la lista */
 .footer-links-list li a i {
     font-size: 0.7rem;
     color: var(--primary);
@@ -394,18 +421,10 @@ footer {
 
 .footer-links-list li a:hover {
     color: var(--white);
-    transform: translateX(5px);
+    transform: translateX(5px); /* Desplazamiento sutil a la derecha */
 }
 
-.footer-bottom {
-    width: 100%;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 20px;
-    text-align: center;
-}
-
-/* --- RESPONSIVE FOOTER --- */
-
+/* Ajustes de alineación para Escritorio */
 @media (min-width: 768px) {
     .footer-content {
         flex-direction: row;
@@ -424,12 +443,6 @@ footer {
 
     .footer-links-list li a {
         justify-content: flex-start;
-    }
-}
-
-@media (max-width: 768px) {
-    .footer-logo {
-        height: 40px;
     }
 }
 </style>
