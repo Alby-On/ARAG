@@ -1028,6 +1028,29 @@
         width: auto;
     }
 }
+/* Estilo para el link activo */
+.nav-links a.active {
+    color: var(--primary) !important;
+    position: relative;
+}
+
+/* El subrayado animado */
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--accent); /* Tu amarillo característico */
+    border-radius: 2px;
+    animation: underlineIn 0.3s ease forwards;
+}
+
+@keyframes underlineIn {
+    from { width: 0; left: 50%; }
+    to { width: 100%; left: 0; }
+}
 </style>
 </head>
 <body>
@@ -1664,6 +1687,26 @@ const observerStats = new IntersectionObserver((entries) => {
     }
 }, { threshold: 0.5 });
 observerStats.observe(document.querySelector('.stats-bar'));
+window.addEventListener('scroll', () => {
+    let current = "";
+    const sections = document.querySelectorAll('section, .container'); 
+    const navItems = document.querySelectorAll('.nav-links a');
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (pageYOffset >= (sectionTop - 150)) {
+            current = section.getAttribute('id');
+        }
+    });
+
+    navItems.forEach(item => {
+        item.classList.remove('active');
+        // Esto verifica si el ID de la sección está incluido en el enlace
+        if (current && item.getAttribute('href').includes(current)) {
+            item.classList.add('active');
+        }
+    });
+});
 </script>
 <a href="https://wa.me/5693220000" class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
     <i class="fab fa-whatsapp"></i>
