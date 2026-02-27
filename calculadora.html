@@ -467,47 +467,48 @@ function updateTotals() {
 // UNICA FUNCIÓN PARA CALCULAR Y MOSTRAR RESULTADOS
 function nextStep() {
     const hsp = parseFloat(document.getElementById('userRegion').value);
-    
     if (!hsp) {
-        alert("Por favor, selecciona tu región para calcular la radiación.");
+        alert("Por favor, selecciona tu región para calcular.");
         return;
     }
 
-    // 1. Obtener datos y limpiar (quitar "W", "kWh", etc. para que sean números)
+    // 1. Datos de entrada
     const totalWattsCarga = parseFloat(document.getElementById('formWatts').value.replace(/[^0-9.]/g, '')) || 0;
     const kwhMes = parseFloat(document.getElementById('formKwhMes').value.replace(/[^0-9.]/g, '')) || 0;
     const kwhDia = kwhMes / 30;
 
-    if (totalWattsCarga === 0) {
-        alert("Primero debes agregar artefactos a la tabla.");
-        return;
-    }
+    // 2. Inversor: Necesitamos al menos la carga máxima (Inversor 10kW base si es alto)
+    const potenciaInversorKW = totalWattsCarga > 5000 ? 10 : 5; 
+    const costoInversor = potenciaInversorKW === 10 ? 750000 : 450000;
 
-    // 2. Cálculo de Inversor (Carga + 20% margen)
-    const potenciaInversor = (totalWattsCarga * 1.2) / 1000; 
-    
-    // 3. Cálculo de Paneles (580W)
+    // 3. Paneles (590W a $90.000)
     const potenciaInstalarWp = (kwhDia / (hsp * 0.75)) * 1000;
-    const numPaneles = Math.ceil(potenciaInstalarWp / 580);
+    const numPaneles = Math.ceil(potenciaInstalarWp / 590);
+    const costoPaneles = numPaneles * 100000;
 
-    // 4. Baterías (1.5 días de autonomía)
-    const capacidadBateria = kwhDia * 1.5;
+    // 4. Baterías (Basado en bloques de 10kWh a $1.500.000)
+    const capacidadNecesaria = kwhDia * 1.2; // 1.2 días de autonomía
+    const numBaterias = Math.ceil(capacidadNecesaria / 10);
+    const costoBaterias = numBaterias * 1500000;
 
-    // 5. Costo Estimado con IVA
-    const costoBase = (potenciaInstalarWp * 1100) + (capacidadBateria * 350000);
-    const costoTotalConIva = costoBase * 1.19;
+    // 5. Otros costos fijos que mencionaste
+    const estructura = 200000;
+    const mppt = 1200000;
+    const accesorios = 300000;
+    const manoObra = 1500000; // Valor estimado de instalación
+
+    // 6. SUMA FINAL
+    const costoNeto = costoPaneles + costoBaterias + costoInversor + estructura + mppt + accesorios + manoObra;
+    const costoTotalConIva = costoNeto * 1.19;
 
     // ACTUALIZAR INTERFAZ
-    document.getElementById('resInversor').innerText = potenciaInversor.toFixed(1) + " kW";
+    document.getElementById('resInversor').innerText = potenciaInversorKW + " kW";
     document.getElementById('resPaneles').innerText = numPaneles + " Unidades";
-    document.getElementById('resBaterias').innerText = capacidadBateria.toFixed(1) + " kWh";
+    document.getElementById('resBaterias').innerText = (numBaterias * 10) + " kWh";
     document.getElementById('resCosto').innerText = "$" + Math.round(costoTotalConIva).toLocaleString('es-CL');
 
-    // MOSTRAR CUADROS OCULTOS
     document.getElementById('resultadoFinal').style.display = 'block';
     document.getElementById('btnPasoContacto').style.display = 'block';
-    
-    // Scroll automático
     document.getElementById('resultadoFinal').scrollIntoView({ behavior: 'smooth' });
 }
 
