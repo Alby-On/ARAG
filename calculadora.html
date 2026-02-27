@@ -297,7 +297,28 @@
         width: auto;
     }
 }
-    /* --- 13. FOOTER --- */
+/* --- 1. VARIABLES NECESARIAS --- */
+    :root {
+        --primary: #1D84CF;
+        --secondary: #1A1A1A;
+        --accent: #FFB800;
+        --light: #f8fafc;
+        --white: #ffffff;
+        --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    /* --- 2. ESTILOS BASE --- */
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: 'Open Sans', sans-serif;
+        line-height: 1.7;
+    }
+
+    /* --- 3. CÓDIGO ESPECÍFICO DEL FOOTER --- */
     footer {
         background: var(--secondary);
         color: white;
@@ -321,6 +342,7 @@
         gap: 30px;
         width: 100%;
         margin-bottom: 40px;
+        padding-bottom: 20px;
     }
 
     .footer-brand {
@@ -328,6 +350,7 @@
         flex-direction: column;
         align-items: center;
         max-width: 500px;
+        justify-content: center;
     }
 
     .footer-logo-container {
@@ -338,14 +361,16 @@
     }
 
     .footer-logo {
-        height: 55px;
+        height: 65px;
         width: auto;
         object-fit: contain;
         filter: brightness(0) invert(1);
         transition: transform 0.3s ease;
     }
 
-    .footer-logo:hover { transform: scale(1.05); }
+    .footer-logo:hover { 
+        transform: scale(1.05); 
+    }
 
     .footer-brand p {
         color: #cbd5e1;
@@ -355,96 +380,84 @@
         margin: 0 auto;
     }
 
+    .footer-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-links-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .footer-links-list li a {
+        color: #cbd5e1;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .footer-links-list li a i {
+        font-size: 0.7rem;
+        color: var(--primary);
+    }
+
+    .footer-links-list li a:hover {
+        color: var(--white);
+        transform: translateX(5px);
+    }
+
     .footer-bottom {
         width: 100%;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         padding-top: 20px;
         text-align: center;
-    }
-    /* --- Estilos para el Footer Minimalista (Logo y Lista) --- */
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-    padding-bottom: 20px;
-}
-
-.footer-brand {
-    display: flex;
-    justify-content: center;
-}
-
-.footer-logo {
-    height: 65px; /* Tamaño optimizado al estar solo */
-    width: auto;
-    filter: brightness(0) invert(1);
-    transition: var(--transition);
-}
-
-.footer-logo:hover {
-    transform: scale(1.05);
-}
-
-.footer-nav {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.footer-links-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column; /* Formato lista vertical */
-    gap: 12px;
-}
-
-.footer-links-list li a {
-    color: #cbd5e1;
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-    transition: var(--transition);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-/* El pequeño icono técnico para la lista */
-.footer-links-list li a i {
-    font-size: 0.7rem;
-    color: var(--primary);
-}
-
-.footer-links-list li a:hover {
-    color: var(--white);
-    transform: translateX(5px); /* Desplazamiento sutil a la derecha */
-}
-
-/* Ajustes de alineación para Escritorio */
-@media (min-width: 768px) {
-    .footer-content {
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        text-align: left;
+        font-size: 0.85rem;
+        color: #cbd5e1;
     }
 
-    .footer-brand {
-        justify-content: flex-start;
+    /* --- 4. RESPONSIVE (MEDIA QUERIES) --- */
+    @media (min-width: 768px) {
+        .footer-content {
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            text-align: left;
+        }
+
+        .footer-brand {
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        .footer-nav {
+            align-items: flex-start;
+        }
+
+        .footer-links-list li a {
+            justify-content: flex-start;
+        }
+        
+        .footer-logo {
+            height: 55px;
+        }
     }
 
-    .footer-nav {
-        align-items: flex-start;
+    @media (max-width: 768px) {
+        .footer-logo { 
+            height: 40px; 
+        }
     }
-
-    .footer-links-list li a {
-        justify-content: flex-start;
-    }
-}
 </style>
 </head>
 <nav class="navbar">
