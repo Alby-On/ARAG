@@ -663,7 +663,7 @@ img {
     <p>Cargando Calculadora Solar...</p>
 </div>
     
-<div class="container">
+<div class="container" id="calculadora">
     <h2>Calculadora de Consumo Eléctrico</h2>
 
 <table id="calcTable">
@@ -1045,6 +1045,20 @@ window.addEventListener("load", function() {
     setTimeout(() => {
         loader.classList.add("loader-hidden");
     }, 500);
+});
+// Detectar que estamos en la página de calculadora y activar el link
+document.addEventListener("DOMContentLoaded", function() {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    navLinks.forEach(link => {
+        // Si el enlace apunta a calculadora.html, le ponemos la raya amarilla
+        if (link.getAttribute('href').includes('calculadora.html')) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
 });
 </script>
 <a href="https://wa.me/5693220000" class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
