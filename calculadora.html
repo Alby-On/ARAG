@@ -459,6 +459,78 @@
             height: 40px; 
         }
     }
+/* ============================= */
+/* MEJORAS RESPONSIVE SEGURAS    */
+/* (No eliminan nada existente)  */
+/* ============================= */
+
+/* 1️⃣ Asegurar escalado correcto en móviles */
+@media (max-width: 768px) {
+
+    /* Ajuste navbar padding */
+    .navbar {
+        padding: 0 20px;
+    }
+
+    /* Ajuste espacio por navbar fija */
+    body {
+        padding-top: 95px;
+    }
+
+    /* Contenedores más compactos */
+    .container {
+        margin: 10px;
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    /* Títulos más proporcionados */
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    /* Botones grandes full width */
+    .btn-next,
+    .btn-siguiente-paso,
+    .btn-finalizar {
+        width: 100%;
+        padding: 14px;
+        font-size: 1rem;
+    }
+
+    /* Ajuste tarjetas resumen */
+    .resumen-valor {
+        font-size: 1.6em;
+    }
+
+    /* Formularios más cómodos */
+    .formulario-container {
+        padding: 20px;
+    }
+
+    .contacto-container {
+        padding: 20px;
+    }
+
+    /* Tablas con scroll horizontal */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+}
+
+/* 2️⃣ Evitar desbordes globales */
+.container {
+    overflow-x: auto;
+}
+
+/* 3️⃣ Mejor comportamiento de imágenes */
+img {
+    max-width: 100%;
+    height: auto;
+}
 </style>
 </head>
 <nav class="navbar">
