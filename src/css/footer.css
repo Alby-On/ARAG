@@ -7,6 +7,23 @@ footer {
     border-top: 4px solid var(--primary);
 }
 
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+}
+
+/* 1. Logo y Marca */
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .footer-logo { 
     height: 65px; 
     width: auto;
@@ -19,10 +36,73 @@ footer {
     transform: scale(1.05);
 }
 
+/* 2. Navegación y Lista */
+.footer-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-links-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-links-list li a {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Icono técnico (el pequeño indicador azul) */
+.footer-links-list li a i {
+    font-size: 0.7rem;
+    color: var(--primary);
+}
+
+.footer-links-list li a:hover {
+    color: var(--white);
+    transform: translateX(5px);
+}
+
+/* 3. Línea inferior de Copyright */
 .footer-bottom {
+    width: 100%;
     margin-top: 20px;
     padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 0.85rem;
     color: #cbd5e1;
+}
+
+/* --- RESPONSIVE --- */
+@media (min-width: 768px) {
+    .footer-content {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        text-align: left;
+    }
+
+    .footer-brand {
+        align-items: flex-start;
+    }
+
+    .footer-nav {
+        align-items: flex-start;
+    }
+
+    .footer-links-list li a {
+        justify-content: flex-start;
+    }
 }
