@@ -8,7 +8,7 @@
 
 .experience-badge {
     background: var(--accent);
-    color: var(--secondary);
+    color: #ffffff; /* antes var(--secondary) para mejor contraste */
     display: inline-block;
     padding: 5px 20px;
     border-radius: 50px;
@@ -26,13 +26,13 @@
 }
 
 .nosotros-card {
-    background: white;
+    background: #ffffff; /* se mantiene blanco para contraste */
     padding: 40px;
     border-radius: 20px;
     box-shadow: var(--shadow);
     transition: var(--transition);
     text-align: center;
-    border: 1px solid transparent;
+    border: 1px solid rgba(255,255,255,0.08);
     position: relative;
     overflow: hidden;
 }
@@ -56,7 +56,7 @@
 .nosotros-card:hover {
     transform: translateY(-10px) scale(1.02);
     border-color: var(--primary);
-    box-shadow: 0 25px 50px rgba(29, 132, 207, 0.18);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35); /* más acorde a fondo oscuro */
 }
 
 /* --- SECCIÓN EQUIPO --- */
@@ -72,7 +72,7 @@
 }
 
 .team-card {
-    background: white;
+    background: #ffffff;
     border-radius: 25px;
     overflow: hidden;
     box-shadow: var(--shadow);
@@ -85,7 +85,7 @@
 /* Hover más moderno */
 .team-card:hover { 
     transform: translateY(-12px) scale(1.02);
-    box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.4);
 }
 
 .team-img { 
@@ -99,7 +99,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+    background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
     opacity: 0;
     transition: 0.4s;
 }
@@ -130,6 +130,7 @@
     margin: 0;
     font-size: 1.2rem;
     transition: 0.3s;
+    color: #1f2937; /* mejor legibilidad */
 }
 
 .team-card:hover h4 {
@@ -147,13 +148,12 @@
 
 /* --- FONDO TÉCNICO AVANZADO PARA NOSOTROS --- */
 #nosotros {
-    background-color: #f1f5f9; /* Gris base un poco más profundo */
-    /* Malla de Ingeniería (Líneas principales y secundarias) */
+    background-color: #2d3436; /* 🔥 fondo aplicado */
     background-image: 
-        linear-gradient(rgba(29, 132, 207, 0.05) 1.5px, transparent 1.5px),
-        linear-gradient(90deg, rgba(29, 132, 207, 0.05) 1.5px, transparent 1.5px),
-        linear-gradient(rgba(29, 132, 207, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(29, 132, 207, 0.02) 1px, transparent 1px);
+        linear-gradient(rgba(255, 255, 255, 0.05) 1.5px, transparent 1.5px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1.5px, transparent 1.5px),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
     background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
     padding: 120px 8%;
     position: relative;
@@ -168,14 +168,13 @@
     right: -50px;
     width: 300px;
     height: 300px;
-    border: 2px solid rgba(29, 132, 207, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.08);
     border-radius: 50%;
-    /* Crea un efecto de radar o bobina */
     background: repeating-radial-gradient(
         circle,
         transparent,
         transparent 20px,
-        rgba(29, 132, 207, 0.03) 21px
+        rgba(255, 255, 255, 0.04) 21px
     );
     z-index: 0;
 }
@@ -187,45 +186,45 @@
     left: -20px;
     width: 150px;
     height: 2px;
-    background: var(--accent); /* Línea técnica de acento */
-    box-shadow: 200px -150px 0 rgba(29, 132, 207, 0.1), 
-                300px 100px 0 rgba(29, 132, 207, 0.1);
+    background: var(--accent);
+    box-shadow: 200px -150px 0 rgba(255, 255, 255, 0.08), 
+                300px 100px 0 rgba(255, 255, 255, 0.08);
     z-index: 0;
 }
 
-/* Capa de suavizado para que el fondo no compita con el texto */
+/* Capa de suavizado */
 .nosotros-bg-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at center, transparent 20%, #f1f5f9 90%);
+    background: radial-gradient(circle at center, transparent 20%, #2d3436 90%);
     pointer-events: none;
     z-index: 0;
 }
 
 .nosotros-container {
     position: relative;
-    z-index: 2; /* Asegura que el equipo y texto estén al frente */
+    z-index: 2;
 }
 
-/* Resalte de Tipografía */
+/* Tipografía */
 .nosotros-main h3 {
     font-size: 2.5rem;
-    color: var(--secondary);
+    color: #ffffff; /* antes var(--secondary) */
     margin-bottom: 25px;
     font-weight: 800;
     letter-spacing: -1px;
 }
 
 .nosotros-main p {
-    color: #334155;
+    color: #d1d5db; /* gris claro */
     max-width: 900px;
     margin: 0 auto;
     font-size: 1.15rem;
     line-height: 1.8;
-    background: rgba(255, 255, 255, 0.4); /* Glassmorphism sutil para leer mejor */
+    background: rgba(0, 0, 0, 0.35); /* adaptado a fondo oscuro */
     padding: 20px;
     border-radius: 15px;
     backdrop-filter: blur(5px);
