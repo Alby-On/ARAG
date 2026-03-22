@@ -1,0 +1,46 @@
+/* --- 4. CARRUSEL DE MARCAS --- */
+.logos-section {
+    overflow: hidden;
+    padding: 40px 0;
+    background: white;
+    position: relative;
+    width: 100%;
+}
+
+.logos-section::before, .logos-section::after {
+    content: "";
+    position: absolute;
+    top: 0; width: 150px; height: 100%;
+    z-index: 5;
+}
+
+.logos-section::before { left: 0; background: linear-gradient(to right, white, transparent); }
+.logos-section::after { right: 0; background: linear-gradient(to left, white, transparent); }
+
+.logos-slider {
+    display: flex;
+    width: max-content;
+    animation: scroll 30s linear infinite;
+    will-change: transform;
+}
+
+.logos-slider:hover { animation-play-state: paused; }
+
+.slide {
+    width: 250px;
+    flex: 0 0 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide img {
+    width: 150px;
+    max-height: 65px;
+    object-fit: contain;
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-2000px); }
+}
