@@ -145,6 +145,50 @@
     letter-spacing: 1px;
 }
 
+/* --- FONDO PARA SECCIÓN NOSOTROS --- */
+#nosotros {
+    background-color: #f8fafc; /* Un gris azulado ultra claro */
+    background-image: radial-gradient(#e2e8f0 1.5px, transparent 1.5px); /* Patrón de puntos tipo plano técnico */
+    background-size: 30px 30px; /* Tamaño de la cuadrícula de puntos */
+    padding: 100px 8%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Añadimos un degradado suave en los bordes para que el patrón no corte brusco */
+#nosotros::before {
+    content: '';
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #ffffff, transparent 15%, transparent 85%, #ffffff);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Aseguramos que el contenido esté por encima del fondo decorativo */
+.nosotros-container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Ajuste sutil a la tipografía para que resalte sobre el fondo */
+.nosotros-main h3 {
+    font-size: 2.2rem;
+    color: var(--secondary);
+    margin-bottom: 25px;
+    font-weight: 800;
+}
+
+.nosotros-main p {
+    color: #475569; /* Gris pizarra para mejor lectura */
+    max-width: 850px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+}
+
 /* --- ANIMACIONES --- */
 @keyframes fadeUp {
     from {
