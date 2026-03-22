@@ -5,7 +5,13 @@
     margin: 0 auto 50px;
     animation: fadeUp 0.8s ease both;
 }
+#nosotros .section-title h2 {
+    color: #ffffff;
+}
 
+#nosotros .section-title {
+    color: #ffffff;
+}
 .experience-badge {
     background: var(--accent);
     color: #ffffff; /* antes var(--secondary) para mejor contraste */
