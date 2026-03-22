@@ -6,7 +6,7 @@
 
 /* Si el logo está en el título (usando la clase inline-logo que tienes en el style general) */
 .inline-logo {
-    height: 35px; /* Reducido de los 45px originales */
+    height: 100px; /* Reducido de los 45px originales */
     width: auto;
     vertical-align: middle;
     margin-left: 10px;
