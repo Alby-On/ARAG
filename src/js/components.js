@@ -11,6 +11,7 @@ async function includeComponent(containerId, filePath) {
 }
 
 // Así los llamas:
+includeComponent('topbar-container', 'src/components/topbar.html');
 includeComponent('navbar-container', 'src/components/navbar.html');
 includeComponent('header-container', 'src/components/header.html');
 includeComponent('carrusel-marcas-container', 'src/components/carrusel-marcas.html');
