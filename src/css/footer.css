@@ -1,0 +1,28 @@
+/* --- FOOTER MINIMALISTA --- */
+footer {
+    background: var(--secondary);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+    border-top: 4px solid var(--primary);
+}
+
+.footer-logo { 
+    height: 65px; 
+    width: auto;
+    object-fit: contain;
+    filter: brightness(0) invert(1); 
+    transition: var(--transition);
+}
+
+.footer-logo:hover {
+    transform: scale(1.05);
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.85rem;
+    color: #cbd5e1;
+}
