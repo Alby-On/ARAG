@@ -1,1 +1,58 @@
+<section id="contacto">
+    <div class="section-title reveal">
+        <h2>Hablemos de tu Proyecto</h2>
+    </div>
+    <div class="contact-container reveal">
+<div class="contact-info">
+    <div class="contact-logo">
+        <img src="aragspa.png" alt="Logo ARAG SPA Ingeniería">
+    </div>
+    
+    <h3>Contacto Directo</h3>
+    <p><i class="fas fa-envelope"></i> contacto@aragspa.cl</p>
+    <p><i class="fas fa-phone-alt"></i> +56 9 1234 5678</p>
 
+    <div class="map-container" style="margin-top: 25px; border-radius: 15px; overflow: hidden; height: 250px; border: 1px solid rgba(255,255,255,0.1);">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1541.0193046012992!2d-72.09830070626641!3d-36.60140868541855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9668d7d3ec68acf9%3A0x7ec993d628def054!2s5%20de%20Abril%20117%2C%203800533%20Chill%C3%A1n%2C%20%C3%91uble!5e0!3m2!1ses!2scl!4v1769611434923!5m2!1ses!2scl"
+            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy">
+        </iframe>
+    </div>
+</div>
+
+<form id="formContacto" method="POST">
+    <input type="hidden" name="access_key" value="7af1807d-02f2-4797-a4db-27b5e3c61c1e">
+    <input type="hidden" name="subject" value="Nueva Solicitud de Contacto - ARAG SpA">
+    <input type="hidden" name="redirect" value="">
+
+    <div class="form-group">
+        <input type="text" name="nombre" placeholder="Nombre completo" required minlength="3">
+    </div>
+    
+    <div class="form-group">
+        <input type="email" name="email" placeholder="Correo electrónico" required>
+    </div>
+
+    <div class="form-group">
+        <input type="tel" name="telefono" placeholder="Teléfono (9XXXXXXXX)" 
+               pattern="[0-9]{9}" 
+               title="Ingresa los 9 dígitos de tu móvil (ej: 912345678)" 
+               required>
+    </div>
+
+    <div class="form-group">
+        <textarea name="mensaje" rows="4" placeholder="¿En qué podemos ayudarte?" required minlength="10"></textarea>
+    </div>
+    
+    <button type="submit" class="btn">Enviar Solicitud</button>
+</form>
+
+<div id="toast-success" style="display: none; position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #007bff; color: white; padding: 15px 30px; border-radius: 50px; z-index: 9999; box-shadow: 0 4px 12px rgba(0,0,0,0.2); font-weight: bold;">
+    ¡Solicitud enviada con éxito!
+</div>
+    </div>
+</section>
