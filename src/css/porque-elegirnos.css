@@ -15,6 +15,16 @@
     color: var(--white); /* Forzamos el título a blanco para contraste */
 }
 
+/* --- CONTROL DE SUBTÍTULO SOBRE FONDO OSCURO --- */
+.section-subtitle {
+    color: #cbd5e1; /* Gris claro azulado para que sea legible sobre el fondo oscuro */
+    text-align: center;
+    max-width: 700px;
+    margin: -30px auto 50px; /* Ajusta el margen para que quede cerca del título h2 */
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
 /* GRID DE BENEFICIOS */
 .benefits-grid {
     display: grid;
