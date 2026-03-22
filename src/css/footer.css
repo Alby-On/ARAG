@@ -1,48 +1,124 @@
-/* --- FOOTER MINIMALISTA --- */
+/* --- FOOTER PROFESIONAL ARAG SPA --- */
 footer {
     background: var(--secondary);
     color: white;
-    text-align: center;
-    padding: 60px 20px;
+    padding: 80px 20px 40px;
     border-top: 4px solid var(--primary);
 }
 
 .footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
+    display: grid;
+    grid-template-columns: 1fr; /* Móvil por defecto */
+    gap: 50px;
     max-width: 1200px;
     margin: 0 auto;
-    padding-bottom: 40px;
+    padding-bottom: 50px;
 }
 
-/* 1. Logo y Marca */
+/* 1. Logo, Descripción y Redes Sociales */
 .footer-brand {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
 .footer-logo { 
-    height: 65px; 
+    height: 60px; 
     width: auto;
     object-fit: contain;
     filter: brightness(0) invert(1); 
     transition: var(--transition);
+    margin-bottom: 20px;
 }
 
-.footer-logo:hover {
-    transform: scale(1.05);
+.footer-logo:hover { transform: scale(1.05); }
+
+.footer-description {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    max-width: 300px;
 }
 
-/* 2. Navegación y Lista */
-.footer-nav {
+.footer-socials {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    gap: 15px;
 }
 
+.footer-socials a {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: var(--transition);
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-socials a:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(29, 132, 207, 0.3);
+    border-color: var(--primary);
+}
+
+/* 2. Columna de Contacto y Navegación (Títulos) */
+.footer-contact-info h4, 
+.footer-nav h4 {
+    color: var(--white);
+    font-size: 1.2rem;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-contact-info h4::after, 
+.footer-nav h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+}
+
+/* Lista de Contacto */
+.footer-contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-contact-list li {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.footer-contact-list i {
+    color: var(--primary);
+    width: 20px;
+    text-align: center;
+}
+
+/* 3. Navegación y Links */
 .footer-links-list {
     list-style: none;
     padding: 0;
@@ -64,7 +140,6 @@ footer {
     gap: 10px;
 }
 
-/* Icono técnico (el pequeño indicador azul) */
 .footer-links-list li a i {
     font-size: 0.7rem;
     color: var(--primary);
@@ -75,34 +150,44 @@ footer {
     transform: translateX(5px);
 }
 
-/* 3. Línea inferior de Copyright */
+/* 4. Línea inferior de Copyright */
 .footer-bottom {
     width: 100%;
-    margin-top: 20px;
-    padding-top: 20px;
+    padding-top: 25px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 0.85rem;
     color: #cbd5e1;
+    text-align: center;
 }
 
 /* --- RESPONSIVE --- */
-@media (min-width: 768px) {
+
+@media (min-width: 992px) {
     .footer-content {
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
+        grid-template-columns: repeat(3, 1fr);
         text-align: left;
     }
 
-    .footer-brand {
-        align-items: flex-start;
-    }
-
+    .footer-brand, 
+    .footer-contact-info, 
     .footer-nav {
         align-items: flex-start;
+        text-align: left;
     }
 
+    .footer-contact-info h4::after, 
+    .footer-nav h4::after {
+        left: 0;
+        transform: none;
+    }
+
+    .footer-contact-list li,
     .footer-links-list li a {
         justify-content: flex-start;
     }
+}
+
+@media (max-width: 768px) {
+    footer { padding: 60px 20px 30px; }
+    .footer-content { gap: 40px; }
 }
