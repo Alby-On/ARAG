@@ -2,7 +2,6 @@
 
 .contact-container {
     display: grid;
-    /* Ajuste de ancho: Info (izquierda) más ancha, Formulario (derecha) más angosto */
     grid-template-columns: 1.3fr 1fr; 
     background: white;
     border-radius: 30px;
@@ -18,31 +17,30 @@
     padding: 60px; 
 }
 
-/* --- SOLUCIÓN PARA EL LOGO SOBRE FONDO OSCURO --- */
-.contact-logo img {
-    height: 100px; /* Tamaño ajustado a 100px */
+/* Selector reforzado para asegurar el tamaño de 100px */
+.contact-info .contact-logo img {
+    height: 100px !important; /* El !important asegura que ignore otras reglas de logos */
     width: auto;
     display: block;
     object-fit: contain;
-    /* Esto convierte el logo negro/oscuro en blanco brillante */
+    margin-bottom: 20px;
     filter: brightness(0) invert(1); 
     transition: var(--transition);
 }
 
-.contact-logo img:hover {
+.contact-info .contact-logo img:hover {
     transform: scale(1.05);
     filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(255,184,0,0.4));
 }
 
 #formContacto { 
-    padding: 50px; /* Reducido un poco para que no se vea tan vacío */
+    padding: 50px; 
     display: flex; 
     flex-direction: column; 
     gap: 20px; 
-    background-color: #fafafa; /* Un gris casi imperceptible para dar contraste */
+    background-color: #fafafa;
 }
 
-/* Ajuste para que los campos no se vean gigantes */
 input, textarea, select { 
     width: 100%; 
     padding: 14px; 
