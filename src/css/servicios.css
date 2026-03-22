@@ -1,4 +1,4 @@
-/* --- 6. SERVICIOS --- */
+/* --- 6. SECCIÓN SERVICIOS (ESTRUCTURA 3-3-1) --- */
 .servicios-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -11,18 +11,39 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    padding: 0 !important; /* Asegura que el padding no rompa la imagen */
+    overflow: hidden;
     background: var(--white);
     border-radius: 20px;
     box-shadow: var(--shadow);
     transition: var(--transition);
-    overflow: hidden;
+    border: 1px solid transparent;
 }
 
 .card:hover {
     transform: translateY(-10px);
-    border: 1px solid var(--primary);
+    box-shadow: 0 20px 40px rgba(29, 132, 207, 0.2);
+    border-color: var(--primary);
 }
 
+/* El subrayado animado que sale del centro al hacer hover */
+.card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--grad);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.card:hover::after { 
+    transform: scaleX(1); 
+}
+
+/* Imagen con efecto de Zoom */
 .card-img {
     width: 100%;
     height: 200px;
@@ -31,15 +52,64 @@
     transition: transform 0.6s ease;
 }
 
-.card-icon {
+.card:hover .card-img { 
+    transform: scale(1.1); 
+}
+
+/* Contenido de la tarjeta (Textos) */
+.card h3 {
+    margin: 20px 0 10px;
+    padding: 0 20px;
+    font-size: 1.3rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.card p {
+    padding: 0 20px 30px;
+    margin: 0;
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Iconos */
+.card-icon, .card i {
     font-size: 2.5rem;
     color: var(--primary);
     margin-bottom: 20px;
+    display: inline-block;
+    transition: var(--transition);
 }
 
+/* --- TARJETA SOLAR (DESTACADA) --- */
 .solar-highlight {
     background: var(--grad-solar);
     color: white;
 }
 
-.solar-highlight .card-icon { color: white; }
+.solar-highlight .card-icon, 
+.solar-highlight i,
+.solar-highlight h3 { 
+    color: white; 
+}
+
+.solar-highlight p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.solar-highlight:hover {
+    border-color: var(--white);
+    box-shadow: 0 20px 40px rgba(255, 184, 0, 0.3);
+}
+
+/* --- RESPONSIVE --- */
+@media (min-width: 768px) {
+    .servicios-grid { 
+        grid-template-columns: repeat(3, 1fr); 
+    }
+    
+    /* Si tienes 7 servicios, el último queda centrado abajo */
+    .servicios-grid .card:nth-child(7) { 
+        grid-column: 2; 
+    }
+}
