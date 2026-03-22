@@ -1,0 +1,32 @@
+/* --- 7. POR QUÉ ELEGIRNOS Y STATS --- */
+.why-choose-us { background-color: #fcfcfc; }
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.benefit-card {
+    background: #ffffff;
+    padding: 30px 20px;
+    border-radius: 15px;
+    text-align: center;
+    transition: var(--transition);
+    border: 1px solid #eee;
+}
+
+.benefit-card:hover { border-color: #004d99; transform: translateY(-10px); }
+
+/* Stats Bar */
+.stats-bar {
+    display: flex;
+    justify-content: space-around;
+    background: linear-gradient(135deg, #004d99 0%, #002d5c 100%);
+    color: white;
+    padding: 40px;
+    border-radius: 20px;
+    margin-top: 60px;
+}
+
+.stat-num { display: block; font-size: 2.5rem; font-weight: bold; color: #ff9800; }
