@@ -1,4 +1,4 @@
-/* --- 2. NAVEGACIÓN --- */
+/* --- 2. NAVEGACIÓN (NAVBAR REPARADA) --- */
 .navbar {
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(20px);
@@ -6,7 +6,7 @@
     padding: 0 8%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center; /* CENTRADO VERTICAL DE TODO EL CONTENIDO */
     position: fixed;
     width: 100%;
     height: 85px;
@@ -14,13 +14,27 @@
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
 }
 
-.logo img { height: 120px; }
+/* Contenedor del Logo para asegurar el centrado */
+.logo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.logo img { 
+    height: 120px; /* Tamaño solicitado */
+    width: auto;
+    object-fit: contain;
+    /* Un pequeño margen para que no toque el borde si la nav es pequeña */
+    display: block;
+    transition: var(--transition);
+}
 
 .nav-links {
     display: flex;
     gap: 30px;
     list-style: none;
-    align-items: center;
+    align-items: center; /* ALINEA LOS LINKS CON EL CENTRO DEL LOGO */
 }
 
 .nav-links a {
@@ -31,9 +45,13 @@
     font-size: 0.85rem;
     letter-spacing: 1px;
     transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
 }
 
-.nav-links a:hover { color: var(--primary); }
+.nav-links a:hover { 
+    color: var(--primary); 
+}
 
 /* Link Activo y Subrayado Animado */
 .nav-links a.active {
@@ -44,7 +62,7 @@
 .nav-links a.active::after {
     content: '';
     position: absolute;
-    bottom: -5px;
+    bottom: -8px; /* Bajado un poco para no chocar con el texto */
     left: 0;
     width: 100%;
     height: 3px;
@@ -57,8 +75,9 @@
 .btn-nav {
     background: var(--grad);
     color: white !important;
-    padding: 10px 20px;
+    padding: 12px 25px; /* Ajustado el padding para mejor balance */
     border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(29, 132, 207, 0.2);
 }
 
 .nav-links a.btn-calc {
@@ -67,10 +86,12 @@
     padding: 8px 18px;
     border-radius: 50px;
     display: inline-block;
+    background: transparent;
 }
 
 .nav-links a.btn-calc:hover {
     background-color: var(--accent);
+    color: var(--secondary) !important;
     box-shadow: 0 4px 15px rgba(255, 184, 0, 0.3);
 }
 
@@ -86,4 +107,11 @@
 @keyframes underlineIn {
     from { width: 0; left: 50%; }
     to { width: 100%; left: 0; }
+}
+
+/* --- AJUSTE RESPONSIVE LOGO --- */
+@media (max-width: 1024px) {
+    .logo img {
+        height: 80px; /* Reducimos el logo en tablets/móvil para no tapar todo */
+    }
 }
