@@ -1,4 +1,18 @@
-/* --- 7. POR QUÉ ELEGIRNOS Y STATS --- */
+.benefit-icon img {
+    max-width: 70%; /* Reduce el logo respecto al contenedor de 70px */
+    height: auto;
+    object-fit: contain;
+}
+
+/* Si el logo está en el título (usando la clase inline-logo que tienes en el style general) */
+.inline-logo {
+    height: 35px; /* Reducido de los 45px originales */
+    width: auto;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+/* Mantener el resto igual... */
 .why-choose-us { 
     padding: 100px 8%; 
     background-color: #fcfcfc; 
