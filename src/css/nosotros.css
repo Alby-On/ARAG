@@ -145,48 +145,90 @@
     letter-spacing: 1px;
 }
 
-/* --- FONDO PARA SECCIÓN NOSOTROS --- */
+/* --- FONDO TÉCNICO AVANZADO PARA NOSOTROS --- */
 #nosotros {
-    background-color: #f8fafc; /* Un gris azulado ultra claro */
-    background-image: radial-gradient(#e2e8f0 1.5px, transparent 1.5px); /* Patrón de puntos tipo plano técnico */
-    background-size: 30px 30px; /* Tamaño de la cuadrícula de puntos */
-    padding: 100px 8%;
+    background-color: #f1f5f9; /* Gris base un poco más profundo */
+    /* Malla de Ingeniería (Líneas principales y secundarias) */
+    background-image: 
+        linear-gradient(rgba(29, 132, 207, 0.05) 1.5px, transparent 1.5px),
+        linear-gradient(90deg, rgba(29, 132, 207, 0.05) 1.5px, transparent 1.5px),
+        linear-gradient(rgba(29, 132, 207, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(29, 132, 207, 0.02) 1px, transparent 1px);
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+    padding: 120px 8%;
     position: relative;
     overflow: hidden;
 }
 
-/* Añadimos un degradado suave en los bordes para que el patrón no corte brusco */
+/* Elementos de "Circuito" Decorativos */
+#nosotros::after {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 300px;
+    height: 300px;
+    border: 2px solid rgba(29, 132, 207, 0.1);
+    border-radius: 50%;
+    /* Crea un efecto de radar o bobina */
+    background: repeating-radial-gradient(
+        circle,
+        transparent,
+        transparent 20px,
+        rgba(29, 132, 207, 0.03) 21px
+    );
+    z-index: 0;
+}
+
 #nosotros::before {
     content: '';
     position: absolute;
-    top: 0; 
+    bottom: 10%;
+    left: -20px;
+    width: 150px;
+    height: 2px;
+    background: var(--accent); /* Línea técnica de acento */
+    box-shadow: 200px -150px 0 rgba(29, 132, 207, 0.1), 
+                300px 100px 0 rgba(29, 132, 207, 0.1);
+    z-index: 0;
+}
+
+/* Capa de suavizado para que el fondo no compita con el texto */
+.nosotros-bg-overlay {
+    position: absolute;
+    top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, #ffffff, transparent 15%, transparent 85%, #ffffff);
+    background: radial-gradient(circle at center, transparent 20%, #f1f5f9 90%);
     pointer-events: none;
     z-index: 0;
 }
 
-/* Aseguramos que el contenido esté por encima del fondo decorativo */
 .nosotros-container {
     position: relative;
-    z-index: 1;
+    z-index: 2; /* Asegura que el equipo y texto estén al frente */
 }
 
-/* Ajuste sutil a la tipografía para que resalte sobre el fondo */
+/* Resalte de Tipografía */
 .nosotros-main h3 {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     color: var(--secondary);
     margin-bottom: 25px;
     font-weight: 800;
+    letter-spacing: -1px;
 }
 
 .nosotros-main p {
-    color: #475569; /* Gris pizarra para mejor lectura */
-    max-width: 850px;
+    color: #334155;
+    max-width: 900px;
     margin: 0 auto;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    background: rgba(255, 255, 255, 0.4); /* Glassmorphism sutil para leer mejor */
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
 }
 
 /* --- ANIMACIONES --- */
