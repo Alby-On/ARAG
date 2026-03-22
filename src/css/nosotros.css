@@ -1,0 +1,60 @@
+/* --- 5. NOSOTROS Y EQUIPO --- */
+.nosotros-main {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 50px;
+}
+
+.experience-badge {
+    background: var(--accent);
+    color: var(--secondary);
+    display: inline-block;
+    padding: 5px 20px;
+    border-radius: 50px;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.nosotros-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.nosotros-card {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    text-align: center;
+    border: 1px solid transparent;
+}
+
+.nosotros-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    box-shadow: 0 20px 40px rgba(29, 132, 207, 0.15);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.team-card {
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.team-img { height: 320px; overflow: hidden; }
+.team-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+.team-card:hover .team-img img { transform: scale(1.1); }
+
+.team-info { padding: 25px; text-align: center; }
+.team-info p { color: var(--primary); font-weight: 700; text-transform: uppercase; }
