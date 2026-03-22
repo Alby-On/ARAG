@@ -1,0 +1,52 @@
+/* --- CONTACTO --- */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    background: white;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.contact-info { 
+    background: var(--secondary); 
+    color: white; 
+    padding: 60px; 
+}
+
+#formContacto { 
+    padding: 60px; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 20px; 
+}
+
+input, textarea { 
+    width: 100%; 
+    padding: 15px; 
+    border: 1px solid #ddd; 
+    border-radius: 10px; 
+}
+
+.btn {
+    padding: 18px 40px;
+    background: var(--grad);
+    color: white;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    animation: pulse-blue 3s infinite;
+    border: none;
+    transition: var(--transition);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(29, 132, 207, 0.4);
+}
+
+@keyframes pulse-blue {
+    0% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7); }
+    70% { box-shadow: 0 0 0 20px rgba(0, 123, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0); }
+}
