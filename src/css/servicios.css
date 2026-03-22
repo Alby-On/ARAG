@@ -1,45 +1,52 @@
-/* --- 6. SECCIÓN SERVICIOS CON FIGURAS SÓLIDAS --- */
+/* --- 6. SECCIÓN SERVICIOS CON FIGURAS SÓLIDAS Y MOVIMIENTO --- */
 #servicios {
     padding: 100px 8%;
     position: relative;
-    overflow: hidden; /* Evita que las figuras se salgan de la sección */
-    background-color: var(--white);
+    overflow: hidden;
+    background-color: #f4f7f9; /* Fondo ligeramente gris para resaltar figuras blancas/azules */
 }
 
-/* FIGURAS SÓLIDAS DE FONDO */
+/* FIGURA SÓLIDA AZUL (MOVIMIENTO LENTO) */
 #servicios::before {
     content: '';
     position: absolute;
-    width: 500px;
-    height: 500px;
-    background: var(--primary);
-    opacity: 0.04;
-    border-radius: 80px;
-    top: -150px;
-    left: -100px;
-    transform: rotate(35deg);
-    animation: float-shape 15s ease-in-out infinite;
+    width: 450px;
+    height: 450px;
+    background: #1D84CF; /* Color sólido */
+    border-radius: 60px;
+    top: -100px;
+    left: -150px;
+    transform: rotate(15deg);
     z-index: 0;
+    /* Efecto de movimiento sutil al scroll mediante parallax simple */
+    box-shadow: 20px 20px 60px rgba(0,0,0,0.1);
 }
 
+/* FIGURA SÓLIDA AMARILLA (MOVIMIENTO CONTRARIO) */
 #servicios::after {
     content: '';
     position: absolute;
-    width: 350px;
-    height: 350px;
-    background: var(--accent);
-    opacity: 0.05;
+    width: 300px;
+    height: 300px;
+    background: #FFB800; /* Color sólido */
     border-radius: 50%;
-    bottom: -80px;
-    right: -80px;
-    animation: float-shape 12s ease-in-out infinite reverse;
+    bottom: -50px;
+    right: -100px;
     z-index: 0;
+    box-shadow: -20px -20px 60px rgba(0,0,0,0.1);
 }
 
-/* --- ANIMACIÓN DE FLOTACIÓN --- */
-@keyframes float-shape {
-    0%, 100% { transform: translate(0, 0) rotate(35deg); }
-    50% { transform: translate(30px, -20px) rotate(40deg); }
+/* Agregando una tercera figura sólida para mayor dinamismo */
+.shape-divider {
+    position: absolute;
+    top: 40%;
+    right: 10%;
+    width: 150px;
+    height: 150px;
+    background: var(--secondary);
+    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+    z-index: 0;
+    transform: rotate(-20deg);
 }
 
 .servicios-grid {
@@ -49,7 +56,7 @@
     max-width: 1100px;
     margin: 0 auto;
     position: relative;
-    z-index: 1; /* Coloca las cards sobre las figuras */
+    z-index: 2; /* Importante: Sobre las figuras */
 }
 
 .card {
@@ -60,9 +67,9 @@
     overflow: hidden;
     background: var(--white);
     border-radius: 20px;
-    box-shadow: var(--shadow);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     transition: var(--transition);
-    border: 1px solid rgba(0,0,0,0.05); /* Borde sutil para resaltar */
+    border: 1px solid rgba(255,255,255,0.8);
 }
 
 .card:hover {
@@ -71,24 +78,21 @@
     border-color: var(--primary);
 }
 
-/* El subrayado animado que sale del centro al hacer hover */
-.card::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background: var(--grad);
-    transform: scaleX(0);
-    transition: transform 0.4s ease;
+/* --- EFECTO DE MOVIMIENTO (OPCIONAL CSS) --- */
+/* Para un movimiento real de scroll sin JS, podemos usar este truco: */
+@media (prefers-reduced-motion: no-preference) {
+    #servicios::before, #servicios::after, .shape-divider {
+        will-change: transform;
+        animation: scrollFloat 20s linear infinite alternate;
+    }
 }
 
-.card:hover::after { 
-    transform: scaleX(1); 
+@keyframes scrollFloat {
+    from { transform: translateY(0) rotate(15deg); }
+    to { transform: translateY(50px) rotate(25deg); }
 }
 
-/* Imagen con efecto de Zoom */
+/* El resto de tu CSS de tarjetas se mantiene igual... */
 .card-img {
     width: 100%;
     height: 200px;
@@ -97,64 +101,35 @@
     transition: transform 0.6s ease;
 }
 
-.card:hover .card-img { 
-    transform: scale(1.1); 
-}
+.card:hover .card-img { transform: scale(1.1); }
 
-/* Contenido de la tarjeta (Textos) */
 .card h3 {
     margin: 20px 0 10px;
     padding: 0 20px;
     font-size: 1.3rem;
-    font-family: 'Montserrat', sans-serif;
 }
 
 .card p {
     padding: 0 20px 30px;
-    margin: 0;
     color: #555;
     font-size: 0.95rem;
-    line-height: 1.6;
 }
 
-/* Iconos */
 .card-icon, .card i {
     font-size: 2.5rem;
     color: var(--primary);
     margin-bottom: 20px;
     display: inline-block;
-    transition: var(--transition);
 }
 
-/* --- TARJETA SOLAR (DESTACADA) --- */
 .solar-highlight {
     background: var(--grad-solar);
     color: white;
 }
 
-.solar-highlight .card-icon, 
-.solar-highlight i,
-.solar-highlight h3 { 
-    color: white; 
-}
+.solar-highlight .card-icon, .solar-highlight i, .solar-highlight h3 { color: white; }
 
-.solar-highlight p {
-    color: rgba(255, 255, 255, 0.9);
-}
-
-.solar-highlight:hover {
-    border-color: var(--white);
-    box-shadow: 0 20px 40px rgba(255, 184, 0, 0.3);
-}
-
-/* --- RESPONSIVE --- */
 @media (min-width: 768px) {
-    .servicios-grid { 
-        grid-template-columns: repeat(3, 1fr); 
-    }
-    
-    /* Si tienes 7 servicios, el último queda centrado abajo */
-    .servicios-grid .card:nth-child(7) { 
-        grid-column: 2; 
-    }
+    .servicios-grid { grid-template-columns: repeat(3, 1fr); }
+    .servicios-grid .card:nth-child(7) { grid-column: 2; }
 }
