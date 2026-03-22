@@ -20,7 +20,7 @@
 
 /* --- SOLUCIÓN PARA EL LOGO SOBRE FONDO OSCURO --- */
 .contact-logo img {
-    height: 100px; /* Tamaño reducido como pediste */
+    height: 100px; /* Tamaño ajustado a 100px */
     width: auto;
     display: block;
     object-fit: contain;
