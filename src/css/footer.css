@@ -1,6 +1,7 @@
 /* --- FOOTER PROFESIONAL ARAG SPA --- */
 footer {
-    background: var(--secondary);
+    /* Un gris oscuro elegante (#334155 es un tono slate/pizarra muy moderno) */
+    background: #2d3436; 
     color: white;
     padding: 80px 20px 40px;
     border-top: 4px solid var(--primary);
@@ -154,7 +155,8 @@ footer {
 .footer-bottom {
     width: 100%;
     padding-top: 25px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    /* Línea divisoria un poco más clara para que resalte sobre el gris */
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
     font-size: 0.85rem;
     color: #cbd5e1;
     text-align: center;
