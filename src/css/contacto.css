@@ -1,11 +1,15 @@
-/* --- CONTACTO --- */
+/* --- CONTACTO REPARADO (LOGO Y ANCHOS) --- */
+
 .contact-container {
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
+    /* Ajuste de ancho: Info (izquierda) más ancha, Formulario (derecha) más angosto */
+    grid-template-columns: 1.3fr 1fr; 
     background: white;
     border-radius: 30px;
     overflow: hidden;
     box-shadow: var(--shadow);
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
 .contact-info { 
@@ -14,22 +18,41 @@
     padding: 60px; 
 }
 
+/* --- SOLUCIÓN PARA EL LOGO SOBRE FONDO OSCURO --- */
+.contact-logo img {
+    height: 35px; /* Tamaño reducido como pediste */
+    width: auto;
+    display: block;
+    object-fit: contain;
+    /* Esto convierte el logo negro/oscuro en blanco brillante */
+    filter: brightness(0) invert(1); 
+    transition: var(--transition);
+}
+
+.contact-logo img:hover {
+    transform: scale(1.05);
+    filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(255,184,0,0.4));
+}
+
 #formContacto { 
-    padding: 60px; 
+    padding: 50px; /* Reducido un poco para que no se vea tan vacío */
     display: flex; 
     flex-direction: column; 
     gap: 20px; 
+    background-color: #fafafa; /* Un gris casi imperceptible para dar contraste */
 }
 
-input, textarea { 
+/* Ajuste para que los campos no se vean gigantes */
+input, textarea, select { 
     width: 100%; 
-    padding: 15px; 
+    padding: 14px; 
     border: 1px solid #ddd; 
     border-radius: 10px; 
+    font-size: 0.95rem;
 }
 
 .btn {
-    padding: 18px 40px;
+    padding: 16px 30px; /* Botón más proporcional al nuevo ancho */
     background: var(--grad);
     color: white;
     border-radius: 50px;
@@ -38,17 +61,20 @@ input, textarea {
     animation: pulse-blue 3s infinite;
     border: none;
     transition: var(--transition);
+    align-self: flex-start; /* Evita que el botón ocupe todo el ancho si no quieres */
 }
 
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(29, 132, 207, 0.4);
-}
-
-@keyframes pulse-blue {
-    0% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7); }
-    70% { box-shadow: 0 0 0 20px rgba(0, 123, 255, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0); }
+/* Responsive */
+@media (max-width: 992px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+    .contact-info, #formContacto {
+        padding: 40px 30px;
+    }
+    .contact-logo img {
+        margin: 0 auto 20px; /* Centra el logo en móvil */
+    }
 }
 /* --- MEJORAS PARA INFO DE EMPRESA Y CEO --- */
 
