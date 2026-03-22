@@ -1,24 +1,102 @@
-/* --- WHATSAPP FLOATING BUTTON --- */
+/* --- 12. WHATSAPP FLOATING BUTTON --- */
 .whatsapp-btn {
     position: fixed;
-    bottom: 30px; 
+    bottom: 30px;
     right: 30px;
-    width: 60px; 
+    width: 60px;
     height: 60px;
     background-color: #25d366;
-    color: white;
+    color: var(--white);
     border-radius: 50px;
+    text-align: center;
+    font-size: 35px;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
     z-index: 3000;
-    display: flex; 
-    align-items: center; 
+    display: flex;
+    align-items: center;
     justify-content: center;
     text-decoration: none;
-    font-size: 30px;
-    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
     transition: var(--transition);
+    /* Animación de pulso constante para llamar la atención */
+    animation: pulse-wsp 2s infinite;
 }
 
 .whatsapp-btn:hover {
     transform: scale(1.1) translateY(-5px);
     background-color: #20ba5a;
+    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5);
+}
+
+/* Efecto de vibración en el icono de FontAwesome al hacer hover */
+.whatsapp-btn:hover i {
+    display: inline-block;
+    animation: shake-icon 0.5s ease infinite;
+}
+
+/* --- TOOLTIP (EL GLOBO DE TEXTO) --- */
+.tooltip-wsp {
+    position: absolute;
+    right: 75px;
+    background: var(--white);
+    color: var(--secondary);
+    padding: 8px 15px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    white-space: nowrap;
+    pointer-events: none; /* Evita que el mouse interactúe con el texto */
+}
+
+/* Triángulo sutil del tooltip */
+.tooltip-wsp::after {
+    content: '';
+    position: absolute;
+    right: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-left: 6px solid var(--white);
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+}
+
+.whatsapp-btn:hover .tooltip-wsp {
+    opacity: 1;
+    visibility: visible;
+    right: 80px; /* Se desplaza ligeramente hacia la izquierda al aparecer */
+}
+
+/* --- ANIMACIONES (KEYFRAMES) --- */
+
+/* Animación de pulso circular */
+@keyframes pulse-wsp {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* Animación de vibración para el icono */
+@keyframes shake-icon {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(15deg); }
+    50% { transform: rotate(-15deg); }
+    75% { transform: rotate(15deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* --- AJUSTE PARA MÓVILES --- */
+@media (max-width: 768px) {
+    .whatsapp-btn { 
+        bottom: 20px; 
+        right: 20px; 
+        width: 55px; 
+        height: 55px; 
+        font-size: 30px; 
+    }
+    .tooltip-wsp { 
+        display: none; /* Ocultamos el tooltip en móvil para no tapar contenido */
+    }
 }
