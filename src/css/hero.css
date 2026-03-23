@@ -42,7 +42,7 @@
     z-index: 2;
 }
 
-/* Contenedor de Texto */
+/* Contenedor de Texto (SUBIDO PARA GENERAR ESPACIO ABAJO) */
 .hero-content {
     position: relative;
     z-index: 3;
@@ -50,6 +50,8 @@
     max-width: 1000px;
     text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
     animation: fadeInUp 1.2s ease-out forwards;
+    /* Movemos el bloque hacia arriba para ganar los ~200px de separación */
+    margin-top: -120px; 
 }
 
 .hero-content h1 {
@@ -100,17 +102,17 @@
 /* --- INDICADOR DE SCROLL POSICIÓN MÁXIMA INFERIOR --- */
 .scroll-indicator {
     position: absolute;
-    bottom: 5px; /* Pegado al borde inferior */
+    bottom: 10px; /* Pegado al borde inferior */
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0px; /* Espacio nulo para bajar el texto */
+    gap: 0px; 
     color: white;
     text-decoration: none !important;
-    opacity: 0.6;
+    opacity: 0.5; /* Un poco más sutil por la distancia */
     transition: var(--transition);
 }
 
@@ -119,11 +121,11 @@
 }
 
 .scroll-indicator span {
-    font-size: 0.55rem; /* Un poco más pequeño para ganar espacio */
+    font-size: 0.55rem;
     text-transform: uppercase;
     letter-spacing: 4px;
     font-weight: 700;
-    margin-bottom: -8px; /* Forzamos que baje hacia la flecha */
+    margin-bottom: -5px; 
 }
 
 .scroll-indicator i {
@@ -153,6 +155,6 @@
 
 @keyframes arrowBounce {
     0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(6px); } /* Rebote más corto para no subir */
-    60% { transform: translateY(3px); }
+    40% { transform: translateY(8px); } /* Rebote sutil hacia abajo */
+    60% { transform: translateY(4px); }
 }
