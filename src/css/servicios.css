@@ -1,43 +1,41 @@
 /* --- SERVICIOS HORIZONTALES COMPACTOS Y SIMÉTRICOS --- */
 
 #servicios {
-    background-color: #828284;
-    padding: 80px 0; /* Un poco menos de padding para compactar */
+    background-color: #ffffff; /* CAMBIADO A BLANCO */
+    padding: 80px 0;
     position: relative;
     overflow: hidden;
 }
 
 .servicios-horizontal-container {
-    max-width: 1100px; /* Un poco más estrecho para mayor elegancia */
+    max-width: 1100px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 40px; /* Menos espacio entre cards */
+    gap: 40px;
     padding: 0 20px;
 }
 
 .card-horizontal {
     display: flex;
     align-items: center;
-    background: #1a1a1c;
-    border-radius: 20px; /* Radio ligeramente menor para look más técnico */
+    background: #ffffff; /* antes oscuro → ahora blanco */
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* sombra más suave */
     transition: all 0.4s ease;
-    /* ALTO FIJO Y REDUCIDO */
-    height: 280px; 
-    border: 1px solid rgba(255,255,255,0.05);
+    height: 280px;
+    border: 1px solid #e5e7eb; /* borde suave para separar */
 }
 
 .card-horizontal:nth-child(even) {
     flex-direction: row-reverse;
 }
 
-/* CONTENEDOR DE IMAGEN (TODAS IGUALES) */
 .card-img-container {
-    flex: 1; /* Mitad y mitad exacto */
+    flex: 1;
     height: 100%;
-    width: 50%; /* Asegura ancho consistente */
+    width: 50%;
     overflow: hidden;
     position: relative;
 }
@@ -45,18 +43,17 @@
 .card-img-container img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Recorta la imagen para llenar el 100% del alto fijo */
+    object-fit: cover;
     transition: transform 0.6s ease;
 }
 
-/* CONTENIDO DE TEXTO (CENTRADO VERTICAL) */
 .card-content {
     flex: 1;
     padding: 30px 40px;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centra el texto verticalmente */
+    justify-content: center;
 }
 
 .service-tag {
@@ -69,20 +66,20 @@
 }
 
 .card-content h3 {
-    font-size: 1.5rem; /* Tamaño más equilibrado para el nuevo alto */
-    color: var(--white);
+    font-size: 1.5rem;
+    color: #1a1a1c; /* texto oscuro para fondo blanco */
     margin-bottom: 12px;
     font-family: 'Montserrat', sans-serif;
     line-height: 1.2;
 }
 
 .card-content p {
-    color: #cbd5e1;
+    color: #4b5563; /* gris legible */
     line-height: 1.5;
     margin-bottom: 15px;
-    font-size: 0.95rem; /* Fuente ligeramente menor para que quepa bien */
+    font-size: 0.95rem;
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* Limita a 3 líneas para mantener el orden */
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -110,7 +107,7 @@
 /* --- RESPONSIVE --- */
 @media (max-width: 992px) {
     .card-horizontal {
-        height: auto; /* En móviles el alto fijo no funciona bien, debe ser auto */
+        height: auto;
         flex-direction: column !important;
     }
     
@@ -125,10 +122,11 @@
         align-items: center;
     }
 }
-/* --- TÍTULOS DE SECCIÓN (BLANCO SOBRE GRIS) --- */
+
+/* --- TÍTULOS DE SECCIÓN (AJUSTADOS PARA FONDO BLANCO) --- */
 
 #servicios .section-title h2 {
-    color: #ffffff; /* Blanco puro para el título principal */
+    color: #1a1a1c; /* oscuro para contraste */
     font-size: 2.5rem;
     font-weight: 800;
     margin-bottom: 10px;
@@ -137,15 +135,14 @@
 }
 
 #servicios .section-subtitle {
-    color: #f1f5f9; /* Un blanco azulado muy suave para el subtítulo */
+    color: #4b5563; /* gris elegante */
     font-size: 1.1rem;
     max-width: 600px;
-    margin: 0 auto 50px; /* Centrado y con espacio hacia las cards */
-    opacity: 0.9;
+    margin: 0 auto 50px;
+    opacity: 1;
     font-weight: 400;
 }
 
-/* Ajuste adicional por si usas una línea decorativa bajo el título */
 #servicios .section-title::after {
-    background-color: var(--accent); /* Tu amarillo corporativo para que resalte */
+    background-color: var(--accent);
 }
