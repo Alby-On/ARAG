@@ -53,22 +53,24 @@
     color: var(--primary); 
 }
 
-/* Link Activo y Subrayado Animado */
+/* --- ESTILO ACTIVO REFORZADO --- */
 .nav-links a.active {
     color: var(--primary) !important;
-    position: relative;
+    font-weight: 800 !important;
 }
 
 .nav-links a.active::after {
     content: '';
     position: absolute;
-    bottom: -8px; /* Bajado un poco para no chocar con el texto */
+    bottom: -15px; /* Ajustado para que no choque con el texto */
     left: 0;
     width: 100%;
     height: 3px;
     background-color: var(--accent);
     border-radius: 2px;
+    display: block !important;
     animation: underlineIn 0.3s ease forwards;
+    z-index: 2001; /* Un poco más que la nav */
 }
 
 /* Botones Especiales en Nav */
