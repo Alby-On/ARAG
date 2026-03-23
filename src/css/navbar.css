@@ -46,7 +46,7 @@
     transition: var(--transition);
     display: inline-flex;
     align-items: center;
-    position: relative; /* Necesario para el underline */
+    position: relative; 
 }
 
 .nav-links a:hover { 
@@ -81,7 +81,7 @@
 }
 
 .menu-toggle {
-    display: none; /* Oculto en escritorio */
+    display: none;
     background: none;
     border: none;
     cursor: pointer;
@@ -95,57 +95,70 @@
     to { width: 100%; left: 0; }
 }
 
-/* --- 3. AJUSTES RESPONSIVE (ARREGLO MENU BURGER) --- */
+/* --- 3. AJUSTES RESPONSIVE (MENÚ FLOTANTE ANIMADO) --- */
 @media (max-width: 1024px) {
-    /* Ocultamos la navbar de escritorio si estás usando dos navs en HTML */
     .navbar:not(.moviles) {
         display: none !important;
     }
 
-    /* Mostramos la navbar móvil */
     .navbar.moviles {
         display: flex !important;
         padding: 0 5%;
     }
 
     .logo img {
-        height: 70px; /* Logo más pequeño para móvil */
+        height: 70px;
     }
 
     .menu-toggle {
-        display: block !important; /* Aparece el burger */
+        display: block !important;
     }
 
-    /* Ajuste del menú desplegable */
+    /* Ajuste del menú: Ahora es un cuadro flotante */
     .navbar.moviles .nav-links {
-        display: none; /* OCULTO POR DEFECTO */
+        /* Layout */
+        display: flex; 
         flex-direction: column;
         position: fixed;
-        top: 85px; /* Altura de la navbar */
-        left: 0;
-        width: 100%;
-        height: calc(100vh - 85px); /* Ocupa el resto de la pantalla */
+        
+        /* Posición y Tamaño ajustable */
+        top: 90px;           /* Se ubica bajo la navbar */
+        right: 5%;           /* Margen lateral */
+        width: 260px;        /* No ocupa todo el ancho */
+        height: auto;        /* Se adapta al contenido */
+        padding: 30px 15px;
+        
+        /* Estética */
         background: rgba(255, 255, 255, 0.98);
-        padding: 40px 0;
-        gap: 25px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        gap: 15px;
         z-index: 1999;
-        overflow-y: auto;
+
+        /* --- ESTADO INICIAL (OCULTO PARA ANIMAR) --- */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-20px); /* Viene desde un poco más arriba */
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none; 
     }
 
-    /* Clase que el JS activará */
+    /* --- ESTADO ACTIVO (ANIMACIÓN DE ENTRADA) --- */
     .navbar.moviles .nav-links.active {
-        display: flex !important;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
     }
 
     .nav-links a {
-        font-size: 1.1rem;
+        font-size: 1rem;
         width: 100%;
         justify-content: center;
+        padding: 10px;
     }
 
-    /* Quitamos el subrayado animado en móvil para que no se vea raro */
     .nav-links a.active::after {
-        display: none;
+        display: none; /* Quitamos la línea en móvil para diseño más limpio */
     }
 }
