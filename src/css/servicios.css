@@ -1,4 +1,16 @@
-/* --- NUEVA ESTRUCTURA DE SERVICIOS HORIZONTALES --- */
+/* --- NUEVA ESTRUCTURA DE SERVICIOS HORIZONTALES (ESTILO DARK) --- */
+
+#servicios {
+    background-color: #828284; /* Tu nuevo color de fondo gris medio */
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Título de sección en blanco para contraste */
+#servicios .section-title h2 {
+    color: var(--white);
+}
 
 .servicios-horizontal-container {
     max-width: 1200px;
@@ -7,18 +19,21 @@
     flex-direction: column;
     gap: 60px; /* Espacio entre filas */
     padding: 0 20px;
+    position: relative;
+    z-index: 1;
 }
 
+/* TARJETAS OSCURECIDAS */
 .card-horizontal {
     display: flex;
     align-items: center;
-    background: var(--white);
+    background: #1a1a1c; /* Gris muy oscuro/casi negro para las tarjetas */
     border-radius: 30px;
     overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
-    min-height: 350px;
-    border: 1px solid rgba(0,0,0,0.03);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    min-height: 380px;
+    border: 1px solid rgba(255,255,255,0.05); /* Borde sutil */
 }
 
 /* --- EFECTO REVERSE (Alternancia) --- */
@@ -28,10 +43,20 @@
 
 /* Contenedor de Imagen */
 .card-img-container {
-    flex: 1.2; /* La imagen ocupa un poco más de espacio */
+    flex: 1.2;
     height: 100%;
-    min-height: 350px;
+    min-height: 380px;
     overflow: hidden;
+    position: relative;
+}
+
+/* Overlay sutil sobre la imagen para que no sea tan brillante */
+.card-img-container::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.2);
+    transition: 0.5s;
 }
 
 .card-img-container img {
@@ -41,7 +66,7 @@
     transition: transform 0.8s ease;
 }
 
-/* Contenido de Texto */
+/* Contenido de Texto (Ajustado para fondo oscuro) */
 .card-content {
     flex: 1;
     padding: 50px;
@@ -51,7 +76,7 @@
 }
 
 .service-tag {
-    color: var(--primary);
+    color: var(--accent); /* Usamos el amarillo para resaltar sobre oscuro */
     font-weight: 800;
     font-size: 0.75rem;
     text-transform: uppercase;
@@ -61,15 +86,16 @@
 }
 
 .card-content h3 {
-    font-size: 1.8rem;
-    color: var(--secondary);
+    font-size: 2rem;
+    color: var(--white); /* Título en blanco */
     margin-bottom: 20px;
     font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
 }
 
 .card-content p {
-    color: #555;
-    line-height: 1.7;
+    color: #cbd5e1; /* Gris claro para los párrafos */
+    line-height: 1.8;
     margin-bottom: 25px;
     font-size: 1.05rem;
 }
@@ -85,35 +111,53 @@
     transition: 0.3s;
 }
 
+.btn-text i {
+    transition: 0.3s;
+}
+
 .btn-text:hover {
-    gap: 15px;
     color: var(--accent);
+}
+
+.btn-text:hover i {
+    transform: translateX(5px);
 }
 
 /* Hover en la Card */
 .card-horizontal:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    border-color: rgba(29, 132, 207, 0.3); /* Borde azul en hover */
 }
 
 .card-horizontal:hover .card-img-container img {
-    transform: scale(1.05);
+    transform: scale(1.08);
+}
+
+.card-horizontal:hover .card-img-container::after {
+    background: rgba(0,0,0,0); /* Aclara la imagen en hover */
 }
 
 /* --- RESPONSIVE --- */
 @media (max-width: 992px) {
     .card-horizontal, 
     .card-horizontal:nth-child(even) {
-        flex-direction: column; /* En tablet/móvil vuelven a ser verticales */
+        flex-direction: column;
     }
     
     .card-img-container {
         width: 100%;
-        height: 250px;
-        min-height: 250px;
+        height: 300px;
+        min-height: 300px;
     }
     
     .card-content {
         padding: 30px;
+        text-align: center;
+        align-items: center;
+    }
+    
+    .card-content h3 {
+        font-size: 1.6rem;
     }
 }
