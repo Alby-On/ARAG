@@ -1,163 +1,127 @@
-/* --- NUEVA ESTRUCTURA DE SERVICIOS HORIZONTALES (ESTILO DARK) --- */
+/* --- SERVICIOS HORIZONTALES COMPACTOS Y SIMÉTRICOS --- */
 
 #servicios {
-    background-color: #828284; /* Tu nuevo color de fondo gris medio */
-    padding: 100px 0;
+    background-color: #828284;
+    padding: 80px 0; /* Un poco menos de padding para compactar */
     position: relative;
     overflow: hidden;
-}
-
-/* Título de sección en blanco para contraste */
-#servicios .section-title h2 {
-    color: var(--white);
 }
 
 .servicios-horizontal-container {
-    max-width: 1200px;
+    max-width: 1100px; /* Un poco más estrecho para mayor elegancia */
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 60px; /* Espacio entre filas */
+    gap: 40px; /* Menos espacio entre cards */
     padding: 0 20px;
-    position: relative;
-    z-index: 1;
 }
 
-/* TARJETAS OSCURECIDAS */
 .card-horizontal {
     display: flex;
     align-items: center;
-    background: #1a1a1c; /* Gris muy oscuro/casi negro para las tarjetas */
-    border-radius: 30px;
+    background: #1a1a1c;
+    border-radius: 20px; /* Radio ligeramente menor para look más técnico */
     overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-    min-height: 380px;
-    border: 1px solid rgba(255,255,255,0.05); /* Borde sutil */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    transition: all 0.4s ease;
+    /* ALTO FIJO Y REDUCIDO */
+    height: 280px; 
+    border: 1px solid rgba(255,255,255,0.05);
 }
 
-/* --- EFECTO REVERSE (Alternancia) --- */
 .card-horizontal:nth-child(even) {
     flex-direction: row-reverse;
 }
 
-/* Contenedor de Imagen */
+/* CONTENEDOR DE IMAGEN (TODAS IGUALES) */
 .card-img-container {
-    flex: 1.2;
+    flex: 1; /* Mitad y mitad exacto */
     height: 100%;
-    min-height: 380px;
+    width: 50%; /* Asegura ancho consistente */
     overflow: hidden;
     position: relative;
-}
-
-/* Overlay sutil sobre la imagen para que no sea tan brillante */
-.card-img-container::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.2);
-    transition: 0.5s;
 }
 
 .card-img-container img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: transform 0.8s ease;
+    object-fit: cover; /* Recorta la imagen para llenar el 100% del alto fijo */
+    transition: transform 0.6s ease;
 }
 
-/* Contenido de Texto (Ajustado para fondo oscuro) */
+/* CONTENIDO DE TEXTO (CENTRADO VERTICAL) */
 .card-content {
     flex: 1;
-    padding: 50px;
+    padding: 30px 40px;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center; /* Centra el texto verticalmente */
 }
 
 .service-tag {
-    color: var(--accent); /* Usamos el amarillo para resaltar sobre oscuro */
+    color: var(--accent);
     font-weight: 800;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 15px;
-    display: block;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
 }
 
 .card-content h3 {
-    font-size: 2rem;
-    color: var(--white); /* Título en blanco */
-    margin-bottom: 20px;
+    font-size: 1.5rem; /* Tamaño más equilibrado para el nuevo alto */
+    color: var(--white);
+    margin-bottom: 12px;
     font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
+    line-height: 1.2;
 }
 
 .card-content p {
-    color: #cbd5e1; /* Gris claro para los párrafos */
-    line-height: 1.8;
-    margin-bottom: 25px;
-    font-size: 1.05rem;
+    color: #cbd5e1;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    font-size: 0.95rem; /* Fuente ligeramente menor para que quepa bien */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limita a 3 líneas para mantener el orden */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-/* Botón de texto */
 .btn-text {
     color: var(--primary);
     text-decoration: none;
     font-weight: 700;
+    font-size: 0.9rem;
     display: flex;
     align-items: center;
-    gap: 10px;
-    transition: 0.3s;
+    gap: 8px;
 }
 
-.btn-text i {
-    transition: 0.3s;
-}
-
-.btn-text:hover {
-    color: var(--accent);
-}
-
-.btn-text:hover i {
-    transform: translateX(5px);
-}
-
-/* Hover en la Card */
+/* HOVER */
 .card-horizontal:hover {
-    transform: translateY(-8px) scale(1.01);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-    border-color: rgba(29, 132, 207, 0.3); /* Borde azul en hover */
+    transform: translateY(-5px);
+    border-color: var(--primary);
 }
 
 .card-horizontal:hover .card-img-container img {
-    transform: scale(1.08);
-}
-
-.card-horizontal:hover .card-img-container::after {
-    background: rgba(0,0,0,0); /* Aclara la imagen en hover */
+    transform: scale(1.1);
 }
 
 /* --- RESPONSIVE --- */
 @media (max-width: 992px) {
-    .card-horizontal, 
-    .card-horizontal:nth-child(even) {
-        flex-direction: column;
+    .card-horizontal {
+        height: auto; /* En móviles el alto fijo no funciona bien, debe ser auto */
+        flex-direction: column !important;
     }
     
     .card-img-container {
         width: 100%;
-        height: 300px;
-        min-height: 300px;
+        height: 220px;
     }
     
     .card-content {
-        padding: 30px;
+        padding: 25px;
         text-align: center;
         align-items: center;
-    }
-    
-    .card-content h3 {
-        font-size: 1.6rem;
     }
 }
