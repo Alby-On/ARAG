@@ -95,7 +95,7 @@
     to { width: 100%; left: 0; }
 }
 
-/* --- 3. AJUSTES RESPONSIVE (MENÚ FLOTANTE ANIMADO) --- */
+/* --- 3. AJUSTES RESPONSIVE (MENÚ FLOTANTE DERECHA) --- */
 @media (max-width: 1024px) {
     .navbar:not(.moviles) {
         display: none !important;
@@ -114,40 +114,37 @@
         display: block !important;
     }
 
-    /* Ajuste del menú: Ahora es un cuadro flotante */
     .navbar.moviles .nav-links {
-        /* Layout */
         display: flex; 
         flex-direction: column;
         position: fixed;
         
-        /* Posición y Tamaño ajustable */
-        top: 90px;           /* Se ubica bajo la navbar */
-        right: 5%;           /* Margen lateral */
-        width: 260px;        /* No ocupa todo el ancho */
-        height: auto;        /* Se adapta al contenido */
+        /* POSICIÓN A LA DERECHA */
+        top: 90px;           
+        right: 5%;           /* Ajustado para el lado derecho */
+        left: auto;          /* Asegura que no se estire desde la izquierda */
+        width: 260px;        
+        height: auto;        
         padding: 30px 15px;
         
-        /* Estética */
         background: rgba(255, 255, 255, 0.98);
         border-radius: 20px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         gap: 15px;
         z-index: 1999;
 
-        /* --- ESTADO INICIAL (OCULTO PARA ANIMAR) --- */
+        /* --- ANIMACIÓN DESDE LA DERECHA --- */
         opacity: 0;
         visibility: hidden;
-        transform: translateY(-20px); /* Viene desde un poco más arriba */
+        transform: translate(20px, -10px); /* Viene un poco desde la derecha y arriba */
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         pointer-events: none; 
     }
 
-    /* --- ESTADO ACTIVO (ANIMACIÓN DE ENTRADA) --- */
     .navbar.moviles .nav-links.active {
         opacity: 1;
         visibility: visible;
-        transform: translateY(0);
+        transform: translate(0, 0); /* Vuelve a su sitio */
         pointer-events: auto;
     }
 
@@ -159,6 +156,6 @@
     }
 
     .nav-links a.active::after {
-        display: none; /* Quitamos la línea en móvil para diseño más limpio */
+        display: none; 
     }
 }
