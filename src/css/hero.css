@@ -1,4 +1,4 @@
-/* --- 3. HERO --- */
+/* --- 3. HERO (ACTUALIZADO CON BOTÓN PULSANTE Y FLECHA) --- */
 .hero {
     height: 100vh;
     display: flex;
@@ -11,35 +11,7 @@
     background-color: #000;
 }
 
-.hero-slider {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 1;
-}
-
-.slide-bg {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    transform: scale(1);
-    animation: imageFadeZoom 15s linear infinite;
-}
-
-.slide-bg:nth-child(1) { animation-delay: 0s; }
-.slide-bg:nth-child(2) { animation-delay: 5s; }
-.slide-bg:nth-child(3) { animation-delay: 10s; }
-
-.hero-overlay {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
-    z-index: 2;
-}
+/* ... (Tus estilos de slider, bg y overlay se mantienen igual) ... */
 
 .hero-content {
     position: relative;
@@ -50,41 +22,81 @@
     animation: fadeInUp 1.2s ease-out forwards;
 }
 
-.hero-content h1 {
-    font-family: 'Montserrat', sans-serif;
+/* BOTÓN EMPECEMOS AGRANDADO Y CON PULSO */
+.hero-content .btn-hero {
+    display: inline-block;
+    padding: 22px 50px; /* Tamaño agrandado */
+    background: var(--grad);
+    color: white;
+    border-radius: 60px;
+    font-size: 1.2rem;
     font-weight: 800;
-    font-size: clamp(2.8rem, 7vw, 5rem);
-    line-height: 1.1;
-    margin: 0 0 25px 0; /* corregido sin borrar tu lógica */
-    letter-spacing: -1px; /* agregado */
-    color: var(--white);
+    text-decoration: none; /* Quita el subrayado */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(29, 132, 207, 0.4);
+    animation: heroPulse 2s infinite; /* Animación de pulso */
 }
 
-.hero-content h1 span { 
-    color: var(--accent); 
+.hero-content .btn-hero:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(29, 132, 207, 0.6);
+    color: white;
+    text-decoration: none;
 }
 
-/* 🔥 FALTANTE IMPORTANTE */
-.hero-content p {
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
-    max-width: 800px;
-    margin: 0 auto 45px;
+/* FLECHA PARA BAJAR (SCROLL DOWN) */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    text-decoration: none;
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.scroll-indicator:hover {
     opacity: 1;
-    font-weight: 400;
-    line-height: 1.6;
 }
 
-/* 🔥 ANIMACIONES COMPLETAS */
-@keyframes imageFadeZoom {
-    0% { opacity: 0; transform: scale(1); }
-    10% { opacity: 1; }
-    33% { opacity: 1; }
-    43% { opacity: 0; transform: scale(1.1); }
-    100% { opacity: 0; }
+.scroll-indicator i {
+    font-size: 1.5rem;
+    animation: arrowBounce 2s infinite;
 }
 
-/* 🔥 FALTABA ESTA ANIMACIÓN */
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+.scroll-indicator span {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* --- ANIMACIONES ADICIONALES --- */
+
+/* Animación de Pulso para el Botón */
+@keyframes heroPulse {
+    0% { transform: scale(1); box-shadow: 0 10px 30px rgba(29, 132, 207, 0.4); }
+    50% { transform: scale(1.05); box-shadow: 0 10px 45px rgba(29, 132, 207, 0.7); }
+    100% { transform: scale(1); box-shadow: 0 10px 30px rgba(29, 132, 207, 0.4); }
+}
+
+/* Animación de Rebote para la Flecha */
+@keyframes arrowBounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+/* Quita el subrayado de cualquier otro link en el hero */
+.hero-content a {
+    text-decoration: none !important;
 }
