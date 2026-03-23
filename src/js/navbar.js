@@ -1,51 +1,31 @@
-// --- 1. Scroll Suave ---
-document.querySelectorAll('.nav-links a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
+// --- 2. Nav Activo (Detección por Intersección) ---
+const observerOptions = {
+    root: null,
+    rootMargin: '-20% 0px -70% 0px', // Detecta la sección cuando está en la parte superior
+    threshold: 0
+};
 
-        // Si es la calculadora o un link externo, no hacer scroll suave
-        if (href.includes('calculadora') || !href.startsWith('#')) {
-            return;
-        }
-
-        e.preventDefault();
-        const targetElement = document.querySelector(href);
-
-        if (targetElement) {
-            window.scrollTo({
-                top: targetElement.offsetTop - 80, // Ajustado al alto de tu navbar
-                behavior: 'smooth'
+const observerCallback = (entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            
+            // Quitar clase active de todos
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                // Si el href coincide con el id de la sección visible
+                if (link.getAttribute('href') === `#${id}`) {
+                    link.setAttribute('active-found', 'true'); // Marca temporal
+                    link.classList.add('active');
+                }
             });
         }
     });
-});
+};
 
-// --- 2. Nav Activo (Detección de Secciones) ---
-window.addEventListener('scroll', () => {
-    let current = "";
-    
-    // Buscamos solo los elementos que tienen un ID (las secciones reales)
-    const sections = document.querySelectorAll('section[id], div[id]');
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        
-        // Detectamos si el scroll está dentro del rango de la sección
-        // Usamos pageYOffset (o scrollY) con un margen de 150px
-        if (window.scrollY >= (sectionTop - 150)) {
-            current = section.getAttribute('id');
-        }
-    });
+const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-    const navItems = document.querySelectorAll('.nav-links a');
-    navItems.forEach(item => {
-        item.classList.remove('active');
-        const href = item.getAttribute('href');
-        
-        // Verificamos que el ID actual no esté vacío y coincida exactamente con el href
-        if (current && href === `#${current}`) {
-            item.classList.add('active');
-        }
-    });
+// Seleccionamos todas las secciones que tengan un ID
+document.querySelectorAll('section[id], div[id]').forEach(section => {
+    observer.observe(section);
 });
