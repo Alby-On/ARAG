@@ -125,3 +125,27 @@
         align-items: center;
     }
 }
+/* --- TÍTULOS DE SECCIÓN (BLANCO SOBRE GRIS) --- */
+
+#servicios .section-title h2 {
+    color: #ffffff; /* Blanco puro para el título principal */
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#servicios .section-subtitle {
+    color: #f1f5f9; /* Un blanco azulado muy suave para el subtítulo */
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 50px; /* Centrado y con espacio hacia las cards */
+    opacity: 0.9;
+    font-weight: 400;
+}
+
+/* Ajuste adicional por si usas una línea decorativa bajo el título */
+#servicios .section-title::after {
+    background-color: var(--accent); /* Tu amarillo corporativo para que resalte */
+}
