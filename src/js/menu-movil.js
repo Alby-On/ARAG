@@ -1,40 +1,40 @@
-// Usamos una función autoejecutable para asegurar que el DOM esté listo
-(function() {
-    const initMenu = () => {
-        const menuBtn = document.getElementById('mobile-menu');
-        const navList = document.getElementById('nav-list');
+const iniciarMenuArag = () => {
+    const menuBtn = document.getElementById('mobile-menu');
+    const navList = document.getElementById('nav-list');
 
-        if (!menuBtn || !navList) {
-            // Si sale este error, es que el JS se cargó antes que el HTML
-            console.error("No se encontraron los elementos. Revisa la posición del script.");
-            return;
-        }
+    if (menuBtn && navList) {
+        console.log("✅ Menú de ARAG SPA detectado y listo.");
 
-        menuBtn.addEventListener('click', () => {
+        menuBtn.addEventListener('click', (e) => {
+            e.preventDefault();
             navList.classList.toggle('active');
-            
-            // Cambio de icono
+
+            // Cambio de icono con FontAwesome
             const icon = menuBtn.querySelector('i');
-            if (icon.classList.contains('fa-bars')) {
-                icon.classList.replace('fa-bars', 'fa-times');
-            } else {
-                icon.classList.replace('fa-times', 'fa-bars');
+            if (icon) {
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
             }
         });
 
-        // Cerrar al clickear links
+        // Cerrar al hacer clic en un link
         navList.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navList.classList.remove('active');
-                menuBtn.querySelector('i').classList.replace('fa-times', 'fa-bars');
+                const icon = menuBtn.querySelector('i');
+                if (icon) icon.classList.replace('fa-times', 'fa-bars');
             });
         });
-    };
-
-    // Ejecutar al cargar
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initMenu);
     } else {
-        initMenu();
+        // Si aún falla, reintentamos en 500ms (solo una vez)
+        console.warn("Reintentando encontrar elementos...");
+        setTimeout(iniciarMenuArag, 500);
     }
-})();
+};
+
+// Disparar cuando el DOM esté listo
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    iniciarMenuArag();
+} else {
+    document.addEventListener('DOMContentLoaded', iniciarMenuArag);
+}
